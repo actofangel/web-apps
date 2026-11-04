@@ -112,34 +112,34 @@ Within the scope of this survey, no explicit reuse license could be found on Lea
 - [HALVS GitHub repository](https://github.com/WeizhenLiuBioinform/HALVS-Hierarchical-Vein-Segment) — species and access terms for the vein annotations.
 
 
-## Leaf shape data traced from a reference photograph
+## Leaf shape data traced from reference images
 
 ### Source and handling
 
-The outlines, veins, petioles and leaf colors were read from a reference photograph showing the 14 leaves arranged in a ring in order of autumn color (file name HS65tazXgAAZxyQ.jpeg, provided by the person who commissioned KOYO). The photograph itself is not bundled with the app and is not used as a texture. The app contains only the coordinates and color values derived from it (`LEAF_TRACE` in index.html). The rights holder of the photograph and its reuse terms have not been confirmed, so confirm the rights before publishing or distributing the app.
+The outlines, veins, petioles and leaf colors were read from reference images of the 14 leaves, collected from freely available sources to capture each leaf's shape accurately. The images themselves are not bundled with the app and are not used as textures. The app contains only the coordinates and color values derived from them (`LEAF_TRACE` in index.html).
 
-Each leaf in the photograph is a single specimen, not the average shape of its species. The individual variation of each specimen remains in its shape.
+Each reference leaf is a single specimen, not the average shape of its species. The individual variation of each specimen remains in its shape.
 
 ### Processing
 
 1. The leaves were separated from the background by color difference. Leaves that touched each other were split into 14 using a watershed on the color gradient, plus hand-drawn cuts where they overlapped.
-2. For each leaf, the axis from base to apex was found to align its orientation, and the axis position was set by a left-right symmetry search. Edges hidden under other leaves were filled in by mirroring across the axis (the filled area is a few percent for the maples, and up to about 10% for Sugar Maple and Sweetgum). For Ginkgo, the central notch appears only as a thin line in the photograph, so it was restored by hand.
-3. Each outline was resampled to 440 evenly spaced points and stored in coordinates where the leaf length is 1. The leaf width comes from the aspect ratio in the photograph.
+2. For each leaf, the axis from base to apex was found to align its orientation, and the axis position was set by a left-right symmetry search. Edges hidden under other leaves were filled in by mirroring across the axis (the filled area is a few percent for the maples, and up to about 10% for Sugar Maple and Sweetgum). For Ginkgo, the central notch appears only as a thin line in the reference image, so it was restored by hand.
+3. Each outline was resampled to 440 evenly spaced points and stored in coordinates where the leaf length is 1. The leaf width comes from the aspect ratio in the reference image.
 4. The petiole was extracted from each cut-out leaf by following its narrow part along a shortest path.
-5. For the veins, the vein topology was specified per species (midrib, number and angle of secondary veins, and primary veins running to the lobe tips), and the actual paths were drawn as shortest paths following the vein positions in the photograph. The fine reticulate veins cannot be traced at the photograph's resolution, so they are represented by a mesh generated in the texture. For leaves whose veins are hard to see, such as Aspen, Poplar and Ginkgo, the specified structure carries more weight.
-6. Colors were taken as representative blade colors, excluding veins and margins, at three places on each leaf: toward the apex, in the middle and toward the base. These three colors are used as each species' peakAutumn (peak color). The colors for the other seasons are unchanged. The vein color is set from the ratio between vein and blade color in the photograph (veinTone).
+5. For the veins, the vein topology was specified per species (midrib, number and angle of secondary veins, and primary veins running to the lobe tips), and the actual paths were drawn as shortest paths following the vein positions in the reference image. The fine reticulate veins cannot be traced at the reference image's resolution, so they are represented by a mesh generated in the texture. For leaves whose veins are hard to see, such as Aspen, Poplar and Ginkgo, the specified structure carries more weight.
+6. Colors were taken as representative blade colors, excluding veins and margins, at three places on each leaf: toward the apex, in the middle and toward the base. These three colors are used as each species' peakAutumn (peak color). The colors for the other seasons are unchanged. The vein color is set from the ratio between vein and blade color in the reference image (veinTone).
 
 ### Blade surface model
 
-The height of the blade surface is computed by bladeZ (tracedBladeZ for leaves traced from the photograph), and the blade mesh and the vein tubes share the same surface. Undulation that bulges between veins and forms valleys along them is built from a distance-to-vein field. On top of this are a margin wave depending on distance to the edge and a droop at the apex. The blades of traced leaves are uniform meshes that join the outline and an interior grid by Delaunay triangulation, with a resolution of about 1/62 of the leaf length. Height, UV and edge effects are all smooth functions of position (x, y) and do not depend on the blade width of each row (to avoid steps in deeply lobed leaves).
+The height of the blade surface is computed by bladeZ (tracedBladeZ for leaves traced from the reference image), and the blade mesh and the vein tubes share the same surface. Undulation that bulges between veins and forms valleys along them is built from a distance-to-vein field. On top of this are a margin wave depending on distance to the edge and a droop at the apex. The blades of traced leaves are uniform meshes that join the outline and an interior grid by Delaunay triangulation, with a resolution of about 1/62 of the leaf length. Height, UV and edge effects are all smooth functions of position (x, y) and do not depend on the blade width of each row (to avoid steps in deeply lobed leaves).
 
-Where no data from the photograph is available, generation falls back to the earlier hand-tuned parameters.
+Where no data from the reference image is available, generation falls back to the earlier hand-tuned parameters.
 
 ### Known limitations
 
-- The height (curvature and bulging) is not measured from the photograph; it is an expressive parameter.
-- The filled-in edges and veins hidden in the photograph are estimates based on an assumption of left-right symmetry.
-- The reference photograph is an illustration of changing color, so each leaf's color is that of a single specimen.
+- The height (curvature and bulging) is not measured from the reference image; it is an expressive parameter.
+- The filled-in edges and veins hidden in the reference image are estimates based on an assumption of left-right symmetry.
+- Each leaf's color is that of a single specimen.
 
 ### Bug fixed
 

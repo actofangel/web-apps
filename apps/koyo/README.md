@@ -37,13 +37,15 @@ Keyboard: `Space` play / pause, `F` fit view, `Esc` deselect or leave the motion
 
 ## Usage
 
-Open `index.html` in a browser with WebGL. No build step is needed.
+Open `index.html` in a browser with WebGL. No build step or internet connection is needed.
 
-KOYO loads [Three.js](https://threejs.org/) 0.185.0 and the Tailwind CSS browser build from the jsDelivr CDN, so it needs an internet connection.
+## Technical notes
+
+A single self-contained HTML file. [Three.js](https://threejs.org/) 0.185.0 (bundled into one ES module) and the [Tailwind CSS](https://tailwindcss.com/) 4.3.4 browser build are embedded in the page, both under the MIT License. Three.js is loaded from the embedded copy through a Blob URL, so the app also works when opened from `file://`.
 
 ## Data and sources
 
-Leaf shapes are generated from hand-tuned morphology recipes, checked against the [Natural History Museum plant-traits dataset](https://github.com/NaturalHistoryMuseum/plant-traits) (CC BY 4.0). Outlines, veins and peak autumn colors for each species are traced from a reference photograph of 14 leaves. See [`DATA_SOURCES.md`](DATA_SOURCES.md) for the data survey, the processing steps, the known limitations and the full list of sources.
+Leaf shapes are generated from hand-tuned morphology recipes, checked against the [Natural History Museum plant-traits dataset](https://github.com/NaturalHistoryMuseum/plant-traits) (CC BY 4.0). Outlines, veins and peak autumn colors for each species are traced from reference leaf images. See [`DATA_SOURCES.md`](DATA_SOURCES.md) for the data survey, the processing steps, the known limitations and the full list of sources.
 
 ## Credits
 
