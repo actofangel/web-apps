@@ -22,6 +22,7 @@ Apps that create new material, such as patterns, tiles and wallpapers.
 | App | Description | Demo |
 | --- | --- | --- |
 | [**Lapis Natalis**](apps/lapis-natalis/) | Turns a birthday into its birthstone, a faceted cut and a seamless caustic pattern, unique to each of the 366 days | [Open](https://actofangel.github.io/web-apps/apps/lapis-natalis/) |
+| [**Koyomigami**](apps/koyomigami/) | Forms a sheet of washi for each day of the year from the Japanese month names, 24 solar terms and 72 seasons, using a physical papermaking model | [Open](https://actofangel.github.io/web-apps/apps/koyomigami/) |
 
 ## Screenshots
 
@@ -31,6 +32,8 @@ Apps that create new material, such as patterns, tiles and wallpapers.
 | Soma — Skin Overlay Studio | Chromatic Structure Lab |
 | [![Velagrafia](apps/velagrafia/screenshot.png)](apps/velagrafia/) | [![Lapis Natalis](apps/lapis-natalis/screenshot.png)](apps/lapis-natalis/) |
 | Velagrafia | Lapis Natalis |
+| [![Koyomigami](apps/koyomigami/screenshot.png)](apps/koyomigami/) | |
+| Koyomigami | |
 
 ## Structure
 

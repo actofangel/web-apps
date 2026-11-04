@@ -1,0 +1,1263 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>暦紙</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;800&family=Zen+Old+Mincho:wght@400;600&family=Klee+One:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+/* Layout: a washi desk. The day's own paper fills the ground; content sits on thin cut sheets ruled with hairlines. A vertical date card faces the living tiled sheet; below sit the month names, the day's almanac and the export table. One quiet type scale throughout. */
+:root{
+  color-scheme:light;
+  --desk:#ECE7DC; --sheet:#FBF9F4; --sumi:#2E2B27; --usuzumi:#77705F; --line:#E2DACB; --shu:#B4432E; --kin:#977736;
+  --f-disp:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif;
+  --f-body:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif;
+  --f-hand:"Klee One","Hiragino Maru Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif;
+  --t-xs:10px; --t-sm:11.5px; --t-base:13px; --t-md:15px; --t-lg:22px;
+  --pad:clamp(16px,2.6vw,28px);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--desk)}
+body{background:var(--desk);color:var(--sumi);font-family:var(--f-body);font-size:var(--t-base);line-height:1.85;letter-spacing:.04em;-webkit-font-smoothing:antialiased}
+.ground{position:fixed;inset:0;z-index:0;background-repeat:repeat;background-size:240px 240px;opacity:.6;pointer-events:none;transition:background-image .6s}
+.ground::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(236,231,220,.15),rgba(236,231,220,.7))}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px;display:flex;flex-direction:column;gap:18px}
+.sheet{background:var(--sheet);border:1px solid var(--line)}
+h2,h3{text-wrap:balance}
+.label{font-family:var(--f-hand);font-weight:400;font-size:var(--t-xs);letter-spacing:.32em;color:var(--shu);margin:0}
+button{font:inherit;color:inherit}
+button:focus-visible,input:focus-visible{outline:1px solid var(--shu);outline-offset:2px}
+
+/* masthead */
+.mast{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:stretch}
+.brand{display:flex;flex-direction:row-reverse;align-items:flex-start;gap:6px;background:var(--sheet);border:1px solid var(--line);padding:18px 16px}
+.brand .title,.brand .title-kana{writing-mode:vertical-rl}
+.title{margin:0;font-family:var(--f-disp);font-weight:600;font-size:34px;line-height:1;letter-spacing:.24em}
+.title-kana{margin:0;font-family:var(--f-hand);font-size:var(--t-xs);letter-spacing:.5em;color:var(--usuzumi)}
+.mast-text{display:flex;flex-direction:column;justify-content:center;gap:8px;background:rgba(251,249,244,.92);border:1px solid var(--line);padding:16px var(--pad);min-width:0}
+.lead{margin:0;max-width:58ch;font-size:var(--t-sm);color:var(--usuzumi);line-height:1.95}
+@media (max-width:560px){.mast{grid-template-columns:1fr}.brand{flex-direction:row;align-items:baseline;gap:12px}.brand .title,.brand .title-kana{writing-mode:horizontal-tb}.title{font-size:28px}.title-kana{letter-spacing:.3em}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:stretch}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+.datecard{position:relative;writing-mode:vertical-rl;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:26px 22px 26px 54px;min-height:420px}
+.dc-name{font-family:var(--f-disp);font-weight:600;font-size:clamp(52px,6vw,72px);line-height:1;letter-spacing:.14em;margin:0}
+.dc-kana{font-family:var(--f-hand);font-size:var(--t-xs);letter-spacing:.42em;color:var(--usuzumi)}
+.dc-date{font-family:var(--f-disp);font-weight:500;font-size:var(--t-md);letter-spacing:.24em}
+.dc-kou{display:flex;flex-direction:row;gap:8px;align-items:center}
+.dc-sekki{font-family:var(--f-hand);font-size:var(--t-xs);letter-spacing:.24em;color:var(--kin);border-inline:1px solid var(--kin);padding:6px 1px}
+.dc-kouname{font-family:var(--f-disp);font-weight:500;font-size:var(--t-md);letter-spacing:.2em}
+.seal{position:absolute;left:16px;bottom:20px;writing-mode:vertical-rl;background:var(--shu);color:var(--sheet);font-family:var(--f-disp);font-weight:500;font-size:var(--t-xs);letter-spacing:.12em;padding:6px 4px;border-radius:2px}
+.special{position:absolute;left:18px;top:22px;writing-mode:vertical-rl;font-family:var(--f-hand);font-size:var(--t-xs);letter-spacing:.24em;color:var(--shu)}
+@media (max-width:760px){.datecard{min-height:0;height:280px;padding:20px 18px 20px 50px}.dc-name{font-size:52px}}
+.stage{margin:0;display:flex;flex-direction:column;min-width:0}
+.stage canvas{display:block;width:100%;aspect-ratio:4/3;max-width:100%;border:1px solid var(--line);background:var(--sheet);transition:opacity .35s}
+.stage.busy canvas{opacity:.55}
+@media (max-width:760px){.stage canvas{aspect-ratio:1/1}}
+.stage-bar{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;padding:9px 14px;border:1px solid var(--line);border-top:0;background:var(--sheet);font-size:var(--t-sm);color:var(--usuzumi)}
+.range{display:flex;align-items:center;gap:10px}
+.range input{width:120px;accent-color:var(--shu)}
+.range select{font:inherit;color:var(--sumi);background:var(--sheet);border:1px solid var(--line);padding:2px 6px}
+.range output{font-variant-numeric:tabular-nums;min-width:5.5em}
+.check{display:flex;align-items:center;gap:8px;font-size:var(--t-sm);cursor:pointer}
+.check input{accent-color:var(--shu);width:13px;height:13px;margin:0}
+.status{font-family:var(--f-hand);font-size:var(--t-xs);letter-spacing:.14em;color:var(--usuzumi)}
+.stage-bar .status{margin-left:auto}
+
+/* section heads, shared */
+.pick-head h2,.exp-opts h2{margin:0;font-family:var(--f-disp);font-weight:500;font-size:var(--t-md);letter-spacing:.26em}
+
+/* picker */
+.picker{padding:var(--pad);display:flex;flex-direction:column;gap:14px}
+.pick-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.nav{display:flex;gap:0}
+.nbtn{border:1px solid var(--line);background:transparent;padding:4px 12px;font-size:var(--t-sm);letter-spacing:.14em;color:var(--usuzumi);cursor:pointer;margin-left:-1px}
+.nbtn:hover{color:var(--sumi);background:rgba(46,43,39,.04)}
+.months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:980px){.months{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media (max-width:440px){.months{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.mbtn{display:flex;flex-direction:column;align-items:center;gap:0;padding:9px 2px 7px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent;cursor:pointer;min-width:0;transition:background .2s}
+.mbtn:hover{background:rgba(46,43,39,.03)}
+.mbtn .mn{font-family:var(--f-disp);font-weight:500;font-size:var(--t-base);letter-spacing:.08em;white-space:nowrap}
+.mbtn .mk{font-family:var(--f-hand);font-size:var(--t-xs);color:var(--usuzumi)}
+.mbtn[aria-pressed="true"]{background:rgba(180,67,46,.06);box-shadow:inset 0 -2px 0 var(--shu)}
+.mbtn[aria-pressed="true"] .mn{color:var(--shu)}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(34px,1fr));gap:2px}
+.dbtn{position:relative;aspect-ratio:1/1;max-width:100%;border:1px solid transparent;background:transparent;cursor:pointer;font-family:var(--f-disp);font-size:var(--t-base);font-variant-numeric:tabular-nums;color:var(--sumi)}
+.dbtn:hover{border-color:var(--line)}
+.dbtn.sek::after{content:"";position:absolute;left:50%;bottom:4px;width:10px;height:1px;margin-left:-5px;background:var(--kin)}
+.dbtn.spe::before{content:"";position:absolute;right:4px;top:4px;width:4px;height:4px;border-radius:50%;background:var(--shu)}
+.dbtn[aria-pressed="true"]{background:var(--sumi);color:var(--sheet)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:0;font-size:var(--t-xs);letter-spacing:.12em;color:var(--usuzumi);font-family:var(--f-hand)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{display:inline-block}
+.lg-sek{width:10px;height:1px;background:var(--kin)}
+.lg-spe{width:4px;height:4px;border-radius:50%;background:var(--shu)}
+
+/* almanac */
+.alm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:820px){.alm{grid-template-columns:1fr}}
+.alm article{padding:var(--pad);display:flex;flex-direction:column;gap:12px;min-width:0}
+.alm article+article{border-left:1px solid var(--line)}
+@media (max-width:820px){.alm article+article{border-left:0;border-top:1px solid var(--line)}}
+.bigname{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigname h3{margin:0;font-family:var(--f-disp);font-weight:600;font-size:var(--t-lg);letter-spacing:.16em;line-height:1.3}
+.bigname span{font-family:var(--f-hand);font-size:var(--t-xs);color:var(--usuzumi);letter-spacing:.18em}
+.alm p,.exp-opts p{margin:0;max-width:60ch}
+dl.facts{display:grid;grid-template-columns:4.5em minmax(0,1fr);gap:6px 12px;margin:0;font-size:var(--t-sm);padding-top:10px;border-top:1px solid var(--line)}
+dl.facts dt{font-family:var(--f-hand);font-size:var(--t-xs);color:var(--usuzumi);letter-spacing:.2em;padding-top:2px}
+dl.facts dd{margin:0}
+.note{font-size:var(--t-xs);line-height:1.9;color:var(--usuzumi);letter-spacing:.06em}
+.kou{display:flex;flex-direction:column;gap:2px;padding:12px 0 12px 14px;border-left:1px solid var(--kin)}
+.kou-pos{font-family:var(--f-hand);font-size:var(--t-xs);color:var(--kin);letter-spacing:.26em}
+.kou-name{font-family:var(--f-disp);font-weight:500;font-size:18px;letter-spacing:.16em;line-height:1.5}
+.kou-kana{font-family:var(--f-hand);font-size:var(--t-xs);color:var(--usuzumi);letter-spacing:.1em}
+.kou p{margin-top:4px;font-size:var(--t-sm)}
+.spebox{padding:8px 0 8px 14px;border-left:1px solid var(--shu);font-size:var(--t-sm)}
+.spebox strong{font-family:var(--f-disp);font-weight:500;color:var(--shu);letter-spacing:.16em;margin-right:10px}
+.colors{grid-column:1/-1;border-top:1px solid var(--line);padding:16px var(--pad);display:flex;flex-direction:column;gap:10px}
+.swatches{display:flex;flex-wrap:wrap;gap:8px 20px}
+.sw{display:flex;align-items:center;gap:8px;font-size:var(--t-sm)}
+.sw b{display:block;width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(46,43,39,.12)}
+.sw small{display:block;font-family:var(--f-hand);font-size:9.5px;letter-spacing:.06em;color:var(--usuzumi);font-variant-numeric:tabular-nums;line-height:1.3}
+
+/* export */
+.export{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;padding:var(--pad)}
+@media (max-width:820px){.export{grid-template-columns:1fr}}
+.prev{display:flex;align-items:center;justify-content:center;background:rgba(46,43,39,.03);border:1px solid var(--line);padding:16px;min-height:260px}
+.prev canvas{display:block;max-width:100%;height:auto;box-shadow:0 8px 20px -14px rgba(46,43,39,.45)}
+.exp-opts{display:flex;flex-direction:column;gap:12px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:0}
+.chip{border:1px solid var(--line);background:transparent;padding:6px 12px;cursor:pointer;font-size:var(--t-sm);display:flex;flex-direction:column;align-items:flex-start;line-height:1.5;margin:0 -1px -1px 0}
+.chip small{font-family:var(--f-hand);font-size:9.5px;color:var(--usuzumi);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.chip:hover{background:rgba(46,43,39,.03)}
+.chip[aria-pressed="true"]{position:relative;z-index:1;border-color:var(--shu);color:var(--shu)}
+.savebtn{align-self:flex-start;background:var(--sumi);color:var(--sheet);border:1px solid var(--sumi);padding:9px 24px;font-family:var(--f-disp);font-weight:500;font-size:var(--t-sm);letter-spacing:.32em;cursor:pointer;transition:background .2s,border-color .2s}
+.savebtn:hover{background:var(--shu);border-color:var(--shu)}
+.savebtn:disabled{opacity:.55;cursor:progress}
+.fall{display:flex;flex-direction:column;gap:6px}
+.fall img{max-width:min(100%,320px);border:1px solid var(--line)}
+.fall p{margin:0;font-size:var(--t-xs);color:var(--usuzumi)}
+
+/* knowledge and process, one shared treatment */
+.knowledge{padding:var(--pad);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 28px}
+@media (max-width:820px){.knowledge{grid-template-columns:1fr}}
+.knowledge h3,.how h3{margin:0 0 4px;font-family:var(--f-disp);font-weight:500;font-size:var(--t-base);letter-spacing:.24em}
+.knowledge p,.how p{margin:0;font-size:var(--t-sm);color:var(--usuzumi);line-height:1.9}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:0;margin:0;list-style:none;background:rgba(251,249,244,.94);border:1px solid var(--line)}
+@media (max-width:820px){.how{grid-template-columns:1fr}}
+.how li{padding:var(--pad);display:flex;flex-direction:column;gap:2px}
+.how li+li{border-left:1px solid var(--line)}
+@media (max-width:820px){.how li+li{border-left:0;border-top:1px solid var(--line)}}
+.how .num{font-family:var(--f-disp);font-weight:500;font-size:var(--t-md);color:var(--shu);line-height:1.4}
+footer{font-size:var(--t-xs);letter-spacing:.08em;color:var(--usuzumi);padding:4px 2px;font-family:var(--f-hand)}
+footer p{margin:0;max-width:72ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+:lang(en){--f-body:"EB Garamond","Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif;--f-hand:"EB Garamond","Klee One","Hiragino Maru Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}
+.langs{display:flex;justify-content:flex-end;margin-bottom:-4px}
+.langs .nbtn[aria-pressed="true"]{color:var(--shu);border-color:var(--shu);position:relative;z-index:1}
+:lang(en) .lead,:lang(en) .how p,:lang(en) .knowledge p,:lang(en) .alm p,:lang(en) .note,:lang(en) footer p,:lang(en) .facts dd{letter-spacing:.01em}
+:lang(en) .label,:lang(en) .kou-pos{letter-spacing:.16em}
+:lang(en) .nbtn,:lang(en) .how h3,:lang(en) .knowledge h3,:lang(en) .pick-head h2,:lang(en) .exp-opts h2{letter-spacing:.04em}
+:lang(en) .dc-kana,:lang(en) .dc-date,:lang(en) .dc-sekki,:lang(en) .special{letter-spacing:.08em}
+:lang(en) .bigname span,:lang(en) .kou-kana,:lang(en) .status{letter-spacing:.04em}
+</style>
+
+<div class="ground" id="ground" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="mast">
+    <div class="brand"><h1 class="title">暦紙</h1><p class="title-kana" data-i="titleKana">こよみがみ</p></div>
+    <div class="mast-text">
+      <div class="langs" role="group" aria-label="Language">
+        <button class="nbtn" type="button" data-lang="en" aria-pressed="true">English</button>
+        <button class="nbtn" type="button" data-lang="ja" aria-pressed="false" lang="ja">日本語</button>
+      </div>
+      <p class="label" data-i="label">和風月名・二十四節気・七十二候</p>
+      <p class="lead" data-i="lead">一年三百六十六日のどの日にも、その日だけの一枚を漉き上げます。月の異名が意匠を決め、七十二候がその日の空気を添え、日付が割付と柄の大きさ、筆の運びを決めます。隣り合う日が同じ割付になることはありません。同じ日付からは、いつも同じ紙が生まれ、上下左右に継ぎ目なく並べられます。</p>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="選んだ日の暦紙" data-a="heroSec">
+    <div class="datecard sheet">
+      <p class="dc-name" id="dcName"></p>
+      <span class="dc-kana" id="dcKana"></span>
+      <span class="dc-date" id="dcDate"></span>
+      <span class="dc-kou"><span class="dc-sekki" id="dcSekki"></span><span class="dc-kouname" id="dcKou"></span></span>
+      <span class="special" id="dcSpecial" hidden></span>
+      <span class="seal" id="dcSeal"></span>
+    </div>
+    <figure class="stage" id="stage">
+      <canvas id="hero" role="img" aria-label="暦紙"></canvas>
+      <figcaption class="stage-bar">
+        <label class="range" for="scale"><span data-i="scale">柄の大きさ</span> <input type="range" id="scale" min="0.5" max="2" step="0.05" value="1"></label>
+        <label class="check" for="seams"><input type="checkbox" id="seams"> <span data-i="seams">継ぎ目を示す</span></label>
+        <span class="status" id="stageStatus"></span>
+      </figcaption>
+      <div class="stage-bar" role="group" aria-label="紙の漉き方" data-a="paperGrp">
+        <label class="range" for="furnish"><span data-i="furnish">紙料</span> <select id="furnish"></select></label>
+        <label class="range" for="gsm"><span data-i="gsm">坪量</span> <input type="range" id="gsm" min="10" max="50" step="1"><output id="gsmOut" for="gsm"></output></label>
+        <label class="range" for="chiri"><span data-i="chiri">塵</span> <input type="range" id="chiri" min="0" max="2" step="0.05"></label>
+        <label class="check" for="transmit"><input type="checkbox" id="transmit"> <span data-i="transmit">光に透かす</span></label>
+      </div>
+    </figure>
+  </section>
+
+  <section class="sheet picker" aria-label="日付を選ぶ" data-a="pickSec">
+    <div class="pick-head">
+      <h2 data-i="pick">日を選ぶ</h2>
+      <div class="nav">
+        <button class="nbtn" type="button" id="prev" data-i="prev">前の日</button>
+        <button class="nbtn" type="button" id="today" data-i="today">今日</button>
+        <button class="nbtn" type="button" id="next" data-i="next">次の日</button>
+      </div>
+    </div>
+    <div class="months" id="months" role="group" aria-label="月" data-a="monthsGrp"></div>
+    <div class="days" id="days" role="group" aria-label="日" data-a="daysGrp"></div>
+    <p class="legend"><span><i class="lg-sek"></i><span data-i="lgSek">二十四節気の始まる日</span></span><span><i class="lg-spe"></i><span data-i="lgSpe">節句・雑節</span></span></p>
+  </section>
+
+  <section class="sheet alm" aria-label="この日の暦" data-a="almSec">
+    <article>
+      <p class="label" data-i="mLabel">月の名</p>
+      <div class="bigname"><h3 id="mName"></h3><span id="mKana"></span></div>
+      <p id="mOrigin"></p>
+      <dl class="facts">
+        <dt data-i="mAltT">異称</dt><dd id="mAlt"></dd>
+        <dt data-i="mMotifT">意匠</dt><dd id="mMotif"></dd>
+      </dl>
+      <p class="note" data-i="mNote">和風月名は本来、旧暦（太陰太陽暦）の月の呼び名です。旧暦の月はいまの暦よりおよそ一か月遅れて巡るため、名の季節感が少しずれることがあります。暦紙では新暦の月に重ねて用いています。</p>
+    </article>
+    <article>
+      <p class="label" data-i="sLabel">節気と候</p>
+      <div class="bigname"><h3 id="sName"></h3><span id="sKana"></span></div>
+      <p id="sMean"></p>
+      <div class="kou">
+        <span class="kou-pos" id="kPos"></span>
+        <span class="kou-name" id="kName"></span>
+        <span class="kou-kana" id="kKana"></span>
+        <p id="kMean"></p>
+      </div>
+      <dl class="facts">
+        <dt data-i="kRangeT">候の頃</dt><dd id="kRange"></dd>
+        <dt data-i="kAccT">しるし</dt><dd id="kAcc"></dd>
+        <dt data-i="kLayT">割付</dt><dd id="kLay"></dd>
+      </dl>
+      <div class="spebox" id="speBox" hidden><strong id="speName"></strong><span id="speNote"></span></div>
+    </article>
+    <div class="colors">
+      <p class="label" data-i="colors">この紙の色</p>
+      <div class="swatches" id="swatches"></div>
+    </div>
+  </section>
+
+  <section class="sheet export" aria-label="書き出し" data-a="expSec">
+    <div class="prev"><canvas id="expPrev" aria-label="書き出しの見本" data-a="expPrev"></canvas></div>
+    <div class="exp-opts">
+      <h2 data-i="expH">紙を持ち帰る</h2>
+      <div class="chips" id="expChips" role="group" aria-label="大きさ" data-a="expSize">
+        <button class="chip" type="button" data-v="tile1024"><span data-i="tile">タイル</span><small>1024 × 1024</small></button>
+        <button class="chip" type="button" data-v="tile2048"><span data-i="tileL">タイル 大判</span><small>2048 × 2048</small></button>
+        <button class="chip" type="button" data-v="phone"><span data-i="phone">スマートフォン壁紙</span><small>1179 × 2556</small></button>
+        <button class="chip" type="button" data-v="desk"><span data-i="desk">デスクトップ壁紙</span><small>2560 × 1440</small></button>
+      </div>
+      <label class="check" for="mei"><input type="checkbox" id="mei" checked> <span data-i="mei">壁紙に縦書きの銘を入れる（月名・候・日付・節気の印）</span></label>
+      <p class="note" id="expNote"></p>
+      <button class="savebtn" type="button" id="saveBtn" data-i="save">この紙を保存</button>
+      <span class="status" id="saveStatus"></span>
+      <div class="fall" id="fall" hidden><img id="fallImg" alt="書き出した暦紙" data-alt="fallAlt"><p data-i="fallP">画像を長押し、または右クリックで保存できます。</p></div>
+    </div>
+  </section>
+
+  <section class="sheet knowledge" aria-label="暦の手引き" data-a="knowSec">
+    <div><h3 data-i="k1h">和風月名</h3><p data-i="k1p">睦月から師走まで、月ごとの和名です。農事や行事、季節の移ろいから生まれた名で、多くは由来に諸説があります。月ごとに異称も数多く伝わります。</p></div>
+    <div><h3 data-i="k2h">二十四節気</h3><p data-i="k2p">太陽の一年の巡りを二十四に分け、それぞれに季節の名を付けたものです。古代中国で生まれ、立春や夏至のように今も暮らしの言葉として残っています。</p></div>
+    <div><h3 data-i="k3h">七十二候</h3><p data-i="k3p">節気をさらに三つずつ、およそ五日ごとに分けた季節の名です。江戸時代に渋川春海らが日本の風土に合わせて改め、いま広く知られる形は明治の略本暦に載ったものです。</p></div>
+  </section>
+
+  <ol class="how" aria-label="暦紙のつくり" data-a="howSec">
+    <li><span class="num">一</span><h3 data-i="h1h">漉く</h3><p data-i="h1p">楮、三椏、雁皮の繊維を一本ずつ、長さと太さ、曲がりと折れ、ねじれを持たせて流し、揺りの向きにゆるく揃えながら幾層にも重ねます。地合の雲、簀目と糸目、塵も同じ過程から生まれ、紙の色は光が繊維の層をどう通るかで決まります。</p></li>
+    <li><span class="num">二</span><h3 data-i="h2h">割り付ける</h3><p data-i="h2p">日ごとに色紙、扇面、雲取り、市松、破り継ぎなど十一の割付から一つを選び、大柄・中柄・小柄を替えます。窓の内に意匠を滲ませ、外には淡く残します。</p></li>
+    <li><span class="num">三</span><h3 data-i="h3h">添える</h3><p data-i="h3p">その日の候にちなむしるしを淡く加え、節句には金砂子を散らします。絵の具は繊維の多いところによく留まり、繊維の向きにわずかに滲みます。</p></li>
+  </ol>
+
+  <footer><p data-i="foot">節気と候の日付は近年の代表的な日付を目安にしており、年によって一日ほど前後します。色名と色の値は、この暦紙のために選んだ一例です。繊維の寸法や光の値は、原料ごとの目安として選んだものです。</p></footer>
+</div>
+
+<script id="washi-core">
+/* washi/core.js
+   Shared math for the washi model. Everything lives on a torus of side L (mm),
+   so every field and every fiber wraps and the sheet tiles without seams. */
+(function (root) {
+  'use strict';
+  const TAU = Math.PI * 2;
+
+  function hash(s) { let h = 2166136261 >>> 0; for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619); return h >>> 0; }
+  function rng(a) { a >>>= 0; return function () { a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function normal(r) { let u = 0; while (!u) u = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * r()); }
+  function lognormal(r, median, sigma) { return median * Math.exp(sigma * normal(r)); }
+
+  /* von Mises sample around mu with concentration k (Best and Fisher 1979). */
+  function vonMises(r, mu, k) {
+    if (k < 1e-3) return mu + (r() - 0.5) * TAU;
+    const a = 1 + Math.sqrt(1 + 4 * k * k), b = (a - Math.sqrt(2 * a)) / (2 * k), q = (1 + b * b) / (2 * b);
+    for (;;) {
+      const z = Math.cos(Math.PI * r()), f = (1 + q * z) / (q + z), c = k * (q - f), u = r();
+      if (c * (2 - c) - u > 0 || Math.log(c / u) + 1 - c >= 0) return mu + (r() > 0.5 ? 1 : -1) * Math.acos(f);
+    }
+  }
+
+  /* Periodic Gaussian random field on a G x G grid covering L mm.
+     Built from random integer Fourier modes whose wavelengths fall between lo and hi (mm),
+     log uniform in scale, weighted toward long waves by beta. Zero mean, unit variance. */
+  function grf(G, L, r, lo, hi, modes, beta) {
+    const out = new Float32Array(G * G), cx = new Float32Array(G), sx = new Float32Array(G), cy = new Float32Array(G), sy = new Float32Array(G), kmax = G / 2 - 1;
+    for (let m = 0; m < modes; m++) {
+      const lam = lo * Math.pow(hi / lo, r()), ang = r() * Math.PI, ph = r() * TAU, amp = Math.pow(lam / hi, beta) * (0.5 + r());
+      let kx = Math.round(L / lam * Math.cos(ang)), ky = Math.round(L / lam * Math.sin(ang));
+      if (!kx && !ky) kx = 1;
+      if (Math.abs(kx) > kmax || Math.abs(ky) > kmax) continue;
+      for (let i = 0; i < G; i++) { const t = TAU * kx * i / G + ph, u = TAU * ky * i / G; cx[i] = Math.cos(t); sx[i] = Math.sin(t); cy[i] = Math.cos(u); sy[i] = Math.sin(u); }
+      for (let j = 0; j < G; j++) { const c = cy[j] * amp, s = sy[j] * amp, o = j * G; for (let i = 0; i < G; i++) out[o + i] += cx[i] * c - sx[i] * s; }
+    }
+    let mean = 0; for (let i = 0; i < out.length; i++) mean += out[i]; mean /= out.length;
+    let v = 0; for (let i = 0; i < out.length; i++) { out[i] -= mean; v += out[i] * out[i]; }
+    const sd = Math.sqrt(v / out.length) || 1; for (let i = 0; i < out.length; i++) out[i] /= sd;
+    return out;
+  }
+
+  /* Periodic bilinear sample; u, v in grid cells. */
+  function sampleGrid(g, G, u, v) {
+    u -= Math.floor(u / G) * G; v -= Math.floor(v / G) * G;
+    let i = u | 0, j = v | 0; const fu = u - i, fv = v - j; if (i >= G) i -= G; if (j >= G) j -= G;
+    const i1 = i + 1 === G ? 0 : i + 1, j1 = j + 1 === G ? 0 : j + 1;
+    const a = g[j * G + i], b = g[j * G + i1], c = g[j1 * G + i], d = g[j1 * G + i1];
+    return a + (b - a) * fu + (c - a) * fv + (a - b - c + d) * fu * fv;
+  }
+
+  /* Periodic separable box blur, in place. */
+  function boxBlur(f, S, rad) {
+    if (rad < 1) return;
+    const tmp = new Float32Array(S), n = 2 * rad + 1;
+    for (let y = 0; y < S; y++) { const o = y * S; let s = 0; for (let k = -rad; k <= rad; k++) s += f[o + ((k + S) % S)]; for (let x = 0; x < S; x++) { tmp[x] = s / n; s += f[o + (x + rad + 1) % S] - f[o + (x - rad + S) % S]; } f.set(tmp, o); }
+    for (let x = 0; x < S; x++) { let s = 0; for (let k = -rad; k <= rad; k++) s += f[((k + S) % S) * S + x]; for (let y = 0; y < S; y++) { tmp[y] = s / n; s += f[((y + rad + 1) % S) * S + x] - f[((y - rad + S) % S) * S + x]; } for (let y = 0; y < S; y++) f[y * S + x] = tmp[y]; }
+  }
+
+  root.Washi = Object.assign(root.Washi || {}, { TAU, hash, rng, normal, lognormal, vonMises, grf, sampleGrid, boxBlur });
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script id="washi-stock">
+/* washi/stock.js
+   The raw material. Fiber morphology per bast species, and furnishes (紙料) that mix them.
+   Units: length mm, width mm, linear density C in µg per mm of fiber, persistence length Lp mm,
+   kink rate per mm, ribbon twist pitch mm, scat = Kubelka Munk scattering per (g/m²).
+   Values are order of magnitude estimates for hand beaten bast fiber, chosen to be consistent
+   with each other rather than measured. */
+(function (root) {
+  'use strict';
+  const SPECIES = {
+    kozo:      { name: '楮',   len: 9.5, lenS: 0.40, w: 0.024, wS: 0.25, C: 0.30, Lp: 22, kink: 0.10, twist: 2.4, scat: 0.017 },
+    mitsumata: { name: '三椏', len: 3.6, lenS: 0.30, w: 0.016, wS: 0.20, C: 0.15, Lp: 12, kink: 0.16, twist: 1.5, scat: 0.026 },
+    gampi:     { name: '雁皮', len: 3.0, lenS: 0.30, w: 0.012, wS: 0.20, C: 0.10, Lp: 10, kink: 0.12, twist: 1.2, scat: 0.032 }
+  };
+  /* gsm: basis weight g/m².  form: non uniformity of the deposition field (lower means a better neri dispersion).
+     align: von Mises concentration of fibers along the rocking direction.  bundle: share of fibers left as
+     unbeaten bundles (結束繊維).  chiri: bark specks per 3 cm².  su: strength of the screen imprint. */
+  const FURNISH = {
+    kozo:      { name: '楮紙',       mix: { kozo: 1 },                  gsm: 24, chiri: 0.3,  bundle: 0.035, form: 0.38, align: 1.1, su: 0.6 },
+    kozomitsu: { name: '楮三椏',     mix: { kozo: 0.6, mitsumata: 0.4 }, gsm: 26, chiri: 0.15, bundle: 0.02,  form: 0.30, align: 0.9, su: 0.5 },
+    mitsumata: { name: '三椏紙',     mix: { mitsumata: 1 },             gsm: 30, chiri: 0.08, bundle: 0.01,  form: 0.22, align: 0.7, su: 0.4 },
+    gampi:     { name: '雁皮紙',     mix: { gampi: 1 },                 gsm: 34, chiri: 0.04, bundle: 0.004, form: 0.16, align: 0.5, su: 0.3 },
+    chiri:     { name: '塵入り楮紙', mix: { kozo: 1 },                  gsm: 30, chiri: 1.4,  bundle: 0.07,  form: 0.42, align: 1.0, su: 0.5 }
+  };
+  root.Washi = Object.assign(root.Washi || {}, { SPECIES, FURNISH });
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script id="washi-sheet">
+/* washi/sheet.js
+   Sheet formation (流し漉き). From a furnish and a seed it lays down fibers on a torus of side L mm
+   and rasterizes the result into physical fields on an S x S grid:
+     M   basis weight, g/m² per pixel
+     V   visible fiber face coverage (fibers near the front weigh more)
+     Qc, Qs  orientation tensor of the visible fibers (cos 2θ, sin 2θ weighted)
+     H   surface height, µm
+     A   bark speck absorbance, 3 channels
+   Hierarchy, coarse to fine:
+     1. cloud (7 to 45 mm) and floc (1.2 to 7 mm) fields: a log Gaussian intensity for where fiber lands
+     2. flow field: local deviation of the rocking direction
+     3. passes in depth: throw off layer at the front, alternating 縦揺り and 横揺り passes, first scoop at the back
+     4. fibers: lognormal length and width, persistent random walk with kinks, twisted ribbon, tapered ends, bundles
+     5. su imprint: laid lines (簀目) and chain lines (糸目) redistribute mass while the sheet drains
+     6. board drying: the height field is pressed smooth over about 0.1 mm
+   Fibers are generated in mm with a fixed step, so the same seed gives the same sheet at any resolution. */
+(function (root) {
+  'use strict';
+  const W = root.Washi, TAU = Math.PI * 2;
+  const BUDGET = 1.2e6;   /* mm of fiber simulated one by one; the rest of the mass is the deposition field itself */
+  const DS = 0.2;         /* fiber walk step, mm */
+  const RHO = 0.32;       /* apparent density, g/cm³, so thickness µm = gsm / RHO */
+  const MAXPTS = 256;
+
+  function formSheet(F, seed, S, L) {
+    L = L || 150;
+    const p = L / S, inv = S / L, A2 = 1 / (p * p), N2 = S * S, G = 128, gk = G / L;
+    const r = W.rng(W.hash('washi|' + seed));
+
+    /* 1, 2: fields */
+    const floc = W.grf(G, L, r, 1.2, 7, 90, 0.5), cloud = W.grf(G, L, r, 7, 45, 40, 0.9), flow = W.grf(G, L, r, 12, 75, 30, 1);
+    const lam = new Float32Array(G * G); let s = 0, mx = 0;
+    for (let i = 0; i < lam.length; i++) { lam[i] = Math.exp(F.form * (0.75 * floc[i] + 0.55 * cloud[i])); s += lam[i]; }
+    s /= lam.length; for (let i = 0; i < lam.length; i++) { lam[i] /= s; if (lam[i] > mx) mx = lam[i]; }
+
+    const sp = Object.keys(F.mix).map(k => { const q = W.SPECIES[k], f = F.mix[k]; return { q, f, total: f * F.gsm * L * L / q.C }; });
+    let totalLen = 0, scat = 0; sp.forEach(o => { totalLen += o.total; scat += o.f * o.q.scat; });
+    const zr = Math.min(1, BUDGET / totalLen), visK = 2 * scat * F.gsm;
+
+    const F4 = new Float32Array(N2 * 4); /* M, V, Qc, Qs interleaved while splatting */
+    const X = new Float32Array(MAXPTS), Y = new Float32Array(MAXPTS), PH = new Float32Array(MAXPTS), TP = new Float32Array(MAXPTS);
+    const nsub = Math.max(1, Math.ceil(DS / p - 1e-9));
+
+    function dep(xm, ym, m, v, c2, s2) {
+      let x = xm * inv, y = ym * inv; x -= Math.floor(x / S) * S; y -= Math.floor(y / S) * S;
+      let ix = x | 0, iy = y | 0; const fx = x - ix, fy = y - iy; if (ix >= S) ix -= S; if (iy >= S) iy -= S;
+      const ix1 = ix + 1 === S ? 0 : ix + 1, iy1 = iy + 1 === S ? 0 : iy + 1;
+      const w00 = (1 - fx) * (1 - fy), w10 = fx * (1 - fy), w01 = (1 - fx) * fy, w11 = fx * fy;
+      const a = (iy * S + ix) * 4, b = (iy * S + ix1) * 4, c = (iy1 * S + ix) * 4, d = (iy1 * S + ix1) * 4, vc = v * c2, vs = v * s2;
+      let w = w00; F4[a] += m * w; F4[a + 1] += v * w; F4[a + 2] += vc * w; F4[a + 3] += vs * w;
+      w = w10; F4[b] += m * w; F4[b + 1] += v * w; F4[b + 2] += vc * w; F4[b + 3] += vs * w;
+      w = w01; F4[c] += m * w; F4[c + 1] += v * w; F4[c + 2] += vc * w; F4[c + 3] += vs * w;
+      w = w11; F4[d] += m * w; F4[d + 1] += v * w; F4[d + 2] += vc * w; F4[d + 3] += vs * w;
+    }
+    /* rasterize the current path, optionally shifted sideways (bundle members splay at their ends) */
+    function emit(n, wid, C, z, off, splay) {
+      const vis = Math.exp(-visK * z), mk = C * DS * A2 / nsub, vk = vis * wid * DS * A2 / nsub;
+      let px = 0, py = 0;
+      for (let k = 0; k < n; k++) {
+        const k0 = k > 0 ? k - 1 : 0, k1 = k < n - 1 ? k + 1 : n - 1, dx = X[k1] - X[k0], dy = Y[k1] - Y[k0], dl = Math.hypot(dx, dy) || 1;
+        let x = X[k], y = Y[k];
+        if (off || splay) { const t = Math.abs(2 * k / (n - 1) - 1), o = off + splay * t * t * t; x -= dy / dl * o; y += dx / dl * o; }
+        if (k > 0) {
+          const c2 = (dx * dx - dy * dy) / (dl * dl), s2 = 2 * dx * dy / (dl * dl), tp = TP[k], face = Math.abs(Math.cos(PH[k]));
+          const m = mk * tp, v = vk * tp * (0.3 + 0.7 * face);
+          for (let j = 0; j < nsub; j++) { const t = (j + 0.5) / nsub; dep(px + (x - px) * t, py + (y - py) * t, m, v, c2, s2); }
+        }
+        px = x; py = y;
+      }
+    }
+
+    /* 3, 4: fibers */
+    for (const o of sp) {
+      const q = o.q, sig = Math.sqrt(DS / q.Lp); let need = o.total * zr;
+      while (need > 0) {
+        let cx, cy;
+        for (;;) { cx = r() * L; cy = r() * L; if (r() * mx <= W.sampleGrid(lam, G, cx * gk, cy * gk)) break; }
+        const z = r() * zr;
+        let mu = Math.PI / 2, kap = F.align;
+        if (z < 0.06) kap = 0.5; else if (z > 0.94) kap = 0.3; else if (Math.floor((z - 0.06) / 0.11) % 4 === 2) mu = 0;
+        mu += 0.45 * W.sampleGrid(flow, G, cx * gk, cy * gk);
+        let a = mu + W.vonMises(r, 0, kap) / 2;
+        const len = Math.min((MAXPTS - 1) * DS, W.lognormal(r, q.len, q.lenS)), n = Math.max(3, Math.round(len / DS) + 1);
+        const wid = W.lognormal(r, q.w, q.wS), C = q.C * wid / q.w, tw = TAU / W.lognormal(r, q.twist, 0.4);
+        let x = cx - Math.cos(a) * len / 2, y = cy - Math.sin(a) * len / 2, ph = r() * TAU;
+        for (let k = 0; k < n; k++) {
+          X[k] = x; Y[k] = y; PH[k] = ph; TP[k] = 0.35 + 0.65 * Math.min(1, Math.min(k, n - 1 - k) * DS / 0.5);
+          a += sig * 2 * (r() + r() + r() - 1.5); if (r() < q.kink * DS) a += W.normal(r) * 0.5;
+          ph += tw * DS; x += Math.cos(a) * DS; y += Math.sin(a) * DS;
+        }
+        if (r() < F.bundle) {
+          const m = 3 + Math.floor(r() * 6);
+          for (let j = 0; j < m; j++) emit(n, wid, C, Math.min(zr, z + j * 0.002), (j - (m - 1) / 2) * wid * 1.3, (r() - 0.5) * 0.25);
+          need -= len * m;
+        } else { emit(n, wid, C, z, 0, 0); need -= len; }
+      }
+    }
+
+    const M = new Float32Array(N2), V = new Float32Array(N2), Qc = new Float32Array(N2), Qs = new Float32Array(N2);
+    for (let i = 0; i < N2; i++) { M[i] = F4[i * 4]; V[i] = F4[i * 4 + 1]; Qc[i] = F4[i * 4 + 2]; Qs[i] = F4[i * 4 + 3]; }
+
+    /* the unresolved part of the sheet follows the deposition field */
+    const bulk = (1 - zr) * F.gsm;
+    if (bulk > 0) for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) M[y * S + x] += bulk * W.sampleGrid(lam, G, (x + 0.5) * p * gk, (y + 0.5) * p * gk);
+
+    /* 5: su imprint */
+    const nl = Math.max(1, Math.round(L / 1.2)), nc = Math.max(1, Math.round(L / 30)), cp = L / nc;
+    const row = new Float32Array(S), col = new Float32Array(S);
+    for (let i = 0; i < S; i++) {
+      row[i] = 1 + F.su * 0.045 * Math.cos(TAU * nl * (i + 0.5) / S);
+      const xm = (i + 0.5) * p, d = Math.abs(((xm - cp / 2) % cp + cp) % cp - cp / 2);
+      col[i] = 1 - F.su * 0.12 * Math.exp(-(d / 0.45) * (d / 0.45));
+    }
+    let sM = 0, sV = 0;
+    for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) { const i = y * S + x; M[i] *= row[y] * col[x]; sM += M[i]; sV += V[i]; }
+
+    /* 6: height, pressed smooth on the drying board */
+    const H = new Float32Array(N2);
+    for (let i = 0; i < N2; i++) H[i] = M[i] / RHO + 16 * V[i];
+    W.boxBlur(H, S, Math.max(1, Math.round(0.12 / p)));
+
+    /* bark specks (塵): dark outer bark, green inner bark, straw colored knots */
+    const A = new Float32Array(N2 * 3);
+    const nch = Math.round(F.chiri * (L * L) / 300), KIND = [[1.5, 1.8, 2.1], [1.1, 0.8, 1.4], [0.3, 0.45, 0.85]];
+    for (let c = 0; c < nch; c++) {
+      const kr = r(), ab = KIND[kr < 0.6 ? 0 : kr < 0.85 ? 1 : 2], z = r(), vis = Math.exp(-visK * z) * (0.4 + 0.6 * r());
+      const cx = r() * L, cy = r() * L, size = Math.min(2.5, W.lognormal(r, 0.3, 0.6)), parts = 1 + Math.floor(r() * 3);
+      const soft = 0.5 * p + 0.25 * z;
+      for (let k = 0; k < parts; k++) {
+        const ex = cx + W.normal(r) * size * 0.4, ey = cy + W.normal(r) * size * 0.4, ra = size * (0.4 + 0.6 * r()), rb = ra / (1 + 2 * r()), rot = r() * Math.PI;
+        const co = Math.cos(rot), si = Math.sin(rot), R = (ra + soft) * inv + 1, X0 = Math.floor(ex * inv - R), X1 = Math.ceil(ex * inv + R), Y0 = Math.floor(ey * inv - R), Y1 = Math.ceil(ey * inv + R);
+        for (let py = Y0; py <= Y1; py++) for (let px = X0; px <= X1; px++) {
+          const dx = (px + 0.5) * p - ex, dy = (py + 0.5) * p - ey, u = dx * co + dy * si, v = -dx * si + dy * co;
+          const qd = Math.sqrt((u / ra) * (u / ra) + (v / rb) * (v / rb)), cov = Math.min(1, Math.max(0, (1 - qd) * rb / soft + 0.5));
+          if (cov <= 0) continue;
+          const i = (((py % S) + S) % S) * S + (((px % S) + S) % S), w = cov * vis;
+          A[i * 3] = Math.max(A[i * 3], ab[0] * w); A[i * 3 + 1] = Math.max(A[i * 3 + 1], ab[1] * w); A[i * 3 + 2] = Math.max(A[i * 3 + 2], ab[2] * w);
+        }
+      }
+    }
+
+    return { S, L, p, M, V, Qc, Qs, H, A, meanM: sM / N2, meanV: sV / N2 || 1, scat, gsm: F.gsm, resolved: zr };
+  }
+
+  root.Washi = Object.assign(W, { formSheet });
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script id="washi-optics">
+/* washi/optics.js
+   Turns a formed sheet into color, and lets a painted design soak into it.
+   Reflected light: Kubelka Munk reflectance of a layer of basis weight M over a backing, calibrated so the
+   mean of the sheet lands on the requested ground color; then surface relief under a raking light,
+   the slight whitening of fibers lying at the front, the silk sheen of bast fiber, and bark specks.
+   Transmitted light (透かし): Kubelka Munk transmittance, which shows formation, su lines and specks.
+   Design: a design painted on the flat ground is read as a ratio to that ground. Dye goes in as
+   absorbance scaled by how much fiber holds it, and bleeds a little along the local fiber direction (滲み). */
+(function (root) {
+  'use strict';
+  const W = root.Washi;
+  const toLin = c => { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+  const OUT = new Uint8ClampedArray(4096);
+  for (let i = 0; i < 4096; i++) { const v = i / 4095; OUT[i] = Math.round(255 * (v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055)); }
+
+  function km(ks, SX, Rg) {
+    const a = 1 + ks, b = Math.sqrt(a * a - 1), bs = Math.max(1e-6, b * SX), ct = 1 / Math.tanh(bs);
+    return [(1 - Rg * (a - b * ct)) / (a - Rg + b * ct), b / (a * Math.sinh(bs) + b * Math.cosh(bs))];
+  }
+
+  /* o: { ground:[r,g,b] 0..255, mode:'reflect'|'transmit', backing 0..1, relief, sheen, fiber, az (rad), el (rad) } */
+  function renderPaper(sh, o) {
+    const { S, M, V, Qc, Qs, H, A, p, scat, meanM, meanV } = sh, N2 = S * S, out = new Float32Array(N2 * 3);
+    const mode = o.mode || 'reflect', backing = o.backing ?? 0.6, relief = o.relief ?? 0.6, sheen = o.sheen ?? 1, fib = o.fiber ?? 1;
+    const az = o.az ?? -2.36, el = o.el ?? 0.6, lx = Math.cos(az) * Math.cos(el), ly = Math.sin(az) * Math.cos(el), lz = Math.sin(el);
+    const LIGHT = [1, 0.93, 0.8];
+    for (let c = 0; c < 3; c++) {
+      const Rinf = Math.min(0.96, Math.max(0.04, toLin(o.ground[c]))), ks = (1 - Rinf) * (1 - Rinf) / (2 * Rinf), Rg = Rinf * backing;
+      const ref = km(ks, scat * meanM, Rg), kR = Rinf / ref[0], kT = 0.8 / ref[1];
+      for (let i = 0; i < N2; i++) {
+        const t = km(ks, scat * M[i], Rg);
+        out[i * 3 + c] = mode === 'transmit' ? t[1] * kT * LIGHT[c] * Math.exp(-2.2 * A[i * 3 + c]) : t[0] * kR;
+      }
+    }
+    if (mode === 'transmit') return out;
+    const hk = relief / (2 * p * 1000);
+    for (let y = 0; y < S; y++) {
+      const ym = (y + S - 1) % S * S, yp = (y + 1) % S * S;
+      for (let x = 0; x < S; x++) {
+        const i = y * S + x, hx = (H[y * S + (x + 1) % S] - H[y * S + (x + S - 1) % S]) * hk, hy = (H[yp + x] - H[ym + x]) * hk;
+        const shade = (lz - hx * lx - hy * ly) / (lz * Math.sqrt(1 + hx * hx + hy * hy));
+        const vn = V[i] / meanV, coh = Math.hypot(Qc[i], Qs[i]) / (V[i] + 1e-9), th = 0.5 * Math.atan2(Qs[i], Qc[i]), sn = Math.sin(th - az);
+        const gloss = sheen * 0.02 * Math.min(3, vn) * (0.35 + 0.65 * coh * sn * sn), lift = fib * 0.08 * Math.max(-1, Math.min(2, vn - 1));
+        for (let c = 0; c < 3; c++) {
+          let v = out[i * 3 + c];
+          v += (1 - v) * lift;
+          v = v * shade + gloss;
+          out[i * 3 + c] = v * Math.exp(-A[i * 3 + c]);
+        }
+      }
+    }
+    return out;
+  }
+
+  /* design: RGBA bytes of the design painted on a flat ground of color `ground`. Modifies `out`. */
+  function applyDesign(sh, out, design, ground, mode) {
+    const { S, M, V, Qc, Qs, meanM, meanV } = sh, N2 = S * S, D = new Float32Array(N2 * 3), g = ground.map(toLin);
+    let any = false;
+    for (let i = 0; i < N2; i++) for (let c = 0; c < 3; c++) { const v = Math.log(Math.max(1e-3, toLin(design[i * 4 + c])) / g[c]); D[i * 3 + c] = v; if (v) any = true; }
+    if (!any) return out;
+    /* 滲み: two passes of diffusion along the fiber direction, scaled by how aligned the fibers are */
+    const T = new Float32Array(N2 * 3);
+    for (let it = 0; it < 2; it++) {
+      for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+        const i = y * S + x, coh = Math.min(1, Math.hypot(Qc[i], Qs[i]) / (V[i] + 1e-9)), th = 0.5 * Math.atan2(Qs[i], Qc[i]);
+        const dx = Math.round(Math.cos(th)), dy = Math.round(Math.sin(th)), a = ((y + dy + S) % S) * S + (x + dx + S) % S, b = ((y - dy + S) % S) * S + (x - dx + S) % S, k = 0.22 * coh;
+        for (let c = 0; c < 3; c++) T[i * 3 + c] = D[i * 3 + c] + k * (D[a * 3 + c] + D[b * 3 + c] - 2 * D[i * 3 + c]);
+      }
+      D.set(T);
+    }
+    for (let i = 0; i < N2; i++) {
+      const hold = Math.min(1.6, Math.max(0.4, Math.pow(M[i] / meanM, 0.6) * (0.85 + 0.15 * Math.min(2, V[i] / meanV))));
+      for (let c = 0; c < 3; c++) {
+        const d = D[i * 3 + c], j = i * 3 + c;
+        if (mode === 'transmit') out[j] *= d < 0 ? Math.exp(d * hold * 1.3) : Math.exp(-d * hold * 3);
+        else if (d < 0) out[j] *= Math.exp(d * hold);
+        else { const w = Math.min(1, out[j] * Math.exp(d)); out[j] += (w - out[j]) * Math.min(1, hold); }
+      }
+    }
+    return out;
+  }
+
+  function toImageData(out, S, ctx) {
+    const im = ctx.createImageData(S, S), d = im.data;
+    for (let i = 0, n = S * S; i < n; i++) { for (let c = 0; c < 3; c++) d[i * 4 + c] = OUT[Math.max(0, Math.min(4095, (out[i * 3 + c] * 4095) | 0))]; d[i * 4 + 3] = 255; }
+    return im;
+  }
+
+  root.Washi = Object.assign(W, { renderPaper, applyDesign, toImageData, toLin });
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const TAU=Math.PI*2;
+const DAYS=[31,29,31,30,31,30,31,31,30,31,30,31];
+const KN=['〇','一','二','三','四','五','六','七','八','九','十'];
+function kanjiNum(n){if(n<=10)return KN[n];if(n<20)return '十'+KN[n-10];const t=Math.floor(n/10),o=n%10;return KN[t]+'十'+(o?KN[o]:'');}
+function doy(m,d){let s=0;for(let i=0;i<m-1;i++)s+=DAYS[i];return s+d;}
+function fromDoy(x){let m=1;while(x>DAYS[m-1]){x-=DAYS[m-1];m++;if(m>12)m=1;}return[m,x];}
+function hashStr(s){let h=2166136261>>>0;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619);return h>>>0;}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+
+/* ---------- 暦のデータ ---------- */
+const MONTHS=[
+ {name:'睦月',kana:'むつき',roman:'Mutsuki',ground:'#F7F3EA',
+  pal:[['紅梅色','#E16B8C'],['桃色','#F596AA'],['胡粉色','#FFFFFB'],['松葉色','#42602D'],['鶯色','#6C6A2D'],['臙脂','#9F353A']],
+  origin:'正月に親類や知人が行き来して睦み合う「睦び月（むつびづき）」が縮まったとする説が広く知られています。稲の実を初めて水に浸す「実月（むつき）」に由来するという説もあります。',
+  alt:['祝月','初春月','太郎月','霞初月','早緑月'],motif:'紅白の梅と松葉、淡くたなびく霞。'},
+ {name:'如月',kana:'きさらぎ',roman:'Kisaragi',ground:'#F3F1EE',
+  pal:[['一斤染','#F4A7B9'],['梅鼠','#9E7A7A'],['藤鼠','#6E75A4'],['白藍','#C1E4E9'],['灰桜','#D7C4BB']],
+  origin:'寒さがぶり返し、衣を更に重ねて着る「衣更着（きさらぎ）」とする説がよく知られます。草木が芽吹き始める「生更ぎ」、陽気が更に来る「気更来」とする説もあります。「如月」の字は、中国の古い字書『爾雅』で二月を「如」と呼んだことによります。',
+  alt:['梅見月','雪消月','木芽月','初花月','令月'],motif:'装束の襲（かさね）の色目を横に重ね、名残の雪と雪輪を散らしました。'},
+ {name:'弥生',kana:'やよい',roman:'Yayoi',ground:'#F8F2EE',
+  pal:[['桜色','#FEDFE1'],['撫子色','#DC9FB4'],['桜鼠','#B19693'],['若草色','#C3D825'],['萌黄','#7BA23F']],
+  origin:'草木がいよいよ生い茂る「いやおい（弥生）」が詰まって「やよい」になったとされます。「弥」は、いよいよ、ますますの意です。',
+  alt:['花月','桜月','花見月','夢見月','春惜月'],motif:'咲く桜と散りゆく花びら、春霞。'},
+ {name:'卯月',kana:'うづき',roman:'Uzuki',ground:'#F5F6EE',
+  pal:[['卯の花色','#F7FCFE'],['若葉色','#B9D08B'],['若竹色','#5DAC81'],['藤色','#8B81C3'],['藤紫','#8A6BBE'],['白緑','#D6E9CA']],
+  origin:'卯の花（ウツギの花）が咲く月、「卯の花月」の略とする説が一般的です。十二支で四番目の「卯」に当たるからとする説、稲を植える「植月（うづき）」とする説もあります。',
+  alt:['花残月','夏初月','卯花月','清和月','鳥待月'],motif:'白い卯の花の房と若葉、垂れる藤。'},
+ {name:'皐月',kana:'さつき',roman:'Satsuki',ground:'#F2F4EC',
+  pal:[['早苗色','#86C166'],['若竹色','#5DAC81'],['水色','#81C7D4'],['菖蒲色','#6F3381'],['千草色','#3A8FB7'],['苔色','#838A2D']],
+  origin:'田植えの月で、早苗を植える「早苗月（さなえづき）」が略されたとする説が有力です。「さ」そのものが稲や田の神にかかわる古い言葉とも言われ、「皐」の字は後から当てられました。',
+  alt:['早月','早苗月','橘月','五月雨月','月不見月'],motif:'水を張った田に並ぶ早苗と、水面のきらめき。'},
+ {name:'水無月',kana:'みなづき',roman:'Minazuki',ground:'#EEF2F1',
+  pal:[['水色','#81C7D4'],['甕覗','#A5DEE4'],['浅葱色','#33A6B8'],['紫陽花色','#7B90D2'],['藤色','#8B81C3'],['青磁色','#69B0AC']],
+  origin:'「無」は「の」にあたる古い助詞で、「水の月」の意とする説が有力です。田に水を引き入れる月だからと考えられています。旧暦の六月は梅雨明けの頃にあたるため、水が涸れる月と解く説もあります。',
+  alt:['風待月','常夏月','青水無月','涼暮月','蝉羽月'],motif:'雨粒が描く水紋と細い雨、雨に濡れる紫陽花。'},
+ {name:'文月',kana:'ふみづき',roman:'Fumizuki',ground:'#EFF1F1',
+  pal:[['群青色','#51A8DD'],['藍色','#0D5661'],['甕覗','#A5DEE4'],['刈安色','#E9CD4C'],['紅','#CB1B45'],['若竹色','#5DAC81']],
+  origin:'七夕の夜に詩歌を書いて供え、書物を夜風に曝した「文披月（ふみひらきづき）」が転じたとする説が知られます。稲穂がふくらむ「穂含月（ほふみづき）」に由来するとする説もあります。',
+  alt:['七夕月','愛逢月','女郎花月','秋初月','親月'],motif:'斜めに流れる天の川と、願いを書いた五色の短冊。'},
+ {name:'葉月',kana:'はづき',roman:'Hazuki',ground:'#F6F2E7',
+  pal:[['萩色','#C98AB4'],['女郎花','#E8D36A'],['枯色','#C7B48D'],['青朽葉','#99A15A'],['鳥の子色','#EADDB4'],['縹色','#3F7FA6']],
+  origin:'木の葉が色づいて落ちる「葉落ち月」の略とする説がよく知られます（旧暦八月はいまの九月ごろ）。稲穂が張る「穂張り月」、雁が初めて渡ってくる「初来月」とする説もあります。',
+  alt:['月見月','秋風月','燕去月','雁来月','紅染月'],motif:'中秋の月と、萩や芒の秋草。'},
+ {name:'長月',kana:'ながつき',roman:'Nagatsuki',ground:'#F7F1E4',
+  pal:[['黄菊','#E9B949'],['紫苑色','#8F77B5'],['桔梗色','#6A4C9C'],['朽葉色','#C98F4A'],['浅葱色','#3F9BAE'],['松葉色','#7E8C4E']],
+  origin:'夜がしだいに長くなる「夜長月（よながづき）」の略とする説が有力です。秋の長雨の「長雨月」、稲刈りの「稲刈月」から来たとする説もあります。',
+  alt:['菊月','紅葉月','寝覚月','色取月','小田刈月'],motif:'重陽の菊と、菊にちなむ流水、草の露。'},
+ {name:'神無月',kana:'かんなづき',roman:'Kannazuki',ground:'#F6EFE1',
+  pal:[['金茶','#C7802D'],['黄金色','#D9AE3C'],['白練','#FCFAF2'],['鈍色','#8A8780'],['朱色','#D9603B'],['紅葉色','#B5453A']],
+  origin:'「無」は「の」にあたり、「神の月」とする説が有力です。全国の神々が出雲に集まって各地を留守にするので「神無月」、出雲では「神在月（かみありづき）」と呼ぶという話は、中世以降に広まった俗説とされています。',
+  alt:['時雨月','初霜月','神去月','雷無月','小春'],motif:'神々の往来を思わせる瑞雲、時雨、金砂子のきらめき。'},
+ {name:'霜月',kana:'しもつき',roman:'Shimotsuki',ground:'#F5EDE3',
+  pal:[['紅葉色','#B8473A'],['赤朽葉','#C46243'],['黄朽葉','#CFA03E'],['柿色','#D9813F'],['銀鼠','#91989F'],['錆色','#7A5A45']],
+  origin:'霜が降りる「霜降り月」の略とする説が一般的です。収穫を祝って神に供え物をする「食物月（おしものづき）」、年の終わりに近い「末つ月」が転じたとする説もあります。',
+  alt:['神楽月','雪見月','霜見月','子月','天正月'],motif:'散り敷く紅葉と、うっすら降りた霜。'},
+ {name:'師走',kana:'しわす',roman:'Shiwasu',ground:'#F2F2F0',
+  pal:[['銀鼠','#91989F'],['白藍','#C1DCE4'],['藍鼠','#6C848D'],['紅','#C2363F'],['常磐色','#2E6B47'],['胡粉色','#FFFFFB']],
+  origin:'年の暮れに師（僧）が経をあげるため東西を走り回る「師馳す」とする説が広く知られますが、これは後づけの解釈とも言われます。年が果てる「年果つ」、なし終える「為果つ」が転じたとする説もあります。',
+  alt:['極月','春待月','梅初月','年満月','弟月'],motif:'雪華と雪輪、冬に赤く実る南天。'}
+];
+
+/* 節気: [名, 読み, 月, 日, 意味, [候: 名, 読み, 月, 日, 意味, しるし, 色]] */
+const SEKKI=[
+ ['小寒','しょうかん',1,5,'寒の入り。ここから節分までが「寒の内」です。',[
+  ['芹乃栄','せりすなわちさかう',1,5,'冷たい水辺で芹が盛んに育つ頃。','sprout'],
+  ['水泉動','しみずあたたかをふくむ',1,10,'地中で凍っていた泉が動き始める頃。','mist'],
+  ['雉始雊','きじはじめてなく',1,15,'雄の雉が求愛の声で鳴き始める頃。','frost']]],
+ ['大寒','だいかん',1,20,'一年で最も寒さが厳しい頃。',[
+  ['款冬華','ふきのはなさく',1,20,'雪の下から蕗の薹が顔を出す頃。','sprout'],
+  ['水沢腹堅','さわみずこおりつめる',1,25,'沢の水が厚く張りつめて凍る頃。','ice'],
+  ['鶏始乳','にわとりはじめてとやにつく',1,30,'鶏が卵を産み始める頃。','sunlight']]],
+ ['立春','りっしゅん',2,4,'暦の上での春の始まり。八十八夜や二百十日はこの日から数えます。',[
+  ['東風解凍','はるかぜこおりをとく',2,4,'春の風が川や池の氷を解かし始める頃。','wind'],
+  ['黄鶯睍睆','うぐいすなく',2,9,'鶯が山里で美しく鳴き始める頃。','petals','#E16B8C'],
+  ['魚上氷','うおこおりをいずる',2,14,'割れた氷の間から魚が跳ね上がる頃。','ice']]],
+ ['雨水','うすい',2,19,'雪が雨に変わり、積もった雪が解け始める頃。',[
+  ['土脉潤起','つちのしょううるおいおこる',2,19,'雨が降って土が潤い始める頃。','rain'],
+  ['霞始靆','かすみはじめてたなびく',2,24,'春霞がたなびき始める頃。','mist'],
+  ['草木萌動','そうもくめばえいずる',3,1,'草木が芽吹き始める頃。','sprout']]],
+ ['啓蟄','けいちつ',3,5,'冬ごもりの虫が戸を開いて出てくる頃。',[
+  ['蟄虫啓戸','すごもりむしとをひらく',3,5,'冬ごもりの虫が姿を現す頃。','sprout'],
+  ['桃始笑','ももはじめてさく',3,10,'桃のつぼみがほころぶ頃。','petals','#F596AA'],
+  ['菜虫化蝶','なむしちょうとなる',3,15,'青虫が羽化して紋白蝶になる頃。','petals','#E3CF6A']]],
+ ['春分','しゅんぶん',3,20,'昼と夜の長さがほぼ等しくなる日。春の彼岸の中日です。',[
+  ['雀始巣','すずめはじめてすくう',3,20,'雀が巣を作り始める頃。','sunlight'],
+  ['桜始開','さくらはじめてひらく',3,25,'桜の花が咲き始める頃。','petals','#EBA5B5'],
+  ['雷乃発声','かみなりすなわちこえをはっす',3,30,'遠くで春の雷が鳴り始める頃。','rain']]],
+ ['清明','せいめい',4,5,'万物が清らかで明るく、生き生きとする頃。',[
+  ['玄鳥至','つばめきたる',4,5,'燕が南から渡ってくる頃。','wind'],
+  ['鴻雁北','こうがんかえる',4,10,'雁が北へ帰っていく頃。','mist'],
+  ['虹始見','にじはじめてあらわる',4,15,'雨上がりに虹が見え始める頃。','rainbow']]],
+ ['穀雨','こくう',4,20,'穀物を潤す春の雨が降る頃。',[
+  ['葭始生','あしはじめてしょうず',4,20,'水辺の葦が芽を吹き始める頃。','sprout'],
+  ['霜止出苗','しもやんでなえいずる',4,25,'霜が終わり、苗代で稲の苗が育つ頃。','sprout'],
+  ['牡丹華','ぼたんはなさく',4,30,'牡丹の大きな花が咲く頃。','petals','#D05A6E']]],
+ ['立夏','りっか',5,5,'夏の始まり。',[
+  ['蛙始鳴','かわずはじめてなく',5,5,'田で蛙が鳴き始める頃。','rain'],
+  ['蚯蚓出','みみずいずる',5,10,'蚯蚓が地上に這い出る頃。','sprout'],
+  ['竹笋生','たけのこしょうず',5,15,'筍が生えてくる頃。','sprout']]],
+ ['小満','しょうまん',5,21,'草木が茂り、天地に生気が満ち始める頃。',[
+  ['蚕起食桑','かいこおきてくわをはむ',5,21,'蚕が桑の葉を盛んに食べる頃。','sprout'],
+  ['紅花栄','べにばなさかう',5,26,'紅花が一面に咲く頃。','petals','#E9A23B'],
+  ['麦秋至','むぎのときいたる',5,31,'麦が実って刈り入れの時を迎える頃。','sunlight']]],
+ ['芒種','ぼうしゅ',6,5,'芒（のぎ）のある穀物の種をまく頃。',[
+  ['蟷螂生','かまきりしょうず',6,5,'蟷螂が卵からかえる頃。','sprout'],
+  ['腐草為螢','くされたるくさほたるとなる',6,10,'蛍が飛び交い始める頃。','fireflies'],
+  ['梅子黄','うめのみきばむ',6,16,'梅の実が黄ばんで熟す頃。','rain']]],
+ ['夏至','げし',6,21,'一年で最も昼が長い日。',[
+  ['乃東枯','なつかれくさかるる',6,21,'夏枯草（靫草）の花穂が枯れたように見える頃。','sunlight'],
+  ['菖蒲華','あやめはなさく',6,26,'菖蒲（あやめ）の花が咲く頃。','petals','#6F3381'],
+  ['半夏生','はんげしょうず',7,1,'半夏（烏柄杓）が生える頃。田植えを終える目安とされました。','rain']]],
+ ['小暑','しょうしょ',7,7,'暑さが本格的になる頃。暑中見舞いはこの頃から。',[
+  ['温風至','あつかぜいたる',7,7,'熱い風が吹いてくる頃。','wind'],
+  ['蓮始開','はすはじめてひらく',7,12,'蓮の花が開き始める頃。','petals','#E7A1B0'],
+  ['鷹乃学習','たかすなわちわざをならう',7,17,'鷹の幼鳥が飛び方を覚える頃。','wind']]],
+ ['大暑','たいしょ',7,23,'一年で最も暑い頃。',[
+  ['桐始結花','きりはじめてはなをむすぶ',7,23,'桐が実を結び始める頃。','sunlight'],
+  ['土潤溽暑','つちうるおうてむしあつし',7,28,'土が湿り、蒸し暑くなる頃。','mist'],
+  ['大雨時行','たいうときどきふる',8,2,'時として夕立などの大雨が降る頃。','rain']]],
+ ['立秋','りっしゅう',8,7,'秋の始まり。この日からは残暑見舞いになります。',[
+  ['涼風至','すずかぜいたる',8,7,'涼しい風が吹き始める頃。','wind'],
+  ['寒蝉鳴','ひぐらしなく',8,12,'蜩がカナカナと鳴き始める頃。','sunlight'],
+  ['蒙霧升降','ふかききりまとう',8,17,'深い霧が立ちこめる頃。','mist']]],
+ ['処暑','しょしょ',8,23,'暑さがおさまり始める頃。',[
+  ['綿柎開','わたのはなしべひらく',8,23,'綿を包む萼が開き始める頃。','cotton'],
+  ['天地始粛','てんちはじめてさむし',8,28,'天地の暑さがようやく鎮まる頃。','wind'],
+  ['禾乃登','こくものすなわちみのる',9,2,'稲が実り始める頃。','sunlight']]],
+ ['白露','はくろ',9,7,'草花に白い露が宿り始める頃。',[
+  ['草露白','くさのつゆしろし',9,7,'草に降りた露が白く光る頃。','dew'],
+  ['鶺鴒鳴','せきれいなく',9,12,'鶺鴒が鳴き始める頃。','wind'],
+  ['玄鳥去','つばめさる',9,17,'燕が南へ帰っていく頃。','wind']]],
+ ['秋分','しゅうぶん',9,23,'昼と夜の長さがほぼ等しくなる日。秋の彼岸の中日です。',[
+  ['雷乃収声','かみなりすなわちこえをおさむ',9,23,'雷が鳴らなくなる頃。','cloud'],
+  ['蟄虫坏戸','むしかくれてとをふさぐ',9,28,'虫が土にもぐり、穴の戸をふさぐ頃。','mist'],
+  ['水始涸','みずはじめてかるる',10,3,'田の水を落とし、稲刈りに備える頃。','sunlight']]],
+ ['寒露','かんろ',10,8,'冷たい露が草木に結ぶ頃。',[
+  ['鴻雁来','こうがんきたる',10,8,'雁が北から渡ってくる頃。','wind'],
+  ['菊花開','きくのはなひらく',10,13,'菊の花が咲く頃。','petals','#E6B422'],
+  ['蟋蟀在戸','きりぎりすとにあり',10,18,'蟋蟀が戸口で鳴く頃。','dew']]],
+ ['霜降','そうこう',10,23,'霜が降り始める頃。',[
+  ['霜始降','しもはじめてふる',10,23,'霜が降り始める頃。','frost'],
+  ['霎時施','こさめときどきふる',10,28,'小雨がしとしと降る頃。','rain'],
+  ['楓蔦黄','もみじつたきばむ',11,2,'楓や蔦が色づく頃。','leaves']]],
+ ['立冬','りっとう',11,7,'冬の始まり。',[
+  ['山茶始開','つばきはじめてひらく',11,7,'山茶花が咲き始める頃。「つばき」と読みますが山茶花のことです。','petals','#D9485E'],
+  ['地始凍','ちはじめてこおる',11,12,'大地が凍り始める頃。','frost'],
+  ['金盞香','きんせんかさく',11,17,'水仙の花が咲く頃。金盞は水仙のことです。','petals','#E8C547']]],
+ ['小雪','しょうせつ',11,22,'わずかに雪が降り始める頃。',[
+  ['虹蔵不見','にじかくれてみえず',11,22,'虹を見かけなくなる頃。','mist'],
+  ['朔風払葉','きたかぜこのはをはらう',11,27,'北風が木の葉を払い落とす頃。','leaves'],
+  ['橘始黄','たちばなはじめてきばむ',12,2,'橘の実が黄色く色づく頃。','berries','#E89A2B']]],
+ ['大雪','たいせつ',12,7,'雪が本格的に降り始める頃。',[
+  ['閉塞成冬','そらさむくふゆとなる',12,7,'天地の気が塞がり、本格的な冬になる頃。','snow'],
+  ['熊蟄穴','くまあなにこもる',12,12,'熊が冬眠のため穴にこもる頃。','snow'],
+  ['鱖魚群','さけのうおむらがる',12,16,'鮭が群れをなして川をさかのぼる頃。','stream']]],
+ ['冬至','とうじ',12,22,'一年で最も昼が短い日。柚子湯に入る習わしがあります。',[
+  ['乃東生','なつかれくさしょうず',12,22,'夏枯草が芽を出す頃。','sprout'],
+  ['麋角解','さわしかのつのおつる',12,26,'大鹿の角が落ちる頃。','frost'],
+  ['雪下出麦','ゆきわたりてむぎのびる',12,31,'雪の下で麦が芽を出す頃。','snow']]]
+];
+const KOU=[];
+SEKKI.forEach((s,si)=>s[5].forEach((k,j)=>KOU.push({name:k[0],kana:k[1],m:k[2],d:k[3],mean:k[4],acc:k[5],col:k[6]||null,si,pos:j,doy:doy(k[2],k[3])})));
+const SEKKI_START={};SEKKI.forEach(s=>SEKKI_START[`${s[2]}-${s[3]}`]=s[0]);
+const POS=['初候','次候','末候'];
+const ACC_LABEL={wind:'風の筋',mist:'白い霞',rain:'細い雨',frost:'霜の粒',snow:'淡雪',ice:'薄氷のひび',dew:'露の粒',rainbow:'淡い虹',petals:'花びら',fireflies:'蛍の灯',sunlight:'日だまり',sprout:'芽吹き',leaves:'色づく葉',cotton:'綿の白',berries:'色づく実',cloud:'白い雲',stream:'川の流れ'};
+const SPECIAL={
+ '1-1':['元日','一年の始まりの日。'],
+ '1-7':['人日の節句','五節句の一つ。七草粥で一年の無病息災を願います。'],
+ '2-3':['節分','立春の前日（年により前後します）。季節の分かれ目に豆をまいて邪気を払います。'],
+ '3-3':['上巳の節句','五節句の一つ。桃の節句、雛祭りの日です。'],
+ '5-2':['八十八夜','立春から数えて八十八日目（目安）。茶摘みや種まきの好機とされます。'],
+ '5-5':['端午の節句','五節句の一つ。菖蒲を軒に挿し、邪気を払います。'],
+ '6-11':['入梅','暦の上の梅雨入り（目安）。'],
+ '7-7':['七夕の節句','五節句の一つ。星に願いを託し、短冊を笹に飾ります。'],
+ '9-1':['二百十日','立春から数えて二百十日目（目安）。台風に警戒する厄日とされました。'],
+ '9-9':['重陽の節句','五節句の一つ。菊の節句とも呼ばれ、長寿を願います。'],
+ '12-31':['大晦日','一年の最後の日。']
+};
+/* ---------- English ---------- */
+let LANG='en';try{const v=localStorage.getItem('koyomigami-lang');if(v==='ja'||v==='en')LANG=v;}catch(e){}
+const EN_MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const enDate=(m,d)=>`${EN_MON[m-1]} ${d}`;
+const tr=(ja,en)=>LANG==='en'?en:ja;
+const MONTHS_EN=[
+ {gloss:'Month of affection',origin:'The best known account takes the name from mutsubi-zuki, the month when relatives and friends visit one another at New Year and grow close. Another traces it to mi-tsuki, the month when rice seed is first soaked in water.',motif:'Red and white plum blossom, pine needles and a faint trailing mist.'},
+ {gloss:'Month of extra layers',origin:'The usual account reads it as kisaragi, "putting on more clothes", because the cold returns. Others read it as the month when plants begin to bud, or when warmth arrives again. The characters come from an old Chinese dictionary, the Erya, which called the second month ru.',motif:'Bands of layered court robe colors (kasane no irome), with lingering snow and snow rings.'},
+ {gloss:'Month of growth',origin:'From iya-oi, "growing ever more", as plants grow thick, contracted to yayoi. Iya means "more and more".',motif:'Cherry blossoms in bloom, falling petals and spring haze.'},
+ {gloss:'Month of the deutzia',origin:'Most often explained as short for u-no-hana-zuki, the month when the deutzia (u-no-hana) blooms. Other accounts tie it to u, the fourth sign of the zodiac, or to ue-zuki, the month of planting rice.',motif:'White sprays of deutzia, young leaves and hanging wisteria.'},
+ {gloss:'Month of rice planting',origin:'The leading account calls it short for sanae-zuki, the month of planting rice seedlings. Sa itself is said to be an old word tied to rice and the god of the paddies; the character was assigned later.',motif:'Rows of rice seedlings in flooded paddies, and glints on the water.'},
+ {gloss:'Month of water',origin:'The leading account reads na as an old particle meaning "of", so the name means "month of water", when water is led into the paddies. Because the sixth lunar month falls around the end of the rainy season, some read it as the month when water runs dry.',motif:'Ripples from raindrops, fine rain and hydrangeas wet with rain.'},
+ {gloss:'Month of letters',origin:'Often traced to fumi-hiraki-zuki, the month when poems were written and offered on the night of Tanabata and books were aired in the night wind. Another account derives it from ho-fumi-zuki, the month when rice ears swell.',motif:'The Milky Way running on a slant, and five colored tanzaku strips bearing wishes.'},
+ {gloss:'Month of leaves',origin:'Best known as short for ha-ochi-zuki, the month when leaves turn and fall (the eighth lunar month is around September today). Others read it as the month when rice ears fill out, or when wild geese first arrive.',motif:'The mid-autumn moon, with bush clover, pampas grass and other autumn grasses.'},
+ {gloss:'Month of long nights',origin:'The leading account calls it short for yonaga-zuki, the month when nights grow longer. Others derive it from the long autumn rains or from the rice harvest.',motif:'Chrysanthemums of the Chōyō festival, flowing water tied to the chrysanthemum, and dew on grass.'},
+ {gloss:'Month of the gods',origin:'The leading account reads na as "of", making it "the month of the gods". The story that the gods all gather at Izumo, leaving the rest of the land godless, while Izumo calls it kamiari-zuki ("month with gods"), is considered a folk etymology that spread from the Middle Ages.',motif:'Auspicious clouds that suggest the gods coming and going, early winter showers, and the glint of gold leaf flakes.'},
+ {gloss:'Month of frost',origin:'Generally explained as short for shimo-furi-zuki, the month when frost falls. Other accounts tie it to the month of harvest offerings to the gods, or to the "last month" near the end of the year.',motif:'Fallen autumn leaves and a thin coat of frost.'},
+ {gloss:'Month of running priests',origin:'The best known account has priests (shi) running east and west at year end to chant sutras, though this is often called a later reading. Others derive it from toshi-hatsu, "the year ends", or shi-hatsu, "finishing everything".',motif:'Snow crystals and snow rings, with nandina berries that ripen red in winter.'}
+];
+/* [romaji, English name, description, [kō: romaji, English name, description] x3] */
+const SEKKI_EN=[
+ ['Shōkan','Minor Cold','The cold sets in. From here until Setsubun is kan no uchi, the coldest stretch of the year.',[['Seri sunawachi sakau','Parsley flourishes','Water parsley grows thick at the cold waterside.'],['Shimizu atataka o fukumu','Springs thaw','Springs frozen underground begin to move.'],['Kiji hajimete naku','Pheasants start to call','Male pheasants begin their courting calls.']]],
+ ['Daikan','Major Cold','The harshest cold of the year.',[['Fuki no hana saku','Butterburs bud','Butterbur buds peek out from under the snow.'],['Sawamizu kōri tsumeru','Mountain streams freeze','The water of mountain streams freezes thick and hard.'],['Niwatori hajimete toya ni tsuku','Hens start laying','Hens begin to lay eggs.']]],
+ ['Risshun','Start of Spring','Spring begins on the calendar. Hachijū-hachiya and Nihyaku-tōka are counted from this day.',[['Harukaze kōri o toku','East wind melts the ice','The spring wind begins to melt the ice on rivers and ponds.'],['Uguisu naku','Bush warblers sing','Bush warblers begin to sing sweetly in the mountain villages.'],['Uo kōri o izuru','Fish emerge from the ice','Fish leap up through the cracks in the ice.']]],
+ ['Usui','Rain Water','Snow turns to rain, and the settled snow begins to melt.',[['Tsuchi no shō uruoi okoru','Rain moistens the soil','Rain falls and the soil begins to soften.'],['Kasumi hajimete tanabiku','Mist starts to linger','Spring haze begins to trail across the land.'],['Sōmoku mebae izuru','Grass sprouts, trees bud','Plants and trees begin to bud.']]],
+ ['Keichitsu','Awakening of Insects','Insects that wintered underground open their doors and come out.',[['Sugomori mushi to o hiraku','Hibernating insects surface','Insects that spent the winter underground appear.'],['Momo hajimete saku','First peach blossoms','Peach buds begin to open.'],['Namushi chō to naru','Caterpillars become butterflies','Green caterpillars emerge as cabbage white butterflies.']]],
+ ['Shunbun','Spring Equinox','Day and night are nearly equal. The middle day of the spring higan week.',[['Suzume hajimete sukuu','Sparrows start to nest','Sparrows begin to build their nests.'],['Sakura hajimete hiraku','First cherry blossoms','Cherry trees begin to bloom.'],['Kaminari sunawachi koe o hassu','Distant thunder','Spring thunder begins to rumble in the distance.']]],
+ ['Seimei','Clear and Bright','All things are clear, bright and full of life.',[['Tsubame kitaru','Swallows return','Swallows arrive from the south.'],['Kōgan kaeru','Wild geese fly north','Wild geese return to the north.'],['Niji hajimete arawaru','First rainbows','Rainbows begin to appear after rain.']]],
+ ['Kokuu','Grain Rain','Spring rain falls to nourish the grain.',[['Ashi hajimete shōzu','First reeds sprout','Reeds at the waterside begin to sprout.'],['Shimo yande nae izuru','Last frost, rice seedlings grow','The frosts end and rice seedlings grow in the nursery beds.'],['Botan hana saku','Peonies bloom','The large flowers of the tree peony open.']]],
+ ['Rikka','Start of Summer','Summer begins.',[['Kawazu hajimete naku','Frogs start singing','Frogs begin to sing in the paddies.'],['Mimizu izuru','Worms surface','Earthworms crawl up out of the ground.'],['Takenoko shōzu','Bamboo shoots sprout','Bamboo shoots come up.']]],
+ ['Shōman','Lesser Fullness','Plants grow thick, and life begins to fill heaven and earth.',[['Kaiko okite kuwa o hamu','Silkworms feast on mulberry','Silkworms eat mulberry leaves greedily.'],['Benibana sakau','Safflowers bloom','Safflowers bloom across the fields.'],['Mugi no toki itaru','Wheat ripens','Wheat ripens and the harvest arrives.']]],
+ ['Bōshu','Grain in Ear','Time to sow grains that bear awns (nogi).',[['Kamakiri shōzu','Praying mantises hatch','Praying mantises hatch from their eggs.'],['Kusaretaru kusa hotaru to naru','Rotten grass becomes fireflies','Fireflies begin to flit about.'],['Ume no mi kibamu','Plums turn yellow','Plums turn yellow and ripen.']]],
+ ['Geshi','Summer Solstice','The longest day of the year.',[['Natsukarekusa karuru','Self-heal withers','The flower spikes of self-heal (utsubogusa) look withered.'],['Ayame hana saku','Irises bloom','Irises (ayame) bloom.'],['Hange shōzu','Crow-dipper sprouts','Crow-dipper (karasubishaku) comes up. It was taken as the sign to finish rice planting.']]],
+ ['Shōsho','Minor Heat','The heat sets in for real. Summer greetings are sent from about now.',[['Atsukaze itaru','Warm winds blow','Hot winds begin to blow.'],['Hasu hajimete hiraku','First lotus blossoms','Lotus flowers begin to open.'],['Taka sunawachi waza o narau','Hawks learn to fly','Young hawks learn to fly.']]],
+ ['Taisho','Major Heat','The hottest time of the year.',[['Kiri hajimete hana o musubu','Paulownia sets seed','Paulownia trees begin to bear fruit.'],['Tsuchi uruōte mushi atsushi','Damp earth, humid air','The earth turns damp and the air grows humid.'],['Taiu tokidoki furu','Great rains sometimes fall','Heavy rains, such as evening downpours, fall from time to time.']]],
+ ['Risshū','Start of Autumn','Autumn begins. From this day, summer greetings become late-summer greetings.',[['Suzukaze itaru','Cool winds blow','Cool winds begin to blow.'],['Higurashi naku','Evening cicadas sing','Evening cicadas begin their kana-kana call.'],['Fukaki kiri matō','Thick fog descends','Thick fog hangs in the air.']]],
+ ['Shosho','End of Heat','The heat begins to ease.',[['Wata no hanashibe hiraku','Cotton bolls open','The calyxes holding the cotton begin to open.'],['Tenchi hajimete samushi','Heat finally relents','The heat of heaven and earth at last subsides.'],['Kokumono sunawachi minoru','Rice ripens','Rice begins to ripen.']]],
+ ['Hakuro','White Dew','White dew begins to settle on grasses and flowers.',[['Kusa no tsuyu shiroshi','Dew glistens white on grass','Dew on the grass shines white.'],['Sekirei naku','Wagtails sing','Wagtails begin to call.'],['Tsubame saru','Swallows leave','Swallows return to the south.']]],
+ ['Shūbun','Autumn Equinox','Day and night are nearly equal. The middle day of the autumn higan week.',[['Kaminari sunawachi koe o osamu','Thunder ceases','Thunder is no longer heard.'],['Mushi kakurete to o fusagu','Insects close their doors','Insects burrow into the soil and seal their doors.'],['Mizu hajimete karuru','Farmers drain the fields','The paddies are drained to prepare for the rice harvest.']]],
+ ['Kanro','Cold Dew','Cold dew forms on plants and trees.',[['Kōgan kitaru','Wild geese return','Wild geese arrive from the north.'],['Kiku no hana hiraku','Chrysanthemums bloom','Chrysanthemums bloom.'],['Kirigirisu to ni ari','Crickets chirp at the door','Crickets sing by the doorway.']]],
+ ['Sōkō','Frost Descent','Frost begins to fall.',[['Shimo hajimete furu','First frost','Frost begins to fall.'],['Kosame tokidoki furu','Light rains sometimes fall','Light rain falls softly.'],['Momiji tsuta kibamu','Maples and ivy turn','Maples and ivy change color.']]],
+ ['Rittō','Start of Winter','Winter begins.',[['Tsubaki hajimete hiraku','Sasanqua blooms','Sasanqua begins to bloom. The name is read tsubaki (camellia), but it means sasanqua.'],['Chi hajimete kōru','Land starts to freeze','The earth begins to freeze.'],['Kinsenka saku','Daffodils bloom','Daffodils bloom. Kinsen is an old name for the daffodil.']]],
+ ['Shōsetsu','Minor Snow','A little snow begins to fall.',[['Niji kakurete miezu','Rainbows hide','Rainbows are no longer seen.'],['Kitakaze konoha o harau','North wind strips the leaves','The north wind blows the leaves from the trees.'],['Tachibana hajimete kibamu','Tachibana turns yellow','The fruit of the tachibana citrus turns yellow.']]],
+ ['Taisetsu','Major Snow','Snow begins to fall in earnest.',[['Sora samuku fuyu to naru','Cold sets in, winter begins','The air of heaven and earth closes up, and full winter arrives.'],['Kuma ana ni komoru','Bears go into their dens','Bears retreat into their dens to hibernate.'],['Sake no uo muragaru','Salmon gather','Salmon swim upstream in schools.']]],
+ ['Tōji','Winter Solstice','The shortest day of the year. It is customary to take a yuzu bath.',[['Natsukarekusa shōzu','Self-heal sprouts','Self-heal puts out new shoots.'],['Sawashika no tsuno otsuru','Deer shed antlers','Large deer shed their antlers.'],['Yuki watarite mugi nobiru','Wheat sprouts under snow','Wheat sprouts beneath the snow.']]]
+];
+const POS_EN=['First pentad','Second pentad','Last pentad'];
+const ACC_EN={wind:'streaks of wind',mist:'white mist',rain:'fine rain',frost:'grains of frost',snow:'light snow',ice:'cracks in thin ice',dew:'drops of dew',rainbow:'a faint rainbow',petals:'petals',fireflies:'firefly lights',sunlight:'pools of sunlight',sprout:'new shoots',leaves:'turning leaves',cotton:'white cotton',berries:'ripening berries',cloud:'white clouds',stream:'a flowing stream'};
+const SPECIAL_EN={
+ '1-1':['New Year’s Day','The first day of the year.'],
+ '1-7':['Jinjitsu','One of the five seasonal festivals. People eat nanakusa-gayu, rice porridge with seven herbs, to wish for good health all year.'],
+ '2-3':['Setsubun','The day before Risshun (it shifts by a day in some years). Beans are thrown at the turn of the season to drive out evil.'],
+ '3-3':['Jōshi','One of the five seasonal festivals. The Peach Festival, also known as Hinamatsuri, the Doll Festival.'],
+ '5-2':['Hachijū-hachiya','About the 88th day counted from Risshun. A good time for picking tea and sowing seeds.'],
+ '5-5':['Tango','One of the five seasonal festivals. Iris leaves are hung under the eaves to ward off evil.'],
+ '6-11':['Nyūbai','The start of the rainy season on the calendar (approximate).'],
+ '7-7':['Tanabata','One of the five seasonal festivals. Wishes are written on tanzaku strips and hung on bamboo for the stars.'],
+ '9-1':['Nihyaku-tōka','About the 210th day counted from Risshun. It was held to be an unlucky day, a time to watch for typhoons.'],
+ '9-9':['Chōyō','One of the five seasonal festivals. Also called the Chrysanthemum Festival, a day to wish for long life.'],
+ '12-31':['Ōmisoka','The last day of the year.']
+};
+const LAYOUT_EN={chirashi:['Scattered','The design scattered across the whole sheet, a plain layout.'],shikishi:['Scattered cards','Scattered shikishi cards in changing colors, each holding the design.'],senmen:['Scattered fans','Windows in the shape of open fans, scattered across the sheet.'],kumodori:['Cloud windows','The design shows through windows cut in the shape of clouds.'],marumado:['Round windows','The design sits inside round windows.'],yukiwa:['Snow-ring windows','The design sits inside yukiwa, windows shaped like snowflakes.'],kasumidori:['Mist windows','The design sits inside windows shaped like trailing mist.'],dangawari:['Alternating bands','Horizontal bands alternate between the design and plain paper.'],ichimatsu:['Checkerboard','A checkerboard grid with the design in every other square.'],yaburitsugi:['Torn-paper joins','Torn paper joined on a slant, with color and design changing at the seam.'],ryusui:['Flowing water','The design flows inside shapes cut like running water.']};
+const SIZE_EN=['large pattern','medium pattern','small pattern'];
+const FURNISH_EN={kozo:'Kozo paper',kozomitsu:'Kozo and mitsumata',mitsumata:'Mitsumata paper',gampi:'Gampi paper',chiri:'Kozo with bark specks'};
+const UI_EN={
+ titleKana:'Koyomigami',label:'Japanese month names · 24 solar terms · 72 seasons',
+ lead:'For every one of the 366 days of the year, Koyomigami makes a sheet of washi that belongs to that day alone. The traditional name of the month sets the design, the day’s micro-season (kō) adds the feel of the air, and the date chooses the layout, the size of the pattern and the brushwork. No two neighboring days share a layout. The same date always gives the same paper, and every sheet tiles seamlessly in all directions.',
+ heroSec:'Paper for the chosen day',paperGrp:'Papermaking',scale:'Pattern size',seams:'Show seams',furnish:'Fiber',gsm:'Weight',chiri:'Bark specks',transmit:'Hold to the light',
+ pickSec:'Choose a date',pick:'Choose a day',prev:'Previous day',today:'Today',next:'Next day',monthsGrp:'Month',daysGrp:'Day',lgSek:'First day of a solar term',lgSpe:'Seasonal festival or calendar day',
+ almSec:'Almanac for this day',mLabel:'Month name',mAltT:'Other names',mMotifT:'Design',
+ mNote:'The traditional month names (wafū getsumei) originally named the months of the old lunisolar calendar. Those months run about a month behind today’s calendar, so the seasonal feel of a name can be slightly off. Koyomigami lays them over the months of the modern calendar.',
+ sLabel:'Solar term and season',kRangeT:'Period',kAccT:'Touch',kLayT:'Layout',colors:'Colors of this paper',
+ expSec:'Export',expPrev:'Export preview',expH:'Take the paper home',expSize:'Size',tile:'Tile',tileL:'Large tile',phone:'Phone wallpaper',desk:'Desktop wallpaper',
+ mei:'Add a vertical Japanese inscription to wallpapers (month name, season, date and solar term seal)',save:'Save this paper',fallAlt:'The exported paper',fallP:'Long press or right click the image to save it.',
+ knowSec:'About the calendar',
+ k1h:'Japanese month names',k1p:'From Mutsuki to Shiwasu, each month has a Japanese name. The names grew out of farm work, festivals and the turning seasons, and many have several competing origins. Each month also has many alternative names.',
+ k2h:'24 solar terms',k2p:'The sun’s yearly course divided into 24 parts, each with a seasonal name. They began in ancient China and live on in everyday words such as Risshun (start of spring) and Geshi (summer solstice).',
+ k3h:'72 seasons',k3p:'Each solar term divided again into three, giving a seasonal name about every five days. In the Edo period Shibukawa Harumi and others revised them to fit Japan’s climate; the form widely known today is the one printed in the Meiji-era Ryakuhonreki almanac.',
+ howSec:'How Koyomigami is made',
+ h1h:'Forming the sheet',h1p:'Fibers of kozo, mitsumata and gampi are laid one by one, each with its own length, width, curl, kinks and twist, loosely aligned with the rocking of the screen and stacked in many layers. The cloudy formation, the laid and chain lines of the screen and the bark specks all come from the same process, and the color of the paper depends on how light passes through the fiber layers.',
+ h2h:'Laying out',h2p:'Each day picks one of eleven layouts, such as scattered cards, fans, cloud windows, checkerboard or torn-paper joins, and switches between large, medium and small patterns. The design bleeds into the windows and stays faint outside them.',
+ h3h:'Adding touches',h3p:'A faint mark tied to the day’s season is added, and festival days are scattered with gold leaf flakes. The pigment settles where fibers are dense and bleeds slightly along the fiber direction.',
+ foot:'The dates of the solar terms and seasons follow typical recent years and can shift by about a day from year to year. The color names and values are one choice made for Koyomigami. The fiber dimensions and optical values are rough estimates chosen for each material.'
+};
+function applyStatic(){
+ document.documentElement.lang=LANG;document.title=tr('暦紙','Koyomigami — 暦紙');
+ document.querySelectorAll('[data-i]').forEach(el=>{if(el.dataset.ja===undefined)el.dataset.ja=el.innerHTML;el.innerHTML=LANG==='en'?UI_EN[el.dataset.i]:el.dataset.ja;});
+ document.querySelectorAll('[data-a]').forEach(el=>{if(el.dataset.aja===undefined)el.dataset.aja=el.getAttribute('aria-label');el.setAttribute('aria-label',LANG==='en'?UI_EN[el.dataset.a]:el.dataset.aja);});
+ document.querySelectorAll('[data-alt]').forEach(el=>{if(el.dataset.altja===undefined)el.dataset.altja=el.alt;el.alt=LANG==='en'?UI_EN[el.dataset.alt]:el.dataset.altja;});
+ document.querySelectorAll('.langs [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===LANG)));
+}
+function kouIndex(m,d){const x=doy(m,d);let idx=KOU.length-1;for(let i=0;i<KOU.length;i++){if(KOU[i].doy<=x)idx=i;else break;}return idx;}
+function dayInfo(m,d){const ki=kouIndex(m,d),kou=KOU[ki],nx=KOU[(ki+1)%KOU.length];
+ let endDoy=nx.doy-1;if(endDoy<1)endDoy=366;const [em,ed]=fromDoy(endDoy);
+ const xd=doy(m,d);return{m,d,key:`${m}-${d}`,layout:LAYOUTS[(xd*4+m*3)%LAYOUTS.length],size:SIZES[(xd*2+m)%3],month:MONTHS[m-1],kou,sekki:SEKKI[kou.si],kouEnd:[em,ed],special:SPECIAL[`${m}-${d}`]||null,dateK:kanjiNum(m)+'月'+kanjiNum(d)+'日'};}
+
+/* ---------- 描画の道具 ---------- */
+const hexRgb=h=>{const n=parseInt(h.slice(1),16);return[n>>16&255,n>>8&255,n&255];};
+const rgba=(c,a)=>`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`;
+const mixc=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+const WHITE=[255,254,250];
+function circ(cx,cy,r,n=10,ph=0){const a=[];for(let i=0;i<n;i++){const t=ph+i/n*TAU;a.push([cx+Math.cos(t)*r,cy+Math.sin(t)*r]);}return a;}
+function ell(cx,cy,rx,ry,rot,n=12){const c=Math.cos(rot),s=Math.sin(rot),a=[];for(let i=0;i<n;i++){const t=i/n*TAU,x=Math.cos(t)*rx,y=Math.sin(t)*ry;a.push([cx+x*c-y*s,cy+x*s+y*c]);}return a;}
+function xf(pts,cx,cy,rot,sc=1){const c=Math.cos(rot),s=Math.sin(rot);return pts.map(([x,y])=>[cx+(x*c-y*s)*sc,cy+(x*s+y*c)*sc]);}
+function rect(cx,cy,w,h,rot){return xf([[-w/2,-h/2],[w/2,-h/2],[w/2,h/2],[-w/2,h/2]],cx,cy,rot);}
+function petalLocal(L,W,notch){const up=[],n=9;for(let i=0;i<=n;i++){const u=i/n;const f=notch?(0.28*u+0.62*Math.sin(Math.PI*Math.pow(u,0.8))):0.5*Math.pow(Math.sin(Math.PI*u),0.9);up.push([L*u,W*f]);}
+ const pts=up.slice();if(notch)pts.push([L*0.84,0]);else pts.pop();
+ for(let i=up.length-1;i>=1;i--)pts.push([up[i][0],-up[i][1]]);return pts;}
+function mapleLocal(R){const a=[],n=84;for(let i=0;i<n;i++){const t=i/n*TAU;const ph=((t/TAU)*7+0.5)%1;const tri=1-Math.abs(ph*2-1);let r=R*(0.5+0.5*Math.pow(tri,1.15));r*=0.78+0.22*Math.cos(t);r*=1+0.035*Math.sin(t*49);a.push([Math.sin(t)*r,-Math.cos(t)*r]);}return a;}
+function yukiwaLocal(R){const a=[],n=96;for(let i=0;i<n;i++){const t=i/n*TAU;const r=R*(0.84+0.16*Math.sqrt(Math.abs(Math.sin(3*t))));a.push([Math.cos(t)*r,Math.sin(t)*r]);}return a;}
+function stadium(cx,cy,w,h){const r=h/2,a=[],n=8;for(let i=0;i<=n;i++){const t=-Math.PI/2+i/n*Math.PI;a.push([cx+w/2-r+Math.cos(t)*r,cy+Math.sin(t)*r]);}for(let i=0;i<=n;i++){const t=Math.PI/2+i/n*Math.PI;a.push([cx-w/2+r+Math.cos(t)*r,cy+Math.sin(t)*r]);}return a;}
+function blade(x,y,ang,L,w,bend){const pa=ang+Math.PI/2,ex=x+Math.cos(ang)*L+Math.cos(pa)*bend*L*0.6,ey=y+Math.sin(ang)*L+Math.sin(pa)*bend*L*0.6,mx=x+Math.cos(ang)*L*0.55,my=y+Math.sin(ang)*L*0.55;const A=[],B=[],n=10;
+ for(let i=0;i<=n;i++){const t=i/n,it=1-t,px=it*it*x+2*it*t*mx+t*t*ex,py=it*it*y+2*it*t*my+t*t*ey,dx=2*it*(mx-x)+2*t*(ex-mx),dy=2*it*(my-y)+2*t*(ey-my),dl=Math.hypot(dx,dy)||1,nx=-dy/dl,ny=dx/dl,hw=w*0.5*Math.pow(1-t,0.85)+w*0.04;A.push([px+nx*hw,py+ny*hw]);B.push([px-nx*hw,py-ny*hw]);}
+ return A.concat(B.reverse());}
+
+function Painter(ctx,W,H,rng,wrapOn,opt={}){
+ const S=Math.min(W,H),u=S/400*(opt.ms||1);
+ const g=()=>{let a=0;while(!a)a=rng();return Math.sqrt(-2*Math.log(a))*Math.cos(TAU*rng());};
+ const P={ctx,S,W,H,u,rng,g,k:opt.k||1};
+ P.wrap=(bb,fn)=>{const xs=wrapOn?[-W,0,W]:[0],ys=wrapOn?[-H,0,H]:[0];for(const ox of xs)for(const oy of ys){if(bb[2]+ox<0||bb[0]+ox>W||bb[3]+oy<0||bb[1]+oy>H)continue;ctx.save();ctx.translate(ox,oy);fn();ctx.restore();}};
+ function densify(p,m){const o=[];for(let i=0;i<p.length;i++){const a=p[i],b=p[(i+1)%p.length];o.push(a);const L=Math.hypot(b[0]-a[0],b[1]-a[1]),k=Math.floor(L/m);for(let j=1;j<=k;j++){const t=j/(k+1);o.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]);}}return o;}
+ function deform(p,depth,vr){for(let d=0;d<depth;d++){const o=[];for(let i=0;i<p.length;i++){const a=p[i],b=p[(i+1)%p.length];o.push(a);const L=Math.hypot(b[0]-a[0],b[1]-a[1]),v=(a[2]+b[2])/2,s=L*vr*v*0.32;o.push([(a[0]+b[0])/2+g()*s,(a[1]+b[1])/2+g()*s,v*0.8]);}p=o;}return p;}
+ const bbox=ps=>{let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const p of ps)for(const q of p){if(q[0]<x0)x0=q[0];if(q[0]>x1)x1=q[0];if(q[1]<y0)y0=q[1];if(q[1]>y1)y1=q[1];}const pd=Math.max(x1-x0,y1-y0)*0.25+4*u;return[x0-pd,y0-pd,x1+pd,y1+pd];};
+ P.wash=(polys,col,o={})=>{
+  const a=o.a??0.05,L=o.L??9,vr=o.v??0.45,mode=o.mode??'multiply',d0=o.d0??2,dl=o.dl??2,ec=o.ec??col,ea=o.ea??a*1.3,ew=(o.ew??0.7)*u,seg=(o.seg??22)*u,emode=o.emode??mode,vl=o.vl??0.75;
+  const base=polys.map(pl=>deform(densify(pl,seg).map(q=>[q[0],q[1],0.55+rng()*0.9]),d0,vr));
+  const bb=bbox(base),fs=rgba(col,a),ss=rgba(ec,ea);
+  for(let i=0;i<L;i++){const path=new Path2D();for(const b of base){const q=deform(b,dl,vr*vl);path.moveTo(q[0][0],q[0][1]);for(let j=1;j<q.length;j++)path.lineTo(q[j][0],q[j][1]);path.closePath();}
+   const edge=ea>0&&i%2===0;
+   P.wrap(bb,()=>{ctx.globalCompositeOperation=mode;ctx.fillStyle=fs;ctx.fill(path);if(edge){ctx.globalCompositeOperation=emode;ctx.strokeStyle=ss;ctx.lineWidth=ew;ctx.stroke(path);}});}
+  ctx.globalCompositeOperation='source-over';
+ };
+ P.line=(pts,col,o={})=>{const w=(o.w??1)*u,a=o.a??0.3,n=o.n??2,j=(o.j??0.5)*u,mode=o.mode??'multiply',closed=!!o.closed,bb=bbox([pts]),ss=rgba(col,a);
+  for(let i=0;i<n;i++){const path=new Path2D();pts.forEach((p,k)=>{const x=p[0]+g()*j,y=p[1]+g()*j;k?path.lineTo(x,y):path.moveTo(x,y);});if(closed)path.closePath();const lw=w*(0.75+rng()*0.5);
+   P.wrap(bb,()=>{ctx.globalCompositeOperation=mode;ctx.strokeStyle=ss;ctx.lineWidth=lw;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke(path);});}
+  ctx.globalCompositeOperation='source-over';};
+ P.rough=(polys,vr=0.3,seg=14,depth=2)=>polys.map(pl=>deform(densify(pl,seg*u).map(q=>[q[0],q[1],0.55+rng()*0.9]),depth,vr));
+ const toPath=(q,closed)=>{const path=new Path2D();path.moveTo(q[0][0],q[0][1]);for(let j=1;j<q.length;j++)path.lineTo(q[j][0],q[j][1]);if(closed)path.closePath();return path;};
+ P.fillPolys=(polys,style)=>{for(const q of polys){const path=toPath(q,true);P.wrap(bbox([q]),()=>{ctx.fillStyle=style;ctx.fill(path);});}};
+ P.strokePolys=(polys,style,w,closed=true)=>{for(const q of polys){const path=toPath(q,closed);P.wrap(bbox([q]),()=>{ctx.strokeStyle=style;ctx.lineWidth=w;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke(path);});}};
+ P.dot=(x,y,r,col,a,mode='source-over')=>{const fs=rgba(col,a);P.wrap([x-r,y-r,x+r,y+r],()=>{ctx.globalCompositeOperation=mode;ctx.fillStyle=fs;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();});ctx.globalCompositeOperation='source-over';};
+ /* 横一杯の帯: x方向は整数周期の波なので左右の継ぎ目が合う */
+ P.band=(y0,h,col,o={})=>{const a=o.a??0.05,L=o.L??9,amp=(o.amp??0.14)*h,ea=o.ea??a*1.4,mode=o.mode??'multiply';
+  const mk=()=>[1,2,3].map(k=>({k,a:amp/k*(0.5+rng()),p:rng()*TAU}));const T0=mk(),B0=mk(),HI=[0,1,2].map(()=>({k:5+Math.floor(rng()*8),a:(0.6+rng()*1.4)*u,p:rng()*TAU}));
+  const N=Math.max(64,Math.round(W/(5*u))),f=(arr,x)=>arr.reduce((s,q)=>s+q.a*Math.sin(TAU*q.k*x/W+q.p),0);
+  for(let i=0;i<L;i++){const jt=t=>t.map(q=>({k:q.k,a:q.a*(1+g()*0.12),p:q.p+g()*0.12}));const T=jt(T0.concat(HI)),B=jt(B0.concat(HI)),off=g()*h*0.04;
+   const top=[],bot=[];for(let j=0;j<=N;j++){const x=W*j/N;top.push([x,y0+off+f(T,x)]);bot.push([x,y0+h+off+f(B,x)]);}
+   const fill=new Path2D();top.forEach((p,k)=>k?fill.lineTo(p[0],p[1]):fill.moveTo(p[0],p[1]));for(let k=bot.length-1;k>=0;k--)fill.lineTo(bot[k][0],bot[k][1]);fill.closePath();
+   const edges=new Path2D();top.forEach((p,k)=>k?edges.lineTo(p[0],p[1]):edges.moveTo(p[0],p[1]));bot.forEach((p,k)=>k?edges.lineTo(p[0],p[1]):edges.moveTo(p[0],p[1]));
+   const doEdge=ea>0&&i%2===0;
+   for(const oy of (wrapOn?[-H,0,H]:[0])){if(y0-h*2+oy>H||y0+h*3+oy<0)continue;ctx.save();ctx.translate(0,oy);ctx.globalCompositeOperation=mode;ctx.fillStyle=rgba(col,a);ctx.fill(fill);if(doEdge){ctx.strokeStyle=rgba(col,ea);ctx.lineWidth=0.7*u;ctx.stroke(edges);}ctx.restore();}}
+  ctx.globalCompositeOperation='source-over';};
+ return P;
+}
+function scatter(P,n,minD){const{S,rng}=P,pts=[],kk=P.k||1;n=Math.max(1,Math.round(n*kk));minD/=Math.sqrt(kk);for(let i=0;i<n*40&&pts.length<n;i++){const x=rng()*S,y=rng()*S;let ok=true;for(const p of pts){let dx=Math.abs(p[0]-x),dy=Math.abs(p[1]-y);dx=Math.min(dx,S-dx);dy=Math.min(dy,S-dy);if(dx*dx+dy*dy<minD*minD){ok=false;break;}}if(ok)pts.push([x,y]);}return pts;}
+
+/* 和紙の地: washi/ の物理モデル（紙料、流し漉き、光学）で漉き、別スレッドで計算する */
+const paper={F:'kozo',gsm:null,chiri:null,transmit:false};
+function furnish(){const b=Washi.FURNISH[paper.F];return Object.assign({},b,{gsm:paper.gsm??b.gsm,chiri:paper.chiri??b.chiri});}
+let washiWorker=null,wreq=0;const waiting=new Map();
+try{const wsrc=['core','stock','sheet','optics'].map(n=>document.getElementById('washi-'+n).textContent).join('\n')+`/* washi/worker.js
+   Forms sheets off the main thread. Keeps the last few sheets so changing only the light or the color
+   does not re-form the paper. Request: { id, F, seed, S, ground, look }.
+   Reply: { id, out, M, V, Qc, Qs, S, meanM, meanV, ms }. */
+
+const cache = new Map();
+self.onmessage = e => {
+  const q = e.data, t0 = Date.now(), key = JSON.stringify([q.F, q.seed, q.S]);
+  let sh = cache.get(key);
+  if (!sh) { sh = Washi.formSheet(q.F, q.seed, q.S); cache.set(key, sh); if (cache.size > 3) cache.delete(cache.keys().next().value); }
+  const out = Washi.renderPaper(sh, Object.assign({ ground: q.ground }, q.look));
+  const M = sh.M.slice(), V = sh.V.slice(), Qc = sh.Qc.slice(), Qs = sh.Qs.slice();
+  self.postMessage({ id: q.id, out, M, V, Qc, Qs, S: sh.S, meanM: sh.meanM, meanV: sh.meanV, ms: Date.now() - t0 }, [out.buffer, M.buffer, V.buffer, Qc.buffer, Qs.buffer]);
+};
+`;washiWorker=new Worker(URL.createObjectURL(new Blob([wsrc],{type:'text/javascript'})));washiWorker.onmessage=e=>{const f=waiting.get(e.data.id);if(f){waiting.delete(e.data.id);f(e.data);}};
+ washiWorker.onerror=()=>{washiWorker=null;waiting.forEach(f=>f(null));waiting.clear();};}catch(e){washiWorker=null;}
+function formLocal(q){const t0=Date.now(),sh=Washi.formSheet(q.F,q.seed,q.S);return Object.assign({},sh,{out:Washi.renderPaper(sh,Object.assign({ground:q.ground},q.look)),ms:Date.now()-t0});}
+async function formPaper(q){if(washiWorker){const r=await new Promise(res=>{const id=++wreq;waiting.set(id,res);washiWorker.postMessage(Object.assign({id},q));});if(r)return r;}return formLocal(q);}
+
+/* ---------- 共通の意匠 ---------- */
+function mottle(P,cols,n=4){const{S,rng}=P;for(let i=0;i<n;i++)P.wash([circ(rng()*S,rng()*S,(0.16+rng()*0.2)*S,9)],mixc(cols[i%cols.length],WHITE,0.35),{a:0.006,L:10,v:0.9,vl:1.25,ea:0});}
+function kasumi(P,col,n,o={}){const{S,rng}=P;for(let i=0;i<n;i++){const w=(0.35+rng()*0.4)*S,h=(0.045+rng()*0.05)*S;P.wash([stadium(rng()*S,rng()*S,w,h)],o.mode==='source-over'?col:mixc(col,WHITE,0.3),Object.assign({a:0.013,L:12,v:0.55,vl:1.15,seg:24,ea:0.006},o));}}
+function plum(P,x,y,r,col,white,cs){const{rng,u}=P,rot=rng()*TAU,pet=[];for(let i=0;i<5;i++){const t=rot+i/5*TAU;pet.push(circ(x+Math.cos(t)*r*0.52,y+Math.sin(t)*r*0.52,r*0.56,9));}
+ if(white)P.wash(pet,WHITE,{a:0.16,L:6,mode:'source-over',ec:cs,ea:0.22,emode:'multiply',v:0.35,seg:6});else P.wash(pet,col,{a:0.06,L:7,v:0.35,seg:6});
+ for(let i=0;i<9;i++){const t=rng()*TAU,l=r*(0.45+rng()*0.25),ex=x+Math.cos(t)*l,ey=y+Math.sin(t)*l;P.line([[x,y],[ex,ey]],cs,{w:0.45,a:0.45,n:1,j:0.1});P.dot(ex,ey,1.1*u,[196,150,50],0.75);}
+ P.dot(x,y,r*0.14,[214,170,70],0.55);}
+function drawCloud(P,x,y,w,c){const{u,rng}=P,n=4+Math.floor(rng()*3),ps=[];for(let i=0;i<n;i++){const t=i/(n-1)-0.5,r=(10+rng()*12)*u*(1-Math.abs(t)*0.7);ps.push(circ(x+t*w*0.75,y-r*0.45,r,12));}ps.push(stadium(x,y,w,13*u));
+ P.wash(ps,WHITE,{a:0.2,L:5,mode:'source-over',ec:c?c[0]:[180,160,120],ea:0.22,emode:'multiply',v:0.15,seg:5});
+ P.wash([stadium(x+(rng()<0.5?-1:1)*w*0.6,y+4*u,w*1.2,5*u)],c?c[1]:[200,190,170],{a:0.03,L:6,v:0.2,seg:12,ea:0.03});}
+function goldDust(P,amt){const{S,u,rng,g,ctx}=P,G=[198,162,74],G2=[176,140,60];
+ for(let i=0;i<130*amt;i++){const x=rng()*S,y=rng()*S,s=(0.7+rng()*2.2)*u,n=3+Math.floor(rng()*2),ro=rng()*TAU,pts=[];for(let j=0;j<n;j++){const t=ro+j/n*TAU+g()*0.3,k=0.6+rng()*0.6;pts.push([x+Math.cos(t)*s*k,y+Math.sin(t)*s*k]);}
+  const fs=rgba(rng()<0.5?G:G2,0.55+rng()*0.35);P.wrap([x-s*2,y-s*2,x+s*2,y+s*2],()=>{ctx.fillStyle=fs;ctx.beginPath();pts.forEach((p,k)=>k?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();ctx.fill();});}
+ for(let i=0;i<12*amt;i++){const x=rng()*S,y=rng()*S,s=(4+rng()*7)*u;P.wash([rect(x,y,s,s*(0.7+rng()*0.6),rng()*TAU)],G,{a:0.22,L:2,mode:'source-over',v:0.06,d0:1,dl:1,seg:50,ea:0});}
+ for(let i=0;i<10*amt;i++){const x=rng()*S,y=rng()*S,a=rng()*TAU,l=(8+rng()*18)*u;P.line([[x,y],[x+Math.cos(a)*l*0.5+g()*2*u,y+Math.sin(a)*l*0.5+g()*2*u],[x+Math.cos(a)*l,y+Math.sin(a)*l]],G,{w:0.5,a:0.55,n:1,j:0.2,mode:'source-over'});}}
+function frostField(P,amt){const{S,u,rng,g}=P;for(let c=0;c<6;c++){const cx=rng()*S,cy=rng()*S;for(let i=0;i<30*amt;i++)P.dot(cx+g()*0.07*S,cy+g()*0.07*S,(0.5+rng()*0.9)*u,WHITE,0.55);
+  for(let i=0;i<3;i++){const x=cx+g()*0.05*S,y=cy+g()*0.05*S,r=(2+rng()*2)*u;for(let k=0;k<3;k++){const a=k/3*Math.PI+rng()*0.2;P.line([[x-Math.cos(a)*r,y-Math.sin(a)*r],[x+Math.cos(a)*r,y+Math.sin(a)*r]],WHITE,{w:0.5,a:0.7,n:1,j:0.02,mode:'source-over'});}}}}
+function snowflake(P,x,y,R,col){const ro=P.rng()*TAU;for(let i=0;i<6;i++){const a=ro+i/6*TAU;P.line([[x,y],[x+Math.cos(a)*R,y+Math.sin(a)*R]],col,{w:0.9,a:0.4,n:1,j:0.1});
+ for(const [f,l] of [[0.45,0.32],[0.72,0.22]]){const bx=x+Math.cos(a)*R*f,by=y+Math.sin(a)*R*f;for(const s of [-1,1]){const b=a+s*Math.PI/3;P.line([[bx,by],[bx+Math.cos(b)*R*l,by+Math.sin(b)*R*l]],col,{w:0.7,a:0.35,n:1,j:0.05});}}}}
+function arcPts(bx,by,ang,L,bend,n){const pts=[],pa=ang+Math.PI/2;for(let i=0;i<=n;i++){const t=i/n,q=bend*L*0.32*t*t;pts.push([bx+Math.cos(ang)*L*t+Math.cos(pa)*q,by+Math.sin(ang)*L*t+Math.sin(pa)*q]);}return pts;}
+
+/* ---------- 月ごとの意匠 ---------- */
+const MOTIF=[
+ /* 睦月 */ (P,c)=>{const{S,u,rng,g}=P;mottle(P,[c[1],c[4]]);kasumi(P,c[4],2,{a:0.011});
+  scatter(P,5,0.28*S).forEach(([x,y])=>{for(let k=0;k<2;k++){const cx=x+g()*12*u,cy=y+g()*12*u,a0=rng()*TAU;for(let i=0;i<13;i++){const a=a0-0.9+1.8*i/12,l=(22+rng()*12)*u;P.line([[cx,cy],[cx+Math.cos(a)*l*0.5+g()*u,cy+Math.sin(a)*l*0.5],[cx+Math.cos(a)*l,cy+Math.sin(a)*l]],c[3],{w:1.0,a:0.3,n:1,j:0.3});}}});
+  scatter(P,9,0.17*S).forEach(([x,y])=>{const r=(15+rng()*11)*u,k=rng();plum(P,x,y,r,k<0.5?c[0]:c[1],k>0.78,c[5]);});
+  for(let i=0;i<10;i++)P.wash([circ(rng()*S,rng()*S,(4+rng()*3)*u,7)],c[0],{a:0.09,L:5,v:0.3,d0:1,dl:1,seg:4});},
+ /* 如月 */ (P,c)=>{const{S,u,rng}=P;const order=[c[0],c[4],c[1],c[3],c[2]];let y=rng()*S;for(let i=0;i<5;i++){const h=(0.07+rng()*0.06)*S;P.band(y,h,order[i],{a:0.026,L:9,amp:0.22});y+=h*(0.8+rng()*0.9)+0.04*S;}
+  for(let i=0;i<5;i++){const R=(13+rng()*9)*u;P.wash([xf(yukiwaLocal(R),rng()*S,rng()*S,rng()*TAU)],WHITE,{a:0.2,L:5,mode:'source-over',ec:c[2],ea:0.28,emode:'multiply',v:0.08,seg:5});}
+  for(let i=0;i<70;i++)P.dot(rng()*S,rng()*S,(1.2+rng()*2.4)*u,WHITE,0.55+rng()*0.3);
+  scatter(P,4,0.3*S).forEach(([x,y])=>plum(P,x,y,(10+rng()*5)*u,c[0],false,c[1]));},
+ /* 弥生 */ (P,c)=>{const{S,u,rng}=P;mottle(P,[c[0],c[3]]);kasumi(P,c[3],2,{a:0.01});kasumi(P,c[1],2,{a:0.012});
+  scatter(P,5,0.26*S).forEach(([x,y])=>{const r=(22+rng()*12)*u,rot=rng()*TAU;for(let i=0;i<5;i++)P.wash([xf(petalLocal(r,r*0.82,true),x,y,rot+i/5*TAU)],mixc(c[1],c[0],0.3),{a:0.05,L:6,v:0.12,d0:1,dl:1,seg:4,ea:0.08});
+   for(let i=0;i<7;i++){const t=rng()*TAU,l=r*0.35;P.line([[x,y],[x+Math.cos(t)*l,y+Math.sin(t)*l]],c[2],{w:0.5,a:0.5,n:1,j:0.1});}P.dot(x,y,r*0.1,[200,90,110],0.35,'multiply');});
+  scatter(P,34,0.075*S).forEach(([x,y])=>{const L=(10+rng()*8)*u,pale=rng()<0.5;P.wash([xf(petalLocal(L,L*0.78,true),x,y,rng()*TAU)],pale?mixc(c[0],c[1],0.25):c[1],{a:pale?0.13:0.055,L:5,v:0.1,d0:1,dl:1,seg:3,ea:pale?0.12:0.07});});},
+ /* 卯月 */ (P,c)=>{const{S,u,rng,g}=P;mottle(P,[c[5],c[1]]);
+  scatter(P,3,0.36*S).forEach(([x,y])=>{const len=(90+rng()*60)*u,sw=g()*10*u;for(let k=0;k<3;k++)P.wash([xf(petalLocal(26*u,11*u,false),x+g()*14*u,y+g()*6*u,(rng()-0.5)*Math.PI)],c[2],{a:0.04,L:6,v:0.25,seg:5});
+   for(let i=0;i<24;i++){const t=i/24,px=x+Math.sin(t*Math.PI)*sw+g()*3*u*(1-t),py=y+t*len,s=(1-t*0.72)*7*u;P.wash([ell(px+g()*3*u,py,s,s*0.7,rng()*TAU,9)],mixc(c[3],c[4],t),{a:0.07,L:4,v:0.3,d0:1,dl:1,seg:4});}
+   P.line([[x,y],[x+sw*0.6,y+len*0.5],[x+sw*0.2,y+len]],c[2],{w:0.8,a:0.25,n:1,j:0.2});});
+  scatter(P,5,0.24*S).forEach(([x,y])=>{for(let k=0;k<3;k++)P.wash([xf(petalLocal(24*u,10*u,false),x,y,rng()*TAU)],c[1],{a:0.05,L:6,v:0.25,seg:5});
+   for(let i=0;i<15;i++){const a=rng()*TAU,d=Math.sqrt(rng())*20*u,fx=x+Math.cos(a)*d,fy=y+Math.sin(a)*d,r=(3.2+rng()*1.8)*u,ro=rng()*TAU,pet=[];for(let j=0;j<5;j++){const t=ro+j/5*TAU;pet.push(circ(fx+Math.cos(t)*r*0.5,fy+Math.sin(t)*r*0.5,r*0.5,7));}
+    P.wash(pet,WHITE,{a:0.3,L:3,mode:'source-over',ec:[140,155,120],ea:0.2,emode:'multiply',v:0.2,d0:1,dl:1,seg:3});P.dot(fx,fy,0.7*u,[190,170,90],0.7);}});},
+ /* 皐月 */ (P,c)=>{const{S,u,rng,g}=P;P.band(rng()*S,0.18*S,c[2],{a:0.018,L:8,ea:0});P.band(rng()*S,0.12*S,c[4],{a:0.012,L:8,ea:0});
+  for(let i=0;i<45;i++){const x=rng()*S,y=rng()*S,l=(18+rng()*42)*u;P.line([[x,y],[x+l*0.5,y+g()*1.2*u],[x+l,y+g()*u]],c[2],{w:1.1,a:0.22,n:1,j:0.3});}
+  const rows=4,cols=4;for(let r=0;r<rows;r++)for(let q=0;q<cols;q++){const bx=(q+0.5+(r%2)*0.5)/cols*S+g()*6*u,by=(r+0.6)/rows*S+g()*5*u,nb=4+Math.floor(rng()*3);
+   for(let b=0;b<nb;b++)P.wash([blade(bx+g()*2*u,by,-Math.PI/2+g()*0.32,(26+rng()*22)*u,2.3*u,g()*0.35)],rng()<0.6?c[0]:c[1],{a:0.08,L:4,v:0.12,d0:1,dl:1,seg:6,ea:0.1});
+   P.line([[bx-9*u,by+3*u],[bx+9*u,by+3*u]],c[4],{w:0.8,a:0.18,n:1,j:0.4});}},
+ /* 水無月 */ (P,c)=>{const{S,u,rng}=P;mottle(P,[c[1],c[5]]);
+  for(let i=0;i<110;i++){const x=rng()*S,y=rng()*S,l=(12+rng()*20)*u,a=Math.PI/2+0.18;P.line([[x,y],[x+Math.cos(a)*l,y+Math.sin(a)*l]],c[0],{w:0.7,a:0.2,n:1,j:0.1});}
+  scatter(P,2,0.42*S).forEach(([x,y])=>{for(let k=0;k<4;k++){const a=rng()*TAU;P.wash([xf(petalLocal(46*u,24*u,false),x+Math.cos(a)*22*u,y+Math.sin(a)*22*u,a)],c[5],{a:0.035,L:7,v:0.18,seg:6});}
+   for(let i=0;i<34;i++){const a=rng()*TAU,d=Math.sqrt(rng())*38*u,fx=x+Math.cos(a)*d,fy=y+Math.sin(a)*d,r=(4.5+rng()*2)*u,ro=rng()*TAU,t=d/(38*u),col=mixc(mixc(c[3],c[4],rng()),c[1],t*0.5),pet=[];for(let j=0;j<4;j++){const q=ro+j/4*TAU;pet.push(ell(fx+Math.cos(q)*r*0.55,fy+Math.sin(q)*r*0.55,r*0.55,r*0.42,q,8));}
+    P.wash(pet,col,{a:0.07,L:4,v:0.25,d0:1,dl:1,seg:3});P.dot(fx,fy,0.8*u,WHITE,0.7);}});
+  scatter(P,6,0.26*S).forEach(([x,y])=>{const n=3+Math.floor(rng()*3);let r=(5+rng()*6)*u;for(let i=0;i<n;i++){P.line(circ(x,y,r,48),c[2],{w:Math.max(0.5,1.7-i*0.3),a:Math.max(0.08,0.38-i*0.07),n:2,j:0.35,closed:true});r+=(8+rng()*6)*u;}P.dot(x,y,1.4*u,c[2],0.5,'multiply');});},
+ /* 文月 */ (P,c)=>{const{S,u,rng,g}=P;const o0=rng()*S,NX=-Math.SQRT1_2,NY=Math.SQRT1_2;
+  for(let i=0;i<16;i++){const s=i/16+rng()*0.03,off=g()*0.03*S;P.wash([ell(s*S+o0+NX*off,s*S+NY*off,(0.1+rng()*0.08)*S,0.045*S,Math.PI/4,12)],i%3?c[0]:c[2],{a:0.016,L:8,v:0.4,ea:0.006,seg:30});}
+  const GOLD=[201,164,71];for(let i=0;i<240;i++){const s=rng(),off=g()*0.045*S,x=s*S+o0+NX*off,y=s*S+NY*off;P.dot(((x%S)+S)%S,((y%S)+S)%S,(0.5+rng()*1.5)*u,rng()<0.45?GOLD:WHITE,0.6+rng()*0.35);}
+  for(let i=0;i<40;i++)P.dot(rng()*S,rng()*S,(0.6+rng())*u,GOLD,0.6);
+  const five=[c[0],c[4],c[3],WHITE,[118,84,140]];
+  scatter(P,7,0.24*S).forEach(([x,y],i)=>{const col=five[i%5],w=14*u,h=(54+rng()*20)*u,rot=g()*0.14,pts=xf([[-w/2,0],[w/2,0],[w/2,h],[-w/2,h]],x,y,rot);
+   if(col===WHITE)P.wash([pts],WHITE,{a:0.3,L:4,mode:'source-over',ec:[150,145,130],ea:0.22,emode:'multiply',v:0.1,seg:5});else P.wash([pts],col,{a:0.07,L:6,v:0.1,seg:5});
+   P.line([[x,y],[x+Math.sin(rot)*14*u,y-Math.cos(rot)*14*u]],[120,105,80],{w:0.6,a:0.45,n:1,j:0.1});});
+  for(let i=0;i<7;i++){const x=rng()*S,y=rng()*S,r=(4+rng()*3)*u,ro=rng()*TAU,st=[];for(let j=0;j<10;j++){const t=ro+j/10*TAU,rr=j%2?r*0.45:r;st.push([x+Math.cos(t)*rr,y+Math.sin(t)*rr]);}P.wash([st],GOLD,{a:0.25,L:3,mode:'source-over',v:0.1,d0:1,dl:0,ea:0,seg:20});}},
+ /* 葉月 */ (P,c)=>{const{S,u,rng,g}=P;mottle(P,[c[4],c[2]]);
+  const mx=rng()*S,my=rng()*S,R=0.12*S;P.wash([circ(mx,my,R*1.6,12)],c[4],{a:0.006,L:10,v:0.5,vl:1.2,ea:0});P.wash([circ(mx,my,R,24)],c[4],{a:0.03,L:12,v:0.1,ea:0.05,seg:10});P.wash([circ(mx+g()*R*0.2,my+g()*R*0.2,R*0.5,10)],c[2],{a:0.008,L:6,v:0.6,ea:0});
+  for(let k=0;k<3;k++){const bx=rng()*S,by=rng()*S;for(let b=0;b<5;b++){const bend=(rng()<0.5?-1:1)*(0.35+rng()*0.4),pts=arcPts(bx,by,-Math.PI/2+g()*0.35,(90+rng()*70)*u,bend,12);P.line(pts,c[2],{w:1.2,a:0.32,n:2,j:0.3});
+    if(b<2){const dir=Math.atan2(pts[12][1]-pts[10][1],pts[12][0]-pts[10][0]);for(let f=0;f<12;f++){const s=pts[8+Math.floor(rng()*4)],a=dir+0.6*Math.sign(bend)+g()*0.3,l=(8+rng()*14)*u;P.line([s,[s[0]+Math.cos(a)*l,s[1]+Math.sin(a)*l]],[184,166,138],{w:0.5,a:0.35,n:1,j:0.2});}}}}
+  for(let k=0;k<3;k++){const bend=(rng()<0.5?-1:1)*(0.5+rng()*0.5),pts=arcPts(rng()*S,rng()*S,-Math.PI/2+g()*0.6,(110+rng()*60)*u,bend,16);P.line(pts,c[3],{w:0.8,a:0.3,n:1,j:0.2});
+   for(let i=3;i<=16;i++){const p=pts[i],side=i%2?1:-1,a=Math.atan2(p[1]-pts[i-1][1],p[0]-pts[i-1][0])+side*1.0,lx=p[0]+Math.cos(a)*7*u,ly=p[1]+Math.sin(a)*7*u;
+    P.wash([0,-0.6,0.6].map(d=>ell(lx+Math.cos(a+d)*4*u,ly+Math.sin(a+d)*4*u,4.2*u,2.8*u,a+d,8)),c[3],{a:0.06,L:3,v:0.25,d0:1,dl:1,seg:3});
+    if(i%3===0)for(let f=0;f<3;f++)P.wash([ell(p[0]+g()*4*u,p[1]+g()*4*u,2.6*u,1.8*u,rng()*TAU,7)],c[0],{a:0.12,L:3,v:0.25,d0:1,dl:1,seg:3});}}},
+ /* 長月 */ (P,c)=>{const{S,u,rng,g}=P;mottle(P,[c[0],c[4]]);
+  let y=rng()*S;for(let i=0;i<4;i++){P.band(y,3*u,c[4],{a:0.04,L:5,amp:3.5});P.band(y+8*u,2*u,c[4],{a:0.03,L:4,amp:3.5});y+=S/4+g()*0.03*S;}
+  scatter(P,5,0.3*S).forEach(([x,y])=>{const R=(22+rng()*12)*u,k=rng(),col=k<0.4?c[0]:k<0.6?WHITE:k<0.8?c[1]:c[2];
+   for(let j=0;j<2;j++){const a=rng()*TAU;P.wash([xf(petalLocal(R*0.9,R*0.45,false),x+Math.cos(a)*R*0.8,y+Math.sin(a)*R*0.8,a)],c[5],{a:0.04,L:6,v:0.3,seg:6});}
+   const ring=(n,len,wid,d0,a)=>{const ps=[],ro=rng()*TAU;for(let i=0;i<n;i++){const t=ro+i/n*TAU;ps.push(xf(petalLocal(len,wid,false),x+Math.cos(t)*d0,y+Math.sin(t)*d0,t));}
+    if(col===WHITE)P.wash(ps,WHITE,{a:0.3,L:3,mode:'source-over',ec:[150,140,120],ea:0.18,emode:'multiply',v:0.15,d0:1,dl:1,seg:4});else P.wash(ps,col,{a,L:4,v:0.15,d0:1,dl:1,seg:4});};
+   ring(24,R*0.62,R*0.17,R*0.32,0.05);ring(16,R*0.42,R*0.15,R*0.12,0.06);P.dot(x,y,R*0.1,[200,160,60],0.5,'multiply');});
+  for(let i=0;i<24;i++){const x=rng()*S,y=rng()*S,r=(1.8+rng()*2)*u;P.line(circ(x,y,r,14),c[4],{w:0.6,a:0.35,n:1,j:0.05,closed:true});P.dot(x-r*0.35,y-r*0.35,r*0.3,WHITE,0.9);}},
+ /* 神無月 */ (P,c)=>{const{S,u,rng}=P;mottle(P,[c[1],c[0]]);
+  scatter(P,4,0.32*S).forEach(([x,y])=>drawCloud(P,x,y,(90+rng()*60)*u,c));
+  for(let i=0;i<40;i++){const x=rng()*S,y=rng()*S,l=(16+rng()*24)*u;P.line([[x,y],[x-l*0.15,y+l]],c[3],{w:0.6,a:0.12,n:1,j:0.1});}
+  for(let i=0;i<6;i++){const R=(8+rng()*5)*u;P.wash([xf(mapleLocal(R),rng()*S,rng()*S,rng()*TAU)],rng()<0.5?c[4]:c[5],{a:0.06,L:6,v:0.15,seg:3});}
+  goldDust(P,1);},
+ /* 霜月 */ (P,c)=>{const{S,u,rng,g}=P;mottle(P,[c[2],c[1]]);
+  scatter(P,15,0.13*S).forEach(([x,y])=>{const R=(10+rng()*9)*u,rot=g()*0.9+(rng()<0.5?0:Math.PI),col=c[Math.floor(rng()*4)];P.wash([xf(mapleLocal(R),x,y,rot)],col,{a:0.055,L:7,v:0.12,seg:3,ea:0.09});
+   for(let k=0;k<7;k++){if(k===3||k===4)continue;const t=k/7*TAU,l=R*(k===0?0.85:0.7);P.line([[x,y],[x+Math.sin(t+rot)*l,y-Math.cos(t+rot)*l]],col,{w:0.5,a:0.2,n:1,j:0.05});}
+   P.line([[x,y],[x-Math.sin(rot)*R*0.9,y+Math.cos(rot)*R*0.9]],c[5],{w:0.7,a:0.3,n:1,j:0.05});});
+  frostField(P,1);},
+ /* 師走 */ (P,c)=>{const{S,u,rng,g}=P;mottle(P,[c[1],c[2]]);
+  scatter(P,6,0.22*S).forEach(([x,y],i)=>{const R=(16+rng()*12)*u,pts=xf(yukiwaLocal(R),x,y,rng()*TAU);if(i%2)P.wash([pts],c[1],{a:0.06,L:6,v:0.08,seg:4,ea:0.1});else P.wash([pts],WHITE,{a:0.3,L:4,mode:'source-over',ec:c[2],ea:0.22,emode:'multiply',v:0.08,seg:4});});
+  scatter(P,6,0.22*S).forEach(([x,y])=>snowflake(P,x,y,(10+rng()*9)*u,c[2]));
+  for(let k=0;k<3;k++){const x=rng()*S,y=rng()*S;for(let j=0;j<3;j++)P.wash([xf(petalLocal(22*u,6*u,false),x,y,rng()*TAU)],c[4],{a:0.05,L:5,v:0.2,seg:4});
+   for(let j=0;j<7;j++){const bx=x+g()*7*u,by=y+g()*7*u,r=3.2*u;P.wash([circ(bx,by,r,9)],c[3],{a:0.12,L:4,v:0.15,d0:1,dl:1,seg:3});P.dot(bx-r*0.35,by-r*0.35,r*0.28,WHITE,0.8);}}
+  for(let i=0;i<90;i++)P.dot(rng()*S,rng()*S,(1+rng()*2.6)*u,WHITE,0.5+rng()*0.4);}
+];
+
+/* ---------- 候のしるし ---------- */
+const ACC={
+ wind(P){const{S,u,rng,g}=P;for(let i=0;i<6;i++){const x=rng()*S,y=rng()*S,a=g()*0.25,L=(120+rng()*120)*u,b=g()*0.4,pts=[];for(let k=0;k<=14;k++){const t=k/14;pts.push([x+Math.cos(a)*L*t,y+Math.sin(a)*L*t+Math.sin(t*Math.PI)*b*L*0.15]);}
+  P.line(pts,[120,116,104],{w:0.7,a:0.12,n:1,j:0.15});P.line(pts.map(p=>[p[0],p[1]+4*u]),[120,116,104],{w:0.5,a:0.08,n:1,j:0.15});}},
+ mist(P){kasumi(P,WHITE,2,{a:0.07,mode:'source-over',ea:0,L:10});},
+ rain(P){const{S,u,rng}=P;for(let i=0;i<90;i++){const x=rng()*S,y=rng()*S,l=(12+rng()*14)*u;P.line([[x,y],[x-l*0.18,y+l]],[118,136,150],{w:0.6,a:0.14,n:1,j:0.05});}},
+ frost(P){frostField(P,0.8);},
+ snow(P){const{S,u,rng}=P;for(let i=0;i<70;i++){const x=rng()*S,y=rng()*S,r=(1.4+rng()*2.2)*u;P.dot(x,y,r*1.25,[150,150,145],0.06,'multiply');P.dot(x,y,r,WHITE,0.8);}},
+ ice(P){const{S,u,rng,g}=P,IC=[150,180,196];for(let k=0;k<5;k++){let x=rng()*S,y=rng()*S,a=rng()*TAU;const pts=[[x,y]];for(let i=0;i<7;i++){a+=g()*0.7;const l=(8+rng()*16)*u;x+=Math.cos(a)*l;y+=Math.sin(a)*l;pts.push([x,y]);
+  if(rng()<0.35){const b=a+(rng()<0.5?1:-1)*(0.6+rng()*0.6),bl=(6+rng()*10)*u;P.line([[x,y],[x+Math.cos(b)*bl,y+Math.sin(b)*bl]],IC,{w:0.5,a:0.3,n:1,j:0.05});}}P.line(pts,IC,{w:0.6,a:0.35,n:1,j:0.05});}},
+ dew(P){const{S,u,rng}=P;for(let i=0;i<30;i++){const x=rng()*S,y=rng()*S,r=(1.6+rng()*2.2)*u;P.line(circ(x,y,r,14),[110,140,150],{w:0.55,a:0.35,n:1,j:0.04,closed:true});P.dot(x-r*0.35,y-r*0.35,r*0.32,WHITE,0.9);}},
+ rainbow(P){const{S,u,rng}=P,cx=rng()*S,cy=rng()*S+0.45*S,R=0.5*S;[[226,150,150],[230,196,130],[226,222,150],[160,206,160],[150,180,220]].forEach((col,i)=>{const r=R-i*6*u,pts=[];for(let k=0;k<=40;k++){const t=-2.4+k/40*1.65;pts.push([cx+Math.cos(t)*r,cy+Math.sin(t)*r]);}P.line(pts,col,{w:6,a:0.05,n:3,j:1});});},
+ petals(P,col){const{S,u,rng}=P;for(let i=0;i<18;i++){const L=(9+rng()*6)*u;P.wash([xf(petalLocal(L,L*0.75,rng()<0.5),rng()*S,rng()*S,rng()*TAU)],col,{a:0.06,L:4,v:0.1,d0:1,dl:1,seg:3});}},
+ fireflies(P){const{S,u,rng}=P;for(let i=0;i<22;i++){const x=rng()*S,y=rng()*S;P.wash([circ(x,y,(5+rng()*4)*u,8)],[214,224,130],{a:0.035,L:4,v:0.3,ea:0,d0:1,dl:1});P.dot(x,y,1.1*u,[196,208,80],0.7,'multiply');}},
+ sunlight(P){const{S,rng}=P;for(let i=0;i<3;i++)P.wash([circ(rng()*S,rng()*S,(0.18+rng()*0.12)*S,10)],[240,222,170],{a:0.006,L:10,v:0.9,vl:1.25,ea:0});},
+ sprout(P){const{S,u,rng,g}=P;for(let i=0;i<22;i++){const x=rng()*S,y=rng()*S,a=-Math.PI/2+g()*0.3,tx=x+Math.cos(a)*5*u,ty=y+Math.sin(a)*5*u;P.line([[x,y],[tx,ty]],[120,160,90],{w:0.6,a:0.35,n:1,j:0.05});
+  for(const s of [-1,1])P.wash([xf(petalLocal(6*u,3.4*u,false),tx,ty,a+s*0.7)],[140,180,100],{a:0.1,L:3,v:0.2,d0:1,dl:1,seg:3});}},
+ leaves(P){const{S,u,rng}=P,cs=[[192,83,63],[214,154,58],[181,69,46]];for(let i=0;i<16;i++){const R=(6+rng()*4)*u;P.wash([xf(mapleLocal(R),rng()*S,rng()*S,rng()*TAU)],cs[i%3],{a:0.06,L:4,v:0.12,seg:2,d0:1,dl:1});}},
+ cotton(P){const{S,u,rng}=P;for(let i=0;i<18;i++)P.wash([circ(rng()*S,rng()*S,(5+rng()*4)*u,9)],WHITE,{a:0.3,L:4,mode:'source-over',ec:[160,155,145],ea:0.18,emode:'multiply',v:0.4,d0:1,dl:1,seg:4});},
+ berries(P,col){const{S,u,rng,g}=P;for(let k=0;k<6;k++){const x=rng()*S,y=rng()*S,n=3+Math.floor(rng()*3);for(let i=0;i<n;i++){const bx=x+g()*6*u,by=y+g()*6*u;P.wash([circ(bx,by,3.6*u,9)],col,{a:0.12,L:4,v:0.12,d0:1,dl:1,seg:3});P.dot(bx-1.2*u,by-1.2*u,1*u,WHITE,0.8);}}},
+ cloud(P){const{S,u,rng}=P;for(let i=0;i<2;i++)drawCloud(P,rng()*S,rng()*S,(80+rng()*40)*u,null);},
+ stream(P){const{S,u,rng}=P;let y=rng()*S;for(let i=0;i<3;i++){P.band(y,2.6*u,[143,180,196],{a:0.06,L:4,amp:7});y+=S/3;}}
+};
+
+/* ---------- 一枚を漉く ---------- */
+
+/* ---------- 日ごとの割付 ---------- */
+function bandPoly(S,y0,h,top,bot){const N=96,T=[],B=[],f=(arr,x)=>arr.reduce((s,q)=>s+q.a*Math.sin(TAU*q.k*x/S+q.p),0);
+ for(let j=0;j<=N;j++){const x=-0.03*S+1.06*S*j/N;T.push([x,y0+f(top,x)]);B.push([x,y0+h+f(bot,x)]);}return{fill:[T.concat(B.slice().reverse())],edges:[T,B]};}
+function ragTerms(rng,amp,base){const t=base?base.slice():[];for(let i=0;i<4;i++)t.push({k:3+Math.floor(rng()*10),a:amp*(0.3+rng()*0.7)/(i+1),p:rng()*TAU});return t;}
+function closed(polys){return{fill:polys,edges:polys};}
+const LAYOUTS=[
+ {key:'chirashi',name:'散らし',desc:'意匠を紙一面に散らした、素直な割付。'},
+ {key:'shikishi',name:'色紙散らし',desc:'色を替えた色紙形を散らし、その中に意匠を収める。',tint:0.15,out:0.2,edge:'gold',
+  build(P,S){const{rng,g}=P;return closed(P.rough(scatter(P,3+Math.floor(rng()*2),0.42*S).map(([x,y])=>{const w=(0.25+rng()*0.1)*S,tall=rng()<0.35;return rect(x,y,tall?w*0.62:w,tall?w*1.3:w*(0.78+rng()*0.25),g()*0.1);}),0.1,30,1));}},
+ {key:'senmen',name:'扇面散らし',desc:'開いた扇の形の窓を散らす。',tint:0.15,out:0.2,edge:'gold',
+  build(P,S){const{rng}=P;return closed(P.rough(scatter(P,3,0.45*S).map(([x,y])=>{const R=(0.22+rng()*0.05)*S,rot=-Math.PI/2+(rng()-0.5)*1.4,sp=1.95,cx=x-Math.cos(rot)*R*0.62,cy=y-Math.sin(rot)*R*0.62,o=[],n=20;
+   for(let i=0;i<=n;i++){const a=rot-sp/2+sp*i/n;o.push([cx+Math.cos(a)*R,cy+Math.sin(a)*R]);}for(let i=n;i>=0;i--){const a=rot-sp/2+sp*i/n;o.push([cx+Math.cos(a)*R*0.36,cy+Math.sin(a)*R*0.36]);}return o;}),0.08,26,1));}},
+ {key:'kumodori',name:'雲取り',desc:'雲の形に区切った窓から意匠をのぞかせる。',tint:0.13,out:0.16,edge:null,
+  build(P,S){const{rng}=P,out=[];scatter(P,3,0.44*S).forEach(([x,y])=>{const w=(0.36+rng()*0.14)*S,n=4+Math.floor(rng()*3);for(let i=0;i<n;i++){const t=i/(n-1)-0.5,r=(0.06+rng()*0.05)*S*(1-Math.abs(t)*0.6);out.push(circ(x+t*w*0.78,y-r*0.4,r,16));}out.push(stadium(x,y+0.02*S,w,0.1*S));});return closed(P.rough(out,0.12,20,1));}},
+ {key:'marumado',name:'丸窓',desc:'丸く抜いた窓の中に意匠を収める。',tint:0.14,out:0.18,edge:'gold',
+  build(P,S){const{rng}=P;return closed(P.rough(scatter(P,2+Math.floor(rng()*2),0.5*S).map(([x,y])=>circ(x,y,(0.17+rng()*0.06)*S,48)),0.05,24,1));}},
+ {key:'yukiwa',name:'雪輪取り',desc:'雪の結晶をかたどった雪輪の窓に意匠を収める。',tint:0.14,out:0.18,edge:'gold',
+  build(P,S){const{rng}=P;return closed(scatter(P,3,0.46*S).map(([x,y])=>xf(yukiwaLocal((0.15+rng()*0.05)*S),x,y,rng()*TAU)));}},
+ {key:'kasumidori',name:'霞取り',desc:'たなびく霞の形の窓に意匠を収める。',tint:0.12,out:0.18,edge:null,
+  build(P,S){const{rng}=P;return closed(P.rough(scatter(P,4,0.3*S).map(([x,y])=>stadium(x,y,(0.5+rng()*0.25)*S,(0.09+rng()*0.05)*S)),0.18,24,2));}},
+ {key:'dangawari',name:'段替わり',desc:'横の段ごとに意匠と無地を替える。',tint:0.11,out:0.08,edge:'gold',
+  build(P,S){const{rng}=P,y0=rng()*S,h=S/4,f=[],e=[];for(const i of [0,2]){const b=bandPoly(S,y0+i*h,h,ragTerms(rng,0.008*S),ragTerms(rng,0.008*S));f.push(...b.fill);e.push(...b.edges);}return{fill:f,edges:e};}},
+ {key:'ichimatsu',name:'市松',desc:'市松に区切り、ひとつおきに意匠を置く。',tint:0.1,out:0.1,edge:'gold',
+  build(P,S){const{rng}=P,n=rng()<0.55?2:4,c=S/n,ox=rng()*S,oy=rng()*S,o=[];for(let i=0;i<n;i++)for(let j=0;j<n;j++)if((i+j)%2===0)o.push(rect(ox+(i+0.5)*c,oy+(j+0.5)*c,c,c,0));return closed(P.rough(o,0.05,24,1));}},
+ {key:'yaburitsugi',name:'破り継ぎ',desc:'破った紙を斜めに継いだ境で、色と意匠を分ける。',tint:0.17,out:0.26,edge:'torn',
+  build(P,S){const{rng}=P,sg=rng()<0.5?1:-1,o=[],n=rng()<0.6?1:2;for(let i=0;i<n;i++){const c=rng()*S,w=(0.18+rng()*0.14)*S,cx=sg>0?c/2:c/2,cy=sg>0?c/2:S-c/2;o.push(rect(cx,cy,S*Math.SQRT2+0.08*S,w,sg>0?-Math.PI/4:Math.PI/4));}return closed(P.rough(o,0.4,9,3));}},
+ {key:'ryusui',name:'流水取り',desc:'流れる水の形に区切り、その中に意匠を流す。',tint:0.13,out:0.15,edge:'gold',
+  build(P,S){const{rng}=P,k=1+Math.floor(rng()*2),main={k,a:0.07*S,p:rng()*TAU},y0=rng()*S,h=(0.2+rng()*0.08)*S;return bandPoly(S,y0,h,ragTerms(rng,0.006*S,[main,{k:k*2,a:0.015*S,p:rng()*TAU}]),ragTerms(rng,0.006*S,[{k,a:0.07*S,p:main.p+0.35},{k:k*3,a:0.012*S,p:rng()*TAU}]));}}
+];
+const SIZES=[{name:'大柄',ms:1.45,k:0.55},{name:'中柄',ms:1,k:1},{name:'小柄',ms:0.68,k:1.9}];
+function cloneCv(src){const c=document.createElement('canvas');c.width=src.width;c.height=src.height;c.getContext('2d').drawImage(src,0,0);return c;}
+async function genTile(I,S,mode='reflect'){const cv=document.createElement('canvas');cv.width=cv.height=S;const ctx=cv.getContext('2d');const rng=mulberry32(hashStr('koyomigami:'+I.key));
+ const M=I.month,N=MONTHS[I.m%12],dim=DAYS[I.m-1],t=(I.d-1)/(dim-1),bl=Math.max(0,(t-0.6)/0.4)*0.55;
+ const ground=mixc(hexRgb(M.ground),hexRgb(N.ground),bl).map(v=>Math.round(v)),pal=M.pal.map(p=>hexRgb(p[1]));
+ const P=Painter(ctx,S,S,rng,true),L=I.layout,Z=I.size;
+ const pending=formPaper({F:furnish(),seed:I.key,S,ground,look:{mode}});
+ ctx.fillStyle=rgba(ground,1);ctx.fillRect(0,0,S,S);
+ const tintCol=mixc(pal[Math.floor(rng()*pal.length)],WHITE,0.3);
+ const layer=document.createElement('canvas');layer.width=layer.height=S;const lc=layer.getContext('2d');
+ if(rng()<0.5)lc.setTransform(-1,0,0,1,S,0);
+ MOTIF[I.m-1](Painter(lc,S,S,rng,true,{ms:Z.ms,k:Z.k*(L.build?1.7:1)}),pal);
+ if(!L.build){ctx.drawImage(layer,0,0);}
+ else{const shp=L.build(P,S),mask=document.createElement('canvas');mask.width=mask.height=S;const mc=mask.getContext('2d');Painter(mc,S,S,rng,true).fillPolys(shp.fill,'#000');
+  const tint=cloneCv(mask),tc=tint.getContext('2d');tc.globalCompositeOperation='source-in';tc.fillStyle=rgba(tintCol,1);tc.fillRect(0,0,S,S);
+  ctx.save();ctx.globalCompositeOperation='multiply';ctx.globalAlpha=L.tint;ctx.drawImage(tint,0,0);ctx.restore();
+  const inn=cloneCv(layer),ic=inn.getContext('2d');ic.globalCompositeOperation='destination-in';ic.drawImage(mask,0,0);
+  const out=cloneCv(layer),oc=out.getContext('2d');oc.globalCompositeOperation='destination-out';oc.drawImage(mask,0,0);
+  ctx.save();ctx.globalAlpha=L.out;ctx.drawImage(out,0,0);ctx.restore();ctx.drawImage(inn,0,0);
+  const isBand=L.key==='dangawari'||L.key==='ryusui';
+  if(L.edge==='gold'){P.strokePolys(shp.edges,'rgba(184,148,62,.55)',0.9*P.u,!isBand);P.strokePolys(shp.edges,'rgba(214,184,104,.35)',2.2*P.u,!isBand);}
+  else if(L.edge==='torn'){P.strokePolys(shp.edges,'rgba(255,254,250,.7)',3*P.u,true);P.strokePolys(shp.edges,rgba(mixc(tintCol,[60,50,40],0.4),0.22),0.7*P.u,true);}}
+ ACC[I.kou.acc](P,I.kou.col?hexRgb(I.kou.col):pal[0]);
+ if(I.special&&I.m!==10)goldDust(P,0.4);
+ const pr=await pending;Washi.applyDesign(pr,pr.out,ctx.getImageData(0,0,S,S).data,ground,mode);ctx.putImageData(Washi.toImageData(pr.out,S,ctx),0,0);cv.ms=pr.ms;
+ return cv;}
+
+/* ---------- 銘（縦書き） ---------- */
+const DISP='"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif';
+async function fontsFor(text){try{await Promise.all(['800','600','500'].map(w=>document.fonts.load(`${w} 40px "Shippori Mincho B1"`,text)));}catch(e){}}
+function vtext(ctx,chars,cx,ytop,size,lh){chars.forEach((ch,i)=>ctx.fillText(ch,cx,ytop+size*lh*i+size*0.5));}
+async function drawMei(ctx,W,H,I){
+ const mN=[...I.month.name],kN=[...I.kou.name],dN=[...I.dateK],sN=[...I.sekki[0]];
+ await fontsFor(mN.join('')+kN.join('')+dN.join('')+sN.join(''));
+ const portrait=H>W,big=portrait?W*0.088:H*0.085,lh=1.08,gap=big*0.32,pad=big*0.55,seal=big*0.62;
+ const colM=mN.length*big*lh,colK=kN.length*big*0.46*lh,colD=dN.length*big*0.34*lh;
+ const innerH=Math.max(colM+big*0.35+seal,colK,colD),stripW=pad*2+big+gap+big*0.46+gap*0.8+big*0.34,stripH=innerH+pad*2;
+ const x1=W-(portrait?W*0.09:W*0.07),x0=x1-stripW,y0=portrait?H*0.15:H*0.13;
+ const P=Painter(ctx,W,H,mulberry32(hashStr(I.key+':mei')),false);
+ P.wash([rect(x0+stripW/2,y0+stripH/2,stripW,stripH,0)],WHITE,{a:0.5,L:4,mode:'source-over',ec:[150,140,120],ea:0.16,emode:'multiply',v:0.05,seg:30});
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ const c1=x1-pad-big/2,c2=c1-big/2-gap-big*0.23,c3=c2-big*0.23-gap*0.8-big*0.17;
+ ctx.fillStyle='#2B2824';ctx.font=`800 ${big}px ${DISP}`;vtext(ctx,mN,c1,y0+pad,big,lh);
+ const sy=y0+pad+colM+big*0.35;
+ P.wash([rect(c1,sy+seal/2,seal,seal,0.03)],[180,67,46],{a:0.62,L:3,mode:'source-over',v:0.04,seg:20,ea:0});
+ ctx.fillStyle='#FBF8F1';const ss=seal*0.36;ctx.font=`600 ${ss}px ${DISP}`;vtext(ctx,sN.slice(0,2),c1,sy+(seal-ss*2*1.05)/2,ss,1.05);
+ ctx.fillStyle='#2B2824';ctx.font=`600 ${big*0.46}px ${DISP}`;vtext(ctx,kN,c2,y0+pad,big*0.46,lh);
+ ctx.fillStyle='#6B6458';ctx.font=`500 ${big*0.34}px ${DISP}`;vtext(ctx,dN,c3,y0+pad,big*0.34,lh);}
+
+/* ---------- 画面 ---------- */
+const EXPS={tile1024:{w:1024,h:1024,tile:true},tile2048:{w:2048,h:2048,tile:true},phone:{w:1179,h:2556},desk:{w:2560,h:1440}};
+const st=(()=>{const n=new Date();return{m:n.getMonth()+1,d:n.getDate(),scale:1,seams:false,exp:'phone',mei:true};})();
+let TILE=null,INFO=null,tok=0,downloads=null,saving=false;
+
+function paintPattern(ctx,tile,tp,w,h){ctx.imageSmoothingQuality='high';const pat=ctx.createPattern(tile,'repeat');pat.setTransform(new DOMMatrix().scale(tp/tile.width));ctx.fillStyle=pat;ctx.fillRect(0,0,w,h);}
+function drawHero(){if(!TILE)return;const cv=$('hero'),r=cv.getBoundingClientRect();if(!r.width)return;const dpr=Math.min(2,window.devicePixelRatio||1);cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);
+ const ctx=cv.getContext('2d'),tp=Math.min(r.width,r.height)*0.62*st.scale*dpr;paintPattern(ctx,TILE,tp,cv.width,cv.height);
+ if(st.seams){ctx.save();ctx.strokeStyle='rgba(180,67,46,.6)';ctx.lineWidth=dpr;ctx.setLineDash([6*dpr,6*dpr]);ctx.beginPath();for(let x=tp;x<cv.width;x+=tp){ctx.moveTo(Math.round(x)+0.5,0);ctx.lineTo(Math.round(x)+0.5,cv.height);}for(let y=tp;y<cv.height;y+=tp){ctx.moveTo(0,Math.round(y)+0.5);ctx.lineTo(cv.width,Math.round(y)+0.5);}ctx.stroke();ctx.restore();}}
+async function drawExpPrev(){if(!TILE)return;const E=EXPS[st.exp],cv=$('expPrev');let pw,ph;
+ if(E.tile){pw=ph=300;}else if(E.h>E.w){pw=210;ph=Math.round(pw*E.h/E.w);}else{pw=380;ph=Math.round(pw*E.h/E.w);}
+ const dpr=Math.min(2,window.devicePixelRatio||1);cv.width=pw*dpr;cv.height=ph*dpr;cv.style.width=pw+'px';const ctx=cv.getContext('2d');
+ if(E.tile){ctx.drawImage(TILE,0,0,cv.width,cv.height);return;}
+ const k=cv.width/E.w;paintPattern(ctx,TILE,Math.min(E.w,E.h)*0.62*st.scale*k,cv.width,cv.height);if(st.mei){const t=tok;await drawMei(ctx,cv.width,cv.height,INFO);if(t!==tok)return;}}
+function setGround(){try{$('ground').style.backgroundImage=`url(${TILE.toDataURL('image/jpeg',0.82)})`;}catch(e){}}
+
+function buildMonths(){const box=$('months');box.innerHTML='';MONTHS.forEach((M,i)=>{const b=document.createElement('button');b.type='button';b.className='mbtn';b.id='m'+(i+1);
+ b.innerHTML=`<span class="mn" lang="ja">${M.name}</span><span class="mk">${tr(kanjiNum(i+1)+'月',EN_MON[i].slice(0,3))}</span>`;b.setAttribute('aria-label',tr(M.name,`${EN_MON[i]}, ${M.roman}`));b.onclick=()=>{st.m=i+1;st.d=Math.min(st.d,DAYS[i]);update();};box.appendChild(b);});}
+function buildDays(){const box=$('days');box.innerHTML='';for(let d=1;d<=DAYS[st.m-1];d++){const b=document.createElement('button');b.type='button';b.className='dbtn';b.textContent=d;b.id='d'+d;
+ const k=`${st.m}-${d}`,tips=[];if(SEKKI_START[k]){b.classList.add('sek');const si=SEKKI.findIndex(x=>x[0]===SEKKI_START[k]);tips.push(tr(SEKKI_START[k],`${SEKKI_EN[si][0]} (${SEKKI_EN[si][1]})`));}if(SPECIAL[k]){b.classList.add('spe');tips.push(tr(SPECIAL[k][0],SPECIAL_EN[k][0]));}
+ b.setAttribute('aria-label',tr(`${st.m}月${d}日${tips.length?'、'+tips.join('、'):''}`,`${enDate(st.m,d)}${tips.length?', '+tips.join(', '):''}`));if(tips.length)b.title=tips.join(tr('・',' · '));
+ b.setAttribute('aria-pressed',String(d===st.d));b.onclick=()=>{st.d=d;update();};box.appendChild(b);}}
+let builtMonth=0;
+function renderUI(){const I=INFO,M=I.month,K=I.kou,Sk=I.sekki;
+ const en=LANG==='en',ME=MONTHS_EN[I.m-1],SE=SEKKI_EN[K.si],KE=SE[3][K.pos],LE=LAYOUT_EN[I.layout.key],ZE=SIZE_EN[SIZES.indexOf(I.size)],SPE=I.special?SPECIAL_EN[I.key]:null;
+ MONTHS.forEach((_,i)=>$('m'+(i+1)).setAttribute('aria-pressed',String(i+1===st.m)));
+ if(builtMonth!==st.m){buildDays();builtMonth=st.m;}else{for(let d=1;d<=DAYS[st.m-1];d++)$('d'+d).setAttribute('aria-pressed',String(d===st.d));}
+ $('dcName').textContent=M.name;$('dcKana').textContent=en?M.roman:M.kana;$('dcDate').textContent=en?enDate(I.m,I.d):I.dateK;$('dcSekki').textContent=en?POS_EN[K.pos]:POS[K.pos];$('dcKou').textContent=K.name;$('dcSeal').textContent=Sk[0];
+ const sp=$('dcSpecial');sp.hidden=!I.special;sp.textContent=I.special?(en?SPE[0]:I.special[0]):'';
+ $('mName').textContent=M.name;$('mKana').textContent=en?`${M.roman} · ${ME.gloss}`:`${M.kana}　${M.roman}`;$('mOrigin').textContent=en?ME.origin:M.origin;$('mAlt').textContent=M.alt.join(en?', ':'、');$('mMotif').textContent=en?ME.motif:M.motif;
+ $('sName').textContent=Sk[0];$('sKana').textContent=en?`${SE[0]} · ${SE[1]} · from about ${enDate(Sk[2],Sk[3])}`:`${Sk[1]}　${Sk[2]}月${Sk[3]}日ごろから`;$('sMean').textContent=en?SE[2]:Sk[4];
+ $('kPos').textContent=en?`${SE[0]} · ${POS_EN[K.pos]}`:`${Sk[0]}　${POS[K.pos]}`;$('kName').textContent=K.name;$('kKana').textContent=en?`${KE[0]} — ${KE[1]}`:K.kana;$('kMean').textContent=en?KE[2]:K.mean;
+ $('kRange').textContent=en?`${enDate(K.m,K.d)} to about ${enDate(I.kouEnd[0],I.kouEnd[1])}`:`${K.m}月${K.d}日から${I.kouEnd[0]}月${I.kouEnd[1]}日ごろ`;
+ $('kAcc').textContent=en?`A faint touch of ${ACC_EN[K.acc]}`:`${ACC_LABEL[K.acc]}を淡く添えています`;
+ $('kLay').textContent=en?`${LE[0]}, ${ZE}. ${LE[1]}`:`${I.layout.name}・${I.size.name}。${I.layout.desc}`;
+ $('speBox').hidden=!I.special;if(I.special){$('speName').textContent=en?SPE[0]:I.special[0];$('speNote').textContent=en?SPE[1]+' The paper is scattered with gold leaf flakes (kin-sunago).':I.special[1]+' 紙には金砂子を散らしています。';}
+ $('swatches').innerHTML=M.pal.map(([n,h])=>`<span class="sw"><b style="background:${h}"></b><span lang="ja">${n}<small>${h}</small></span></span>`).join('');
+ $('hero').setAttribute('aria-label',en?`Koyomigami for ${enDate(I.m,I.d)}: a seamless pattern with the ${M.roman} design and ${ACC_EN[K.acc]} for ${KE[1].toLowerCase()}.`:`${I.dateK}の暦紙。${M.name}の意匠に、${K.name}の${ACC_LABEL[K.acc]}を添えた継ぎ目のない柄。`);
+ updateExpNote();}
+function updateExpNote(){const E=EXPS[st.exp];$('expNote').textContent=E.tile?tr(`${E.w} × ${E.h} px の継ぎ目なしタイル。並べて敷き詰めて使えます。`,`A seamless ${E.w} × ${E.h} px tile. Repeat it to cover any surface.`):tr(`${E.w} × ${E.h} px。柄の大きさは上の調整に合わせます。`,`${E.w} × ${E.h} px. The pattern size follows the setting above.`);
+ $('expChips').querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===st.exp)));$('mei').disabled=!!E.tile;}
+function update(){INFO=dayInfo(st.m,st.d);renderUI();const t=++tok;$('stage').classList.add('busy');$('stageStatus').textContent=tr('紙を漉いています','Forming the paper');
+ const t0=performance.now();
+ setTimeout(async()=>{if(t!==tok)return;const tile=await genTile(INFO,640,viewMode());if(t!==tok)return;TILE=tile;drawHero();setGround();drawExpPrev();$('stage').classList.remove('busy');
+  lastMs=performance.now()-t0;stageStatus();},20);}
+let lastMs=0;
+function stageStatus(){const I=INFO,ms=lastMs,t=ms/1000|0?(ms/1000).toFixed(1):null;
+ $('stageStatus').textContent=LANG==='en'?`${I.month.roman}  ${SEKKI_EN[I.kou.si][3][I.kou.pos][1]}  ${LAYOUT_EN[I.layout.key][0]}, ${SIZE_EN[SIZES.indexOf(I.size)]}  ${FURNISH_EN[paper.F]}  ${t?t+' s':Math.round(ms)+' ms'}`:`${I.month.name}　${I.kou.name}　${I.layout.name}・${I.size.name}　${furnish().name}　${t?t+'秒':Math.round(ms)+'ミリ秒'}`;}
+function viewMode(){return paper.transmit?'transmit':'reflect';}
+function shift(n){let x=doy(st.m,st.d)+n;if(x<1)x=366;if(x>366)x=1;const [m,d]=fromDoy(x);st.m=m;st.d=d;update();}
+
+async function makeExport(){const E=EXPS[st.exp];if(E.tile)return genTile(INFO,E.w,viewMode());
+ const tp=Math.min(E.w,E.h)*0.62*st.scale,tile=await genTile(INFO,tp>1000?2048:1024,viewMode()),out=document.createElement('canvas');out.width=E.w;out.height=E.h;const ctx=out.getContext('2d');
+ paintPattern(ctx,tile,tp,E.w,E.h);if(st.mei)await drawMei(ctx,E.w,E.h,INFO);return out;}
+async function save(){if(saving)return;saving=true;const btn=$('saveBtn');btn.disabled=true;$('saveStatus').textContent=tr('大判の紙を漉いています','Forming the full-size paper');
+ await new Promise(r=>setTimeout(r,40));
+ try{const cv=await makeExport(),blob=await new Promise(r=>cv.toBlob(r,'image/png'));
+  const name=`koyomigami_${String(st.m).padStart(2,'0')}${String(st.d).padStart(2,'0')}_${INFO.month.roman.toLowerCase()}_${st.exp}.png`;
+  if(downloads){try{const res=await downloads.save({filename:name,data:blob});$('saveStatus').textContent=res&&res.status==='delivered'?tr('保存しました','Saved'):tr('保存の確認を開きました','Opened the save dialog');}
+   catch(e){$('saveStatus').textContent=e&&e.code==='declined'?tr('保存を取りやめました','Save cancelled'):tr('保存できませんでした。もう一度お試しください。','Could not save. Please try again.');}}
+  else{const url=URL.createObjectURL(blob);$('fallImg').src=url;$('fall').hidden=false;try{const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();}catch(e){}$('saveStatus').textContent=tr('書き出しました','Exported');}}
+ catch(e){$('saveStatus').textContent=tr('書き出しに失敗しました。小さい大きさでお試しください。','Export failed. Try a smaller size.');}
+ finally{saving=false;btn.disabled=false;}}
+
+applyStatic();buildMonths();
+function syncPaper(){const F=furnish();$('furnish').value=paper.F;$('gsm').value=F.gsm;$('gsmOut').textContent=`${F.gsm} g/m²`;$('chiri').value=F.chiri;}
+function furnishOpts(){$('furnish').innerHTML=Object.entries(Washi.FURNISH).map(([k,F])=>`<option value="${k}">${tr(F.name,FURNISH_EN[k])}</option>`).join('');$('furnish').value=paper.F;}
+furnishOpts();
+$('furnish').onchange=e=>{paper.F=e.target.value;paper.gsm=paper.chiri=null;syncPaper();update();};
+$('gsm').oninput=e=>{$('gsmOut').textContent=`${e.target.value} g/m²`;};
+$('gsm').onchange=e=>{paper.gsm=+e.target.value;update();};
+$('chiri').onchange=e=>{paper.chiri=+e.target.value;update();};
+$('transmit').onchange=e=>{paper.transmit=e.target.checked;update();};
+syncPaper();
+$('prev').onclick=()=>shift(-1);$('next').onclick=()=>shift(1);
+$('today').onclick=()=>{const n=new Date();st.m=n.getMonth()+1;st.d=n.getDate();update();};
+$('scale').oninput=e=>{st.scale=+e.target.value;drawHero();drawExpPrev();};
+$('seams').onchange=e=>{st.seams=e.target.checked;drawHero();};
+$('mei').onchange=e=>{st.mei=e.target.checked;drawExpPrev();};
+$('expChips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{st.exp=b.dataset.v;updateExpNote();drawExpPrev();});
+$('saveBtn').onclick=save;
+document.addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input'))return;if(e.key==='ArrowLeft')shift(-1);else if(e.key==='ArrowRight')shift(1);});
+new ResizeObserver(()=>drawHero()).observe($('hero'));
+update();
+(async()=>{try{downloads=window.claude&&window.claude.use?await window.claude.use('downloads'):null;}catch(e){downloads=null;}})();
+function setLang(l){LANG=l;try{localStorage.setItem('koyomigami-lang',l);}catch(e){}applyStatic();buildMonths();builtMonth=0;furnishOpts();renderUI();if(TILE)stageStatus();drawExpPrev();}
+document.querySelectorAll('.langs [data-lang]').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+</script>
+
+</body></html>
