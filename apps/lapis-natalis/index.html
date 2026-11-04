@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Lapis Natalis</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22t%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFF8E6%22/%3E%3Cstop%20offset%3D%22.6%22%20stop-color%3D%22%23E4CD9C%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23A88E62%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2213%22%20fill%3D%22%230A0908%22/%3E%3Cg%20stroke%3D%22%230A0908%22%20stroke-width%3D%22.9%22%20stroke-linejoin%3D%22round%22%3E%3Cpolygon%20points%3D%2255.10%2C22.43%2043.00%2C32.00%2055.10%2C41.57%22%20fill%3D%22%235F5340%22/%3E%3Cpolygon%20points%3D%2243.00%2C32.00%2055.10%2C41.57%2039.78%2C39.78%22%20fill%3D%22%2382755E%22/%3E%3Cpolygon%20points%3D%2255.10%2C41.57%2039.78%2C39.78%2041.57%2C55.10%22%20fill%3D%22%233A2F20%22/%3E%3Cpolygon%20points%3D%2239.78%2C39.78%2041.57%2C55.10%2032.00%2C43.00%22%20fill%3D%22%237D705A%22/%3E%3Cpolygon%20points%3D%2241.57%2C55.10%2032.00%2C43.00%2022.43%2C55.10%22%20fill%3D%22%234C4130%22/%3E%3Cpolygon%20points%3D%2232.00%2C43.00%2022.43%2C55.10%2024.22%2C39.78%22%20fill%3D%22%2392856D%22/%3E%3Cpolygon%20points%3D%2222.43%2C55.10%2024.22%2C39.78%208.90%2C41.57%22%20fill%3D%22%238A7D65%22/%3E%3Cpolygon%20points%3D%2224.22%2C39.78%208.90%2C41.57%2021.00%2C32.00%22%20fill%3D%22%23B6A88B%22/%3E%3Cpolygon%20points%3D%228.90%2C41.57%2021.00%2C32.00%208.90%2C22.43%22%20fill%3D%22%23D0C2A2%22/%3E%3Cpolygon%20points%3D%2221.00%2C32.00%208.90%2C22.43%2024.22%2C24.22%22%20fill%3D%22%23D3C4A4%22/%3E%3Cpolygon%20points%3D%228.90%2C22.43%2024.22%2C24.22%2022.43%2C8.90%22%20fill%3D%22%23F5E6C2%22/%3E%3Cpolygon%20points%3D%2224.22%2C24.22%2022.43%2C8.90%2032.00%2C21.00%22%20fill%3D%22%23D8C9A9%22/%3E%3Cpolygon%20points%3D%2222.43%2C8.90%2032.00%2C21.00%2041.57%2C8.90%22%20fill%3D%22%23E3D4B2%22/%3E%3Cpolygon%20points%3D%2232.00%2C21.00%2041.57%2C8.90%2039.78%2C24.22%22%20fill%3D%22%23C2B496%22/%3E%3Cpolygon%20points%3D%2241.57%2C8.90%2039.78%2C24.22%2055.10%2C22.43%22%20fill%3D%22%23A5987D%22/%3E%3Cpolygon%20points%3D%2239.78%2C24.22%2055.10%2C22.43%2043.00%2C32.00%22%20fill%3D%22%239F9177%22/%3E%3Cpolygon%20points%3D%2243.00%2C32.00%2039.78%2C39.78%2032.00%2C43.00%2024.22%2C39.78%2021.00%2C32.00%2024.22%2C24.22%2032.00%2C21.00%2039.78%2C24.22%22%20fill%3D%22url%28%23t%29%22/%3E%3C/g%3E%3Cpolygon%20points%3D%2255.10%2C41.57%2041.57%2C55.10%2022.43%2C55.10%208.90%2C41.57%208.90%2C22.43%2022.43%2C8.90%2041.57%2C8.90%2055.10%2C22.43%22%20fill%3D%22none%22%20stroke%3D%22%23E8D3A4%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAQAElEQVR4nOydB1xTZ/fHTyBAkA2CKA5UnLj33rV1zw53rVZr+7fjbWtr27dWrbXW2lr17bbugRtnceHe4h44wcUSBQcESHL/z3lu7s3NgiRk3MR8/cQ7cm/I+N1zz3Oe85xHCg5AJpO2B5BEk0eURCKpQHZF4TouJQAVwY3TwADcI4v7ZO0+t2QYXKpS5XLFQbAzErADvihUmawXI2F6km+gGxGxH7hxeRiGeU4UtpthJNskcvn2fCp422IzQXt5eTXy8vR8DSRML/JnGoAbN8CcByLuIqVyTVFR0VmwAVYXtLe3d11PT8lUYokHEUtslzuAG+eCWG4GJJJ1KhXzVUFBwTWwIlYTnEwGlSUg+5a83WFExx7gxk0JEF0riAD/AXnB1DyAB2AFrCHosr6+Pv8lFvkdImRvcOPGTIiwiXstmZcvl88hm1lQCkolaF9faWsA6TryIhXAjZtSwlArrRicn684ChZisWsgk3kPBcZzn1vMbqwF1RLRFNWWhXiC+Xj6+vh87+Hh8RNxMSw5340bo6CmyGOQVCr1VSgUe8BMzHU5AsrIfDaQv9oN3LixMQww8fn5BSPI6lNTzzFZ0D4+PrU8JLCJXD21wY0bO0EajFdJjO8VuVyeasrxpgo6wFfmc4qIuSa4cWNniKiT8+UFLcjqk5KONaVRKCFuxlq3mN04CqK9WkSDq8EEA1xio47EmOeSFxwGbtw4EomkBmkoykhDcXdxhxUr6DI+PthZMh3cuBEBEgm085RKHxBRJxk9xtgTpNOkDY0zSyRe4MaNSCD+dBFIlJ1J58thQ88bE7S3r0x2jVwRVcCNG5HBMJBCuskx2lag+5zBRiHpqfmPW8xuxArRZjTp3Jtg8DkD+7Dz5B45KxDcuBEvmXn58hjQ6XTRaxQSV2Ma8Zu7ghs34saPRD08dKMeWhaazWn2Ib6zxAfcuBE5pIEoJ72ItYW9iFo+tARkP7jF7MZZIFqVEYs8S2sft+Lr5dVSIvU8Bm7cOBkMKNpwOdRSfq+n5wB4Qej3ckt4e0R3qFvTNQM5l5JT4a/lO2FzwnF4IWCk/QBYQfONQi+p5wJiwsuCi/N6v/Ywe8pbEB4WDK5KRNlgeKVLU0jPfEzEfQdcHyZcoVAuwDUqaG9v79qeHh5TwMVBMc/8chS8KHTr0OiFEDUaYtIlvoREPHKooL28PMdKXDxpf9igjjBj8kh40UBRZ2XnwoUrJqUTOy0ShkkuUipPUR9aAh6vgAszbHAnmD5puN7+pWv3wo49p+l6s8a14YN3Xgdn5P1Jc+Bx7jMcZAq9ujaDEa921nr+289HYO8arFi/H1wWCfQn//+Ogg4gPkhrO1UFszvoZhgS89oth+Gb2Sv57eNJyRAUFAyjhvQCZ2LCJ7Ng7372omSIok+QzxEa4g+9ujXXOm76ZyNAoVBBXLzdy83ZBfLR8SoO9JTJZG08JJIx4IIY85m9fPxg9Ac/wfPn+RAc5A+FRQoM0sPh4+ehXauGEFkuDJyBpau3w9JVO+h6ufAQyMuT0/WMh0+hbYtYCPSXaR3vyj41Dq4lfvRO7FiJBhekODHL/MMggggAySG36u+/ZvNcVCoGJnz8A2RkPQKxc+nqLfhuzmK67uPtBVMmjaEuBxIaHABXb2bA/fQcvfPwO8HvxkWJJoJWRYKLUZKYkajyEfz+hvVrwmv92fSVR4+fwDsfzYIihQLESp5cDkPHfs0LeNL7w4g7UcQ/HxrM5pW9eKJWRRJvQ+JSgjZFzEj1KlH8ekZGNnz+4UioUb0S3b6cfBumzfobxEr/IZNAXlDIrvfqAG1bNoAbt+/xz4eFBPDrL5KoUcsu5XIYFbPMX0vMSG1BL2Fa5kO6XPbbNziGkq6v2bQX1m9JBLHxyVfzIPVeOl2vV6ca6fHsS9dT72bwx4SGaGf+vkCijvaQuIigixWzX6je/vr1avDraRmsz+ztLYWlv04BD3UV4K9n/El9VbGw5d+DsCXhEF1H0U759C3w9GTzyx6kP+SPCwnWT2V/MURNLbTzuxzmihmpUzOaX0/PzObXq1eNgmlfjKPrCqWS+tPYcHQ012/dhUlTaO8uFfG0z8dCQEAZ/vmsbFasHsREBQUaniDB5UXNQKQHCVc5dVKDJWJGPDw8eOuWnpGt9VzPl9pAj66t6Xrmw8fw3qezQalUgaMoLFTAa29+SaMwyAfjX4OYatpT0XAXXdnQoGJfy7VFzdBGodPmP1sqZg7/Mr50mZGZrffcjP++A5WiytH1U2euwKxfloKjGPzmZMjLZ2PMPbq2hO6dW+gdw8Wgw0JKHjnnqqJGLTttpf3SihkJUf/4aRnZBp9fvXAa+PiwNdyXrNoOO/faPx1z6qyFkHydzcNAd+i9sYMNHoedQ0hoiGlDQV1V1E4paGuIGYmMYCMfeLvmwmBCfGUyWDT/S37706/nQ/IN+/WyJZALaOW6BLoeFOhP/WapVL820JOnefx6WIjpY5tR1HfTHuvtd2ZRO52gMfHGGmJGKlXStIfTjVjp2qTxOGkimwuCoh//4Ux4+iwPbE0aiVp8OPlnuo4NvW8+ewvCjPjHl5I1kZiQEPMG61+7lelSonYqQaOYp36qX2bPEjEjNapV4teNuR3IG4Negg5tGvHHTZw0h+Z+2AoF6aXsN+xT0ghkG6IYaxZGZXS5nZrGr4eGmF99wpVE7TSCtraYkVjSMcGRnpld7LFzv/sIyqpHuRw9eQHm/hYHtmLo21Mg98lzut6pXWMY0LtjscffvZ/Jrwt7Cc3BVUTtFIK2hZiR5o3r8OsZGdklHh+3cDp4e7HDMH9ftAH2HUoCazP/zzVw7uJ1uh5dORL+8+6QEs/JzNQkU5UNtTwK6wqiFr2gbSVmBHvUuCzwtMySM+zw+D/mTua3P/riZ7ij7oa2BvsPJ8GCv9bR9TJlZKQR+DZ/ARVH9mO2DniAfxk+tm4pzi5qUQvalmLm4MJy6RkPTTq+YWwMvE86NpC8/AIY9+H38FwdAy4NWQ9zYMLHs+k6TsD734/f5FNcS+KpOsoRaqG7oYszi1q0graHmJEAdTdxRqbpOdBvDulFh2wht1MfUEtdWvoO/YT0Rirp+qg3ekDjBqZPmJBfwF5QljQIjeGsohaloO0lZoQrZ3A/3bwJTH+f8xlxQViLuP/wGepTW8qod6fSPGykeZM68MZA08crYySE6xK3pqARZxS16ARtTzEjFcqH0yXmamQ/yjX5PMwFifvnW+Kzsh0dGPU4cuI8mMtfS+Ph2MlLdL1ihQj44kPzRqbfuiXIgw62jsshxNlELSpB21vMSLUqmolwMzJLjnQIwYjCTzPep+sYl8b4tDCNsyTOXLgGP85fQddlMm+YNnksn49tKtdT7vProcG2qYBcnKh1R5g7GtEI2hFiRrQS/TPMEzTSvlUj4vP2pOvPnufTnsTCwqISz3uU8wRGvjOV30bLXCHS/MJVKYIoi7VdDiHGRI2/mZhELQpBO0rMSMO6mkT/dDMahkKwnke92mwnzbWbd2HytF9LPKffkE954aPP3KJpXbCEtDTNHcFaUQ5jOIOoHS5o42IOsLmYkXqxMfx6eqb5FprjnwVfgp8fm466NeEwLF213eix73w8i+ZZI43q16BRDUvJFCT2Bwb4ga0Ru6gdKujixWxaDLa00ER/D/ZrsMTl4JBKpbDyz6n09ZCZc5fAWeIj67Js9Q5IPMAWhgkvG0zjzRKJ5UV+cnLZGRnCQoJK9TrmIGZRO0zQYhAzh5860b80FhrBAQGzvnmXrhuq8YHjE2fMWUTXsZYG9gRyVt1SNIn9tnU3dBGrqB0iaDGJGQlWh7syMkonaKRrh+YGa3wYqqVRtUp5KC04PAsJDQkCeyNGUdtd0GITMxIZwfrqmBOhUPfWlQas8RFTnR3zhzU+vp29CPoP1dTSGNCbraVRWoSJ/baMcBSH2ERtV0GLUcwIN3YQeZBmehy5OJb/NpWPKeOok5Q7bM4y1tIYO7wvWIMr11L49VA7uxxCxCRquwlarGJGYqprEv0zrVTXDmt8vDd2EO2a5hpr2PnSs1urUmfEcdy+U7rEfmsiFlGXnJtoBcYO6w5ffPCa3n4xiBmpV7c6v/6glH40Dlb96deVsC3hCDzPy+ejHhw/zF8JC/7eAN06NYVxI/sbHCNoKnfuCaolBTvOQnOgqJFK5bV/U86QLVtr+0pUNhe02MWMNBMm+lsY6bhw+TrMnreSju/THZ01sE9Xaqk3bWN/UCxJsHnHYdjy72GoUyMaxo3qQ3osq4K5CBP7wxxsoTkcLWqbChqngTAkZm/fQPApI576NsJRHmlm5GKgSH9fvAk2bN5LG5TCOHDFCpEwcmgvGPpqDwgPwx+XgelfTYAVa7bD8rgdcO9BBhX+ZeIHf/DFPJq517t7Wxg6+CU9q24MYWK/NwkDigUUNbpXlStod4yhqLF3NC7+ENgKSRlfmc1Ge17Yt4DEeLWLbm/69yRs3HEMIsuFk8ZYBM1fiKoQQR9VKkUCeT/gCCrW7QUFBUXQqmks/DpnUrHH3k69D7MXrIATp6/wA1kRFHTXji1g9LD+0KVTC9phwzDs8wweJ2GX+NiZeAyWrt4GiQdPaw24xbp6jRvWhPGj+kPliuWKfR+DRn1BBxdUIcd99bFj5o958iwPrt+8B/eJIcjMeEQvspwnz+j7+nBcP3h7eHft40lkplHX98FW2MxChwb764l5/sIt8PMf8cWeh923FSuEU4FjaidGINglij+c/Mi2KcUX6O8HWQU5kFaMyxG3cRcR4b/wID1LyxqjhR/yak94c3g/NmJCBEr/UTEzasGSpYpd4qkvd2ErIN29nwFLVm6F1Rt307i1ihx7+mwyvH3meygXHkpi2p2h98vtDL4fubyALsNCbReDvnaLiJXcTe6R6A9OPvQ45yk8f5YP+eRvsyFO472TM+etIZ9HBeNHaKbwCQwoQ7XxKMc29QLt0ijkWLP5kJY1MtRV++TpcxK7xUeK0dcpVy4MqkRFQvnIMCpwnEKiotrKo/gtmYMwLCyIFjzUrc+BUY+f/rcKEg8nQZG6OhH3vls2a0BF3LdHJ/DyktKfFn9A+qz6czLq5Hv83Hga9iBK1NsIXrxffjIaPpk4FLbtPAyLV+6A0+eu0r+B+R7YgPxjyWZo27w+jB/dj68siucr1a8dQgRiCffTsuDu3QxqXTOycuAx6UbPefoM8vMKoAA/a4mlGkrual+9cb+WoG2N7QRtQKx4C8YfKsDfF6Z/MR5q16gMSeevw82bd+H23TTqvz4kVurps+f09m+s9gX26BXXq+cr84Go8qyVx6VQ7LiO1p4bS8iBz129lgoFxMfDH/b0mavw26L1cCvlgdaF5+9XBgYP6A5jRw6CWqRBp2WBS1pSMTP85xJacB8S5hvQqwMM6NmeXsxL4/6FDdsO0K5tvJD2HTkD+8hFVblyJIwe0ovmgXAYCtnh87/qQAAAEABJREFUebdS02iJAxwAjIMXMO8DU1wLSAePQqmyOPcDfXaMe2NkBXOwsUFK18myLDEMN8l3tnDFdoPVqGyNzXxo/MCnErTH2o2YOBcOH7/Ib497sx+MGdan2NfBiXxu3L4Pt27fI7f6bGq1nhIrnldQwFs/S8AfASsnYTkwFPnh4+fg8tXb9Dkfb28SftPOaY6tHQOjhw+AVwe8TPMveN9YbZE5y2zIZzb4vM75wuO55TPin67fuh+Wr90FyTfuar0fqacnFOI0FOQrKE/uUJ4k/IcVnVBERYWlm04DJ1IqS7rS0fKjYPG3RLcmhOznelWNsX3PMdi2S1MDMLZWJdiybIrWMc26f2gzl8Ougs7KVcGMn5aRkJVmarF2rRrAtMlv8wlC5oDDps5fugFXr6dSq4C+XhYRPDZK0EKZY4U4q6l7/KB+3WHMyIHQgrgXYMTycj6z1vPCfaacJ1gXPs8df/z0JVgSt0tLLNz7NtfSlg1lrSpGVugSLat6u6yF/jj61IvjEuDildv8vqqVwuHljo1h0vvakS6XEjSWWd6ZeAKm/rCQt7DoR86Z/j5EVy59so4uV67eguSbd+A6adzcfZBJk/hzScPmmfpWzokBLaiHhA2XVapYgfjG/WH4632IZQo26iYYtczqbdZnLt4ysz2JOhZa8LzueZlZj2Hdlv2wYl0i9X3Z5zSiRl8+TH37p5ZVLVTcxv3BQdbvgMHv9NdF8XwYEa/FFo2qk3ZOOPn+Al1f0AgWaBkz8Tu+pkUZXx/4ZtIY6NiuCdiTWyn3ie+cAjPnLqduRq0aVeHI3tUAQmtprmU2YGF1lxK94/EZlcCig06UBFdVgtcG6Db4M7iZmk5TUT8cN4gKF/1be3Lu4g1YsmYnbXsgUtKt37VtPRI1Yt+HvQXtsHxojE5si/sJasVUpttYtGXS1F/ht3822LQQoi7VoqMggIQKOZ/5jVfZ8YG8f86LSxCtEGwbjGboHG/wfMHx1DKjeBnQuRPobwvFPqg3G85DMaGbZU8xY7QmnvR0/rl8Ky/mYPI99n2pGS9mR+DQESuYwLPof1/BsMGa4PviVdvhg8lz7VKyluOX3+PU78eLuBl9qSVkoxKchTRxKTheYuB5KOE8KO48Rv/41/q15xOdNm6335THaHzmL9wAO/edAi50V7NqeXipfX1+9I+jEMUg2ffeHgzfT3mX7/LFBtDw8d9Qd8DWYJz57gO2yEy/Xl3ZOC+9q3OWU+gmGLHMDOfHFm+ZKarin9dbqhh2UICB50ODNHN6Zz7MpeFGW4PJWzN/WQHXbrL1QPAzt2lSExrWqQJiQDRlDLD+8trFMyBQXZoLGxpvvvctJNqgwqeQH+Yv59fHjBwAhi0uA6ZaaI2FBa3nJXqvC1oWWKJzPHuA0LLrP4/LoQM78O9/zaZEsCWnz10j39cq4v+yFw4WkuzRsRFERdp+MLOpiKrQDMZTt8fNgQZ1Y6iI0Df7nPjVc4lLYItZqDDCcOQEGxfHxmDzJg2s6DOrtJ834DNLTPCZtbYNHN+sQQzEVGWjQxeTU8EW4Pe0jsTD/1m1A4oUSvoeMGLSp2sTvfQGRyO6UmDodvz+8yR4a3hvft+q9btgwiezIfeJdVvG6K9zF8q40a+a7isbWFriMzMm+MwS0PXlQe91RwzqSHej8BIST4I1wZ7FuX+uJ3fKs/y+ujUqQpc2sSZnBdoT0VYffXtkP5jz7ft8AjwWAR82fipcv3kXrMWaTXvoErvKsQcQMctnBtN8YDDlOJ3jjd8pVHrvZ0DP1iDzYdNHE49ohFdacADBzF9W0k4rBGPd7ZvVgno1K4FYEXV96NbN68GmFbP4Kp/YCzh64gzYvvsolJaLV27RzDFk6Ou9aRxcLzvOLJ/ZsMWWWOAzM8X4zIa2ZT5SGNCjFd2HtaIx6ai0HE+6Aj/+toaGAxHMNenduTHp+hbHoAxjiL6CP+YSbCN+NdZjRqFh7x7O3Tdr3jJQKCwfof3zr6v59fGjXwMxxpkNHQ9GfPRhAzWVQFdvTARLQRds1aa9sJR0luA6vn54WAD07daMFpQUO04zadC87/8D74wewG9vIN2/4z6axVtZc5AXFvKT0rdu0Qiq0gqkpllkKIXPbG6cuVjLzWi20XeOiY6ExvWq0u1bd9L4eh3mgBMV/fT7Wjh07AK/r36tStCpZSw4C041rduoIT3h958m0XwFBEU5jMSrL165ac7LwNzfVgPXFzl6RH8w2We2c5zZoM/MiRo0z+Ox+DpD+rflP+PGHQfAHHAE+Xckvpxyl61mirXyOreOhToxFcGZcLqJNxvExsCWlT/wWWGY54uWev1m02+zO/awGWvYidLnlQ4g5jizUcvMsJaZEzP+605iwkGBbLfz8dNXwVQOHDlHLTNGNBBsYPbp0hTKhjh+JLm5OOXUyIGB/rB51Wxo07I+/UHR1/th/gr45vu/+VElxjh49CzI89mhS28O608r8Is5zmzMZ+Yss0otZhS3lITRBr3Skh6HMfzzl4u/c2GJsiVxCRC3eR/7OuT1ykcEk/hyU5qW4Iw47eT1yI/TJsLH7w3lBwLt2HMMxn4ws9hiMfP+WEOXGIIaM5JzN1QlLh0ZZzbkM1PLrL6zcNu4fK1va/6zbtphfHQ1dpPPXhAHJ85oLHnj2Gho16w2ODNOLWhkcL/O8Ne8L/hh/Jjsj/FqQ6VsUeh31LOudu/aBsqFhxXvM4NpPjCYclwp4sx0acBn5kTMMBpfvFx4ELRrXouew40T1AVHAGF8mcunRn+5C/GXa0RbPx/d3ji9oJG6taJh6+rZdNAsggNtsWcRa8oJEeZtvDmsr5k+s+PizMZ8Zs5NoKUR1O8DxT24Z0v+c66N36f1Hew+cJr0/K3TykNHFyPMCf1lQ7iEoBEcvLp+yUzo2r4p71v+8sda+PLbP+g4O2HeBg6Y7dyezVIz3Wd2bJzZkM8MWuJW8eJu26I2tdTIhaspdIklyv5cthU2bj/EWnTyX6XIUOhFOktMma3WWXCdT6Jm+lfjodn2OvDDvOX0h9u9/ySk3k2DRvVr8nkbY0YMUIfgOAuojnKoGH5bItyvXoLOtu55UNx5DCs83b9D0XofnNi54437zLzbQZ8D3kLjfwN7NIfflu6mx67fdhCSiSt2P10zUr5Z/apQrbJtapw4Epex0EL69ewAixZ8RXM0EBxPyOVtoK+N5bnACePMhnxmFSd+6nZoxN//peZ8sv0e4mZwYsYBAd3a1ndJMSMuKWikZkxl2BM/H6KrlFeLlY2F9O/VWZ0b4nxxZmM+s0bk7OvhcYEBvtClLdvDh58dzwvwl8HAl1tASJDtJxdyFC4raI6WTWP52V4RxonjzGBU3Kyl1j3e20v7c9trUiFH4rKCfpidA2+TmHTcBtaPVKmFs2HLHtK7iFOhMeCMcWZetFruB3u+UOS5JNLz775z7OuRfZi7/ORpPmxIOKE1lYWr4ZKCxtTQkROmwSV1JSQvqSe0b8XOaYINw5Vrd4Ap0Qy6FFmc2ZjPrFIJxU86VXae5mvfNalXHcLDAvnPn3DwPNy6o5mB1pVwOUFjTgdOp5aTy+bxor/858+T4INxg/lG0qLl8axwnDTObMhn5sSP20qlEjYlnKJ/A8vzvtypKYx8tRvUrBbFf0+nLtyGY0nXwNVwGUFjIW2sxjTnf6v4PN6mjWrBX0TMWK8Cb7mNGrDTIGMC/J797FAlZ4wzG/OZWbEzcOT0dch8yFYxql4lkvrOXlIpDOzZFjq3bUD/Hu67m/4ItiWeAYWidLXwxIRLCBrLY419fyYk7NHUfRs7ojdM/mC41nHjRmgKQy5dvdVsn9mW+cwl+8xQrM8sPC9+5yn+c75ErLOQlo1rw9CBnflkfayxsXl3EmQ/tn0JBHvg9II+e+E69Zdv3GbrRGCu9Pf/HQ89urbSOxYraJZXV8/cve8k3H+QCc4aZ9b1mek2WUnPfAxHk27Qv4GFxQ1VMapUIRzeeqM7RISxvYlK8hp7j16C6ylp4Ow4taBXrtsJ/zfpR5q7gUSUDYGFcz+DmGrGk9JHqieKR1EsjcMJ5p0zzqwvarbHEBuDHJ3bNjT2NVChj3ytG8TWqsLvO3MpBQ6dMj2PWow4paCxYPfkab/Bgr/W8T9u2xb14NfZ/4EyJdSJaE5uuT7qEdLL4v5lK5ACOGWcmRe1+jgcY7l1zxn6d9BnrlE1CooDa0z3eakldO/QhDYe0a9Oy8yBrXuTLBrCJQacTtA4ZcRbE2fA/sPsD4d9BRNG94ePJrxu8mtwITysaL9912FwxjizrmXGV9pz5CI8ecZm0cXWNr3UQJMGMTBsUBc+VSBfXghb9p6Gh07oVzuVoI+fukT95duprK8n8/GGH755F7p1bGbOy5BbrWbOD5wECHG2OLPQMnOvs3nnGf5zdWvXGMwhKjIMxgzpDhXKsW0MfP1E4lcn33oAzoTTCHrxym3wn69+4ce9YZH0f+Z9BlUtKJKObkmNqqyffYxcJLfVRSGdJc6sa5lxO+VuFly8xjaMo8qFgVRqfiKlv58vtdSNYqvx+85dSYV9xy+BsyB6QeNUB5/8dz78uSSeM3okFNUM5s54H7y9La8TMXpYT3797xXbwJnizLqWGU/YkKAJ1XVp3wgsBTufXuncDHp3a0Fj9+hXZ2U/JaG9UyCX238SIHMRtaBT76bD6Pe+hSMn2DoR+OVOfHsQjB/VD0pLzeqVICiADWnFbdwD+flycJY4s9Ay43F55KLfdZAdvFCmjA91H0pLvdrRMHJwFwjwY+e+KSCNxK2kEwbL9ooZ0QoaZ79CMXMTtGODZd7MD6BjG8utjy4vq2PVaHk2bGXrWIg9zqxrmXH/zgMXqOCQZg1qgrXAGa8wXl2xfFn+M+8/cYW4NtarL2htRCdo/NL+XBwPn369gJ/nDv3khfM/p+V2rcngPh3pAFHkn5U7wBnizBrLrHFL4nexNbQx9NaqSS2wJr6+PjB0QCdo1qgGv+/y9Xuw98glEE4LLRZEJWichuKjL3+Bxau28ft6dmsFs6e+C95S648Wo/kd9dgfCke1JJ2/BmKOM2tbZnb7/NVUSL3PjkbBvA1blLjF18SoSb+XW9HYNbp+2TlPYcueJNp1LiZEI2icsRVDcidOX6bbaDknTRwCbw3rBbZk/Ki+/PqyNbsBRBxn5i4KKn5gL44tu8/x7183b8Pa1KlRGUaR3sVAddsDB95u33cG7qc/ArEgCkHvO5REO0syMtkvBqvCL5j1EbRoUhdsDeZ3RIazsdetO4/Ckyfq5HcRxpk5n5k7PvdpHhw4mUz/vrG8DWsTHhZE/erKURH813Ak6RoN74kBhwoa0zzn/7EWvpj+O03/xB+qFok+LPzlM5qXYS9eH9CFLtHirCIRDzHGmYU+M6MW+9bEs+oLofi8DWuDHVpv9O9I/PXa/IV97XYaibRccLhf7TBB4/QSmFi0anQY9K0AABAASURBVMMuft+g3h1hxlfjLOoUsPx9PIcKkWX56dFWrk+kS7HFmTUi1+zfkagOZ5J/BSRSk5Vtv5AaNkA7tWlAc6y91LMs5Dx9DvEkXv3kmeOGeDmkLsf1W3dpZ0nWwxy6jcH8Se8PhaYNrdtCR7A6aVZ2Dn08JD94xsPH8PBhDr+PS8JBMWFeSOq9TGjb6z8wbHAneLV3OzoTqsZnFjYQWSEi5tbN4M7nLTijbakZPZ9Zsz8n9zns2H8etu09D1mP2FwLJYNJSZoBC3hxYsV9X18Z9Xdx0vlyxFUoR+565SOtGymqWb0ijAoJgHVbD0EOMQ4KhQoSDpyHFg3ZqZHtjd2nRt628xjMnLuUrxIaFOgHP0yZQH1ZS8jIekyFmYlCRZE+zKHLTLLE58yBWludkdF9ureA4YM6QdMG1dXHaNwNbq5uRs8Sg8BHVmosLG4rNeLFJVf8hhevwLfWnMfA2cspsG3PedINfVXvPSOmjujG47HBjdWSypDYvr+/Lx2mFk6+/3LhwTTmbEmkBEOsW3Ydh5uCnOpqlcOhewcXnrx+5oJ4+GvpFn67Xp2q8M2kt4p9nXsPstTWlTyItc3IfEytbkb2Y3j06AmUBqmUWDLiD5LvgAo0i/SCoXiknlI9X7BW9Qrwet92MKhXa2L5vNXuiCGfWcVv41LFMFqWmWF0LDHZp72tcTOe5uXDzv0XYBvxlVPuZWu9H7yrKZRKKmRfHyJOXy/SBlBSC4lLboCsRZBrw1vqRetEBxLBBwX4QUhoAJQPD4Hq0RWKPfXwyUtwUJD7UbdWRdi67ButY2wpaLu6HAl7jrEr5Ed7Y2A36P1yG9q9naW2rPTxSO0eEHHlWDiNG3fbpVaIdAwE+vtBELntliXuA/Z+VSJWSHe+kEMnLsLuA2eoP/rhuIHUH/038QRkZuVQ0STffADTfl4Dc/6Ih74vt4BhA9rTaSCE0Qngoxk68WPQRDe0fGwA/ePI8mZqJsTvPA17Dl+C/IIirc8VRoTVrnk9mhX3+7LtdL/UUwKVIrTvcPi6hQolFTcuFUVE6AoFv11UpAKjkmeAzn2OD/SH7wlKiHF3MZydDL9Df2IM8C6LxdHDw4KhUWx12gG2accR2sh+/ty+cWrbCZrR/7pU6tu1n58MNv97CFZv3AMWQSyIF7Gi2NrGakCBxILgRJAR5JaJgi0Xbn6EJFddqwJ/MIyw4CO2VjS9qLYTN+nS9VTqHjzPKyCRkIP00aR+NXijXxvo1r4BbRhp+8yMWT4z/vh7j16GzTuTyN/SnhLak7gIMdFR0KltA/AXDGDgKiIVKvQjC+hWyIgfLSumcHkRFbZG4PQCEKwrDEx2yrk2OJjg2bN8+kgnrl2y8CAUvYdE/dnArtjVQr/RvwP8+OtGKgqjoHUl4sBGDboCgYFsoyaCXP3liFijK5YDW4DRDoSLdnAEB/rD0MHd6PqRkxfhwJEL8PjJU/rDJl24RR8hwX4wgFjtV/u0ITHtQLWlFvjCoB1nBtBY5rSMx7Ax4RTs2HeOXFT5gq+BoRdqi0YxxOrFGHzPmFxFG2IWzrKLFyE+jEWvuYsF2zuctS+i20r1tqaAjxb0QmPF/3r/9mBPbCZo9JGwoYBWlOPdN3vRhtS8v7fSZCPqn5HbVRhpgUeUDabBen8HTbWby8/H52X0mDbkVo8PbGxu3XUEbpDYK/7oj3Oewz9xibBoTSK0bVYLBvdqBW2a1gTWmOlbZrRuR05do+P/jp/VnjYCT6lcMQI6t65fYkMZvz8UtEplGzOIgvTx8qQPY+AA28JCJSt8gcVHsU98uw+MG9FD63isS20r/xmxqYWeMTcOpn82QmvfBCLqdi3rw5kLt0FMcOWxTJm7Gl2aMUN7UWu7+0ASHE+6DM+e49AnCRwiPXf4iCTuz4Aezej8fsFBZeix+EPG7zpFR5ZkCmLGKHY/4uvXr1uNXAi1TY4yBKh7Bm0laFPAxqmvjDx09g9/vTsM7NNB7/jviCZsiU0FvWL9fvrjTP10mNb++nUqUx/v9LlbIAbwlpqvTl4PCDC9+xg/W/dOzegj5U46bNt1DO6qZ3FNJ41JrM+Mj7bNa1L34vCp63qvgWUVOraOhahI82O26JIgaEnROnIdHI5m1JBXoF+vdnr7p8xeAas2HQRbYnMfetnaRLrUFXVsLXYQpxhE/ThXcwsMDbYsHh5dORLeG9Ofrm8iDd6kczdolAA5fFK75BaOyI6tVRm6titdbneAv8YuPs8vhOAAX3A0xYmZ04ItsUujUOyi5hqESDniy5eW/q+0o48TZ5Nh/Zb9/H4M13Vp2xCa1q8B1kCYjJRfoIRgB0+TMnZkb+jZXb/Aj73EjNgtlwM/EH4wXVDUTRtWA0fCFapByqtHPZcW9JlPnrnKh7loD53EAw6fuEw7P6yB0EIXOLiOhhjEjNg1OUmsos4RWOgqVpqqYSv60+op5MqQDogKEazlR1935aa9YA2CAzWV+PF1HYVYxIzYPdtOjKLmXA60pdYYGXP24g0Ss2a7fzErrXn9qlC7WnkSkmQLuWRlP4HdB89CafGgEQY2LFpkJatvLmISM+KQ9FGxiZqz0J5epY8SpGc+grUCv7lpbGWaM4JRnYa1K5JuavYrP3f5Fly7dR9KC+dHY16HvRGbmBGH5UMXJ+oWjWPAnnDd3lwpLEvB0eOLVv/LZ9DVqBKh5edip02DWppCklt3l356CO717R2LFqOYEYeOWDEm6to1ouwmamysPVU3CrkaFJaAXcDL1+3i3ZewID+oVF6/gRlMuvJjqoTzf3vp+j2lGuXBx82Ja2Ov0SJiFTPi8DGFjhb1U2IhuXyE4AB/sJSde0/CjRS2DhzOPtWwjvFiiZXLh0F4CPu3CgqKIC7+AFhKoOAOkF9g+0iHmMWMiGKQrCNFnftME+HA9FJLuHr9Duw7yo6+xjBdC9IILIm6MRVodzfygPjdR05eBksI8NPEouXyIrAlYhczIpoyBo4StbBTJdKCtFMcGbNygyYNtkndSuDtXXKkBLP6sJHIZfcdTboKd+5lgrloda7YMBbtDGJGRFVoxhGiFsagy6tLXplKQWERLCaNwEL1cLLqlcP5enmmgCNC6tfUFCVfv+MwPMuTgzloda7YKBZtTMyTZywRlZgR0ZUCs7eocwVRBnNLjaFlfpTDDlQNDvSFKhXMH4AaShqP0RXZ8zBSsXSteYMeMDuQ643E1E1rU5yY4+Jtm2hkCaIs1mhPUXMuh4eZ0wbvOZgEyTfYooWY5dakbhWwlGoVwyEsmO31w/LBa7eaLhQUM9cwLFJaN8rhbGJGRFt91F6ifqIWtCl+L8f12/dh1352ch68DFo0KLkRWBKx5HP5qud+uXM/C06cNX1STFvkRTujmBFR14e2h6hz1TFoPxNHyuAMtRhv5qhfK4oOFyst2IPYgDQSuWqoB49fhAfp2SadyzUMGSsN4HNWMSOir+BvS1ELE/uDTIhBY+MPewIL1COxo6PC6Ghna4FhPAzncawhroe8sOSq+ZpYdOk7V5xZzIhTzLFiK1ELE/uDTUgmjtuUyBevCfSTQbVK1q8MFBEaQDpe2B5G7EJfZkIj0V8QunuaZ/m0Ec4uZsRpJg1CUeMXq0tpRJ0ryIOOKCGx/8Cx83ApOYWuo3vQJLYy2Ao2/Mda3SfP8mHTv0eLPV470d+yWLQriBlxqmnd8Iu1pqhzn5gWssNp5HbsOcFvt6gfbZPC4hwYucAkJs43v0n+/vkrKUaPDxAMvZJb0LniKmJGnG7iTWuKWjhSpWqVSKPHLF27i29w1atRQa/qki3AUCD2JHIx5l0HkozW6gsK0CT6Y4Ukc5gwpp/LiBlxyqmRrSVqYbe3ocR+9GEXxyXQ2DCC2XMRYZble1gC1iipU11zoa2OP8D3SgpB8cvUIT8s92UqKOaXOjfX2++sYkacdvJ6a4iaE7TUSGL/hm0H+dCZXxkfmt9sbyLLBkFUOda/xyT+FRsMD98K4BP9TbPQrihmxGkFjZRW1DlP2SiHr4++C3H89BU4fZ7t3MAEoub1LO8JLC01o8uRhh8bJ8diNQn7TusdY06iv6uKGUFBZ4ATY6mo0Sfm5lPx10nsv5/2EOITDvPbzW3cCCwJrpHIFZK5mJwKV67d0TqGj3SU0IXvymImZJBfiUkHJ8cSUWPVTD6xP0jTqYJziaPfzFm6ujHl6ahtR4OlgVHUnF537DulFUcXZt3lGZnC2MXFDKhlD2DA6QWNmCtqzt1AygazDT3sZVuyZiedLxHBSqLow4oFjE3XqMJWX8Vrcfn6vXyND2Es2lCiv+uLmRZ9TSEWWuISgkbMEbUwbbRcBJvYv2XXUU0tDRI1qFu9+Gr1jqBiZAiUU0daMOKxMp7NRw4UxKJ1E/1fBDEj5CJP9yCqdhlBI6aKWhiyq1A+nNbSOKoeBoWppM1MGEblKDCUx9f4eJgL+49e0BqKVVCoyYt+UcSMeBDjTFwO5/ehdTFF1EJBYwNx9SZu5AVDurUr0VoaYgUbqMIaH6fOX4cHGZrZXLmiM4bEjJ/VFcVMIVr29Pb0jCQm6Q1wMS4l34H0zMfQrYN2hc+y5HaN9THiE45B9qMnNJ85+eZ9WpwdwRBZeKj9Ok8sBefcRp86LYutM3399gPacFSqs+2mfDrUoJg/mfoPrNt6GFwSFbPQs0ipzJFKPT+WSMwcsuEEFCdqrMGRkJhEf+QCtZjLBvtBjWjr1LazB9g7iPnTj3PZ9gAn5m8nj4B+PdpoHcuJeeP2o+CKkM/H5BcUfkhF7OsrO0ZWWoKLgpNoTp80XG//sjV7YdveU3TmK6ylUa9GFDgjt+5mkagNOz9Lr5eawfBBnfWO+eK7JcStckE3Qw1pCx7Pz5e3ooKWybw/95B4zAQXZtigjnrTY7woTJ6xmPjMh8CVUTGqyXJ54fe068nDw/MhuXX9H7gwF66k0ok7u7Sz3yTvYuBFEDOiVDETlUrlQypoXCF+9BDiRptXmMLJQFEb8qldEU0D8Ai4OuSzJpN20De4zqeZeUm9KpJmYTtwcdiG4iOXF/Vn0xfBhm2u2QDUR7JQoVDspmvcLl9fL+JQe74o34AbF4IBZev8/CI67zbfe4A7GGDiwY0bJwI1y4kZ0Yo9e3t71/P0kJwlvrQ4Jrxz46YYiO+sJI3BhoWFhZe4fVr9u+SJiyQmuxzcuHECSOz5b6GYEb3eQZlMFi0B5gqx0o6ZdNuNGxMg1lmeLy/AWhJZwv16GThyuTyFyPwPcONG1Eh+AR0x071Gjo4oI/O5BhKJeLLb3bjhYJgnefICnH3pqe5TxnIkMxkV8xa4cSMyiKtBermZ0WBAzIjRaIZCqbziJZVi3k4ncONGJJAw3RfygsK/jD1fbHiuSKHY5yX1qEJcj8bgxo2jYVSL8uWFnxZ3iCk50FJfmewA6RZvDW7cOAiGgaP5cnkHslpsaShTk/rDfGU+R0korwZaJpFhAAABm0lEQVS4cWNniN98nYTo0KCWWAHe1IFz2SoGemLrEty4sS8PqfZMEDNi8kjQgoKCGzRUwjC7wY0bu8BszcuXV0PtmXqGuTkbhUUK5UqpVOrzIqSaunEcJDT3I3EzMHRcYM55Fg+Mlcm8h5KY3iLiVzu+TpYblwHHuoKEeTM/v3ANWECpRnr7+kqJoy5dR15EfCWG3DgjaQql6pXCwsLzYCGlShNVKFT3FArFIuKCMOTaakqstRe4cWMm1CqD5CcSlhuqVCpToRRYrRZHGWKlVTKfr8kLjiHCLv3EfW5cHiJkBdHLPyAvmJoH8ACsgNWLy/j4+NT08IAfiX/dB9y4MQAWhSG9z+tUKuYrEsEwfcpcE7BZtSQvL68mXp6eg8nb70vefCy4ccMwl4iStyiUyriioqKzYAPsUv5LJpNVkUiYQcBI+pJP1c49xOvFgBhiLFR9ABjYwkgkm+Ryean8Y1NwRD07L+KWEIFLcNKSKqRnhy5JqzIa6DpT0e2DOwfoAxMJ3SOrqURIKNZUlXpJnksl7kQKWS8CO/L/AAAA//+O1koXAAAABklEQVQDABJfTTah/zkmAAAAAElFTkSuQmCC">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Jost:wght@300;400&family=Pinyon+Script&display=swap">
+<style>
+/* Layout: a maison's private salon. Centered wordmark between hairlines, the date and stone as a quiet selector, the stone on a velvet tray beside its light, notes set like a catalogue. Single dark world by design. */
+:root{
+  color-scheme:dark;
+  --bg:#0A0908; --surface:#12110F; --velvet:#060505; --ink:#ECE6DA; --muted:#8C8478; --line:#2A2620; --gold:#B9A27C; --gold-dim:#6E6150;
+  --gem:#8a5bb8;
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-jp:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-label:"Jost","Futura","Avenir Next",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg) radial-gradient(ellipse 90% 60% at 50% 0%,#17140F 0%,var(--bg) 70%) no-repeat;color:var(--ink);font-family:var(--f-body);font-weight:300;font-size:15px;line-height:1.8;letter-spacing:.02em}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 64px;display:flex;flex-direction:column;gap:44px}
+.eyebrow,.lbl,.dayno,.stone-en,.scale-mark,.hint,.status,.lang .chip{font-family:var(--f-label);font-weight:300;letter-spacing:.24em;text-transform:uppercase}
+.eyebrow{font-size:10.5px;color:var(--gold)}
+
+.mast{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.topline{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.mark{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;width:100%;margin-top:14px}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim))}
+.rule:last-child{background:linear-gradient(90deg,var(--gold-dim),transparent)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,4.4vw,50px);line-height:1;margin:0;letter-spacing:.08em;font-optical-sizing:auto}
+h1 i{font-style:italic;color:var(--gold)}
+.kana{margin:0;font-family:var(--f-jp);font-size:11.5px;letter-spacing:.5em;color:var(--muted);padding-left:.5em}
+.lead{margin:4px 0 0;color:var(--muted);max-width:52ch;font-size:12.5px;line-height:1.9}
+h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0;letter-spacing:.04em;text-wrap:balance}
+:lang(ja) h2{font-family:var(--f-jp);font-weight:500;font-size:21px;letter-spacing:.12em}
+
+.lang{gap:0}
+.lang .chip{font-size:10.5px;border:0;padding:4px 10px;color:var(--muted)}
+.lang .chip[aria-pressed="true"]{background:transparent;color:var(--gold);box-shadow:inset 0 -1px 0 var(--gold)}
+
+.pick{display:grid;grid-template-columns:auto 1fr;gap:20px 48px;align-items:end;padding-block:22px;border-block:1px solid var(--line)}
+@media (max-width:720px){.pick{grid-template-columns:1fr}}
+.birth{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:36px 48px;padding:36px clamp(18px,3.5vw,44px);border:1px solid var(--gold-dim);background:linear-gradient(160deg,#17140F 0%,#0C0B09 62%);box-shadow:inset 0 0 0 5px var(--bg),inset 0 0 0 6px var(--line)}
+@media (max-width:880px){.birth{grid-template-columns:1fr}}
+.birth-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;min-width:0}
+.bigdate{display:flex;align-items:center;gap:clamp(10px,2vw,22px)}
+.bd-main{display:flex;flex-direction:column;align-items:center;min-width:3ch}
+.bd-day{font-family:var(--f-display);font-style:italic;font-size:clamp(96px,13vw,164px);line-height:.95;color:var(--gold);font-variant-numeric:lining-nums}
+.bd-month{font-family:var(--f-label);font-weight:300;font-size:12.5px;letter-spacing:.38em;text-transform:uppercase;color:var(--ink);padding-left:.38em;margin-top:6px;white-space:nowrap}
+.step{width:46px;height:46px;flex:none;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--gold);font-family:var(--f-display);font-size:24px;line-height:1;cursor:pointer;transition:border-color .25s}
+.step:hover{border-color:var(--gold)}
+.step:focus-visible,.mbtn:focus-visible,.dbtn:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.bd-stone{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:20px;letter-spacing:.06em}
+:lang(ja) .bd-stone{font-family:var(--f-jp);font-size:18px;letter-spacing:.14em}
+.bd-stone .dot{width:11px;height:11px}
+.today-tag{font-family:var(--f-label);font-weight:400;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#0A0908;background:var(--gold);padding:3px 10px 3px 13px}
+.today-btn{font-size:12px;padding:5px 12px}
+.birth-pick{display:flex;flex-direction:column;gap:22px;min-width:0}
+.months{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+@media (max-width:520px){.months{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.mbtn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 4px 10px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;min-width:0;transition:border-color .25s,background .25s}
+.mbtn:hover{border-color:var(--gold-dim)}
+.mbtn .mn{font-family:var(--f-display);font-size:23px;line-height:1;font-variant-numeric:lining-nums}
+.mbtn .ms{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--muted);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mbtn .ms .dot{width:7px;height:7px;flex:none}
+.mbtn[aria-pressed="true"]{border-color:var(--gold);background:rgba(185,162,124,.08)}
+.mbtn[aria-pressed="true"] .mn{color:var(--gold)}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:4px}
+.dbtn{aspect-ratio:1/1;max-width:100%;font-family:var(--f-display);font-size:17px;font-variant-numeric:lining-nums;border:1px solid transparent;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s}
+.dbtn:hover{border-color:var(--line)}
+.dbtn[aria-pressed="true"]{background:var(--gold);color:#0A0908;border-color:var(--gold)}
+.wpopts{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.lbl{font-size:10.5px;color:var(--gold)}
+.dates{display:flex;gap:14px;align-items:center}
+select{font-family:var(--f-display);font-size:20px;padding:4px 26px 6px 2px;border:0;border-bottom:1px solid var(--gold-dim);border-radius:0;background:transparent;color:var(--ink);appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 10px) 55%,calc(100% - 5px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+select option{background:var(--surface);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font:inherit;font-size:13.5px;letter-spacing:.06em;padding:8px 16px;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:border-color .25s,color .25s}
+.chip:hover{border-color:var(--gold-dim)}
+.chip[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);background:rgba(185,162,124,.06)}
+.chip:focus-visible,select:focus-visible,input:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.dot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 10px currentColor}
+.dayno{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px}
+@media (max-width:880px){.grid{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.stone-name{font-family:var(--f-display);font-size:34px;font-weight:400;line-height:1.15;letter-spacing:.03em}
+:lang(ja) .stone-name{font-family:var(--f-jp);font-weight:500;font-size:30px;letter-spacing:.1em}
+.stone-en{font-size:10.5px;color:var(--gold);margin-top:4px}
+.tray{position:relative;aspect-ratio:1/1;max-width:100%;background:radial-gradient(circle at 50% 44%,#1C1915 0%,#0D0C0A 46%,var(--velvet) 80%);border:1px solid var(--line);overflow:hidden;touch-action:none;cursor:grab;box-shadow:inset 0 0 0 6px var(--bg),inset 0 0 0 7px var(--line)}
+.tray:active{cursor:grabbing}
+.tray:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.tray .angle{position:absolute;left:20px;top:16px;font-family:var(--f-label);font-weight:300;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-variant-numeric:tabular-nums;pointer-events:none}
+.angle-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.angle-row .chip{font-size:12.5px;padding:6px 12px}
+.tray canvas{width:100%;height:100%;display:block}
+.tray .hint{position:absolute;left:20px;bottom:16px;font-size:9.5px;color:var(--muted)}
+.scale-mark{position:absolute;right:20px;bottom:16px;font-size:9.5px;color:var(--gold)}
+dl.specs{display:grid;grid-template-columns:auto 1fr;gap:0 24px;margin:0;font-size:13.5px}
+dl.specs dt,dl.specs dd{padding:9px 0;border-bottom:1px solid var(--line)}
+dl.specs dt{color:var(--muted)}
+dl.specs dd{margin:0;font-family:var(--f-display);font-size:15px;font-variant-numeric:lining-nums tabular-nums;text-align:right}
+.mapnote{font-size:13px;color:var(--muted);margin:0;font-family:var(--f-jp);line-height:1.9}
+
+.stage{border:1px solid var(--line);overflow:hidden;background:var(--velvet);padding:6px}
+.stage canvas{display:block;width:100%;height:auto}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 30px}
+.range{display:flex;align-items:center;gap:14px}
+.range input{flex:1;min-width:0;accent-color:var(--gold)}
+.range output{font-family:var(--f-display);font-size:16px;min-width:3em;text-align:right;font-variant-numeric:lining-nums tabular-nums}
+.check{display:flex;align-items:center;gap:10px;font-size:13.5px;cursor:pointer;align-self:end}
+.check input{accent-color:var(--gold);width:15px;height:15px}
+.tile{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:start;padding-block:22px;border-block:1px solid var(--line)}
+@media (max-width:480px){.tile{grid-template-columns:1fr}}
+.tile img{width:150px;max-height:330px;object-fit:contain;height:auto;display:block;background:var(--velvet);outline:1px solid var(--gold-dim);outline-offset:4px}
+.tile p{margin:0;font-size:13px;color:var(--muted)}
+.tile strong{color:var(--ink);font-weight:400;font-family:var(--f-display);font-size:18px;letter-spacing:.04em}
+:lang(ja) .tile strong{font-family:var(--f-jp);font-size:16px;letter-spacing:.1em}
+.export{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.export .chip{font-size:12.5px;padding:6px 12px}
+.expsize{font-family:var(--f-display);font-size:14px;color:var(--ink)!important;font-variant-numeric:lining-nums tabular-nums}
+.savebtn{align-self:flex-start;font-family:var(--f-label);font-weight:400;font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;padding:14px 30px;border:1px solid var(--gold);background:var(--gold);color:#0A0908;cursor:pointer;transition:background .25s,color .25s}
+.savebtn:hover{background:transparent;color:var(--gold)}
+.savebtn:disabled{opacity:.5;cursor:progress}
+.savebtn:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+.status{font-size:9.5px;color:var(--gold-dim);min-height:1.6em;margin-top:6px!important}
+
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px;padding:0;margin:0;list-style:none;counter-reset:s}
+.how li{counter-increment:s;padding-top:18px;border-top:1px solid var(--line)}
+.how li::before{content:counter(s,upper-roman);font-family:var(--f-display);font-style:italic;font-size:30px;color:var(--gold);display:block;line-height:1}
+.how h3{font-family:var(--f-jp);font-weight:500;font-size:15.5px;letter-spacing:.08em;margin:12px 0 6px}
+.how p{margin:0;font-size:13.5px;color:var(--muted)}
+.lore{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:44px;padding-block:40px;border-block:1px solid var(--line);background:linear-gradient(180deg,transparent,rgba(185,162,124,.035),transparent)}
+@media (max-width:880px){.lore{grid-template-columns:1fr;gap:28px}}
+.lore-words{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.lore-stone{font-size:30px}
+.words{margin:6px 0 0;font-family:var(--f-display);font-style:italic;font-size:clamp(22px,2.6vw,30px);line-height:1.5;color:var(--gold);display:flex;flex-direction:column}
+:lang(ja) .words{font-family:var(--f-jp);font-style:normal;font-weight:500;letter-spacing:.3em}
+.words span{display:block}
+.lore-text{margin:0;display:flex;flex-direction:column;gap:22px}
+.lore-text div{display:grid;grid-template-columns:7.5em 1fr;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.lore-text div:last-child{border-bottom:0;padding-bottom:0}
+@media (max-width:480px){.lore-text div{grid-template-columns:1fr;gap:6px}}
+.lore-text dt{font-family:var(--f-label);font-weight:300;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+.lore-text dd{margin:0;font-size:14.5px;line-height:1.95;color:var(--ink);max-width:62ch;font-family:var(--f-jp)}
+:lang(en) .lore-text dd{font-family:var(--f-body)}
+.lore-text dd::first-letter{font-family:var(--f-display)}
+footer{font-size:12px;color:var(--muted);max-width:72ch;margin:0 auto;text-align:center;padding-top:28px;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="topline"><span class="eyebrow">Pietre natali · Prototipo</span>
+      <div class="chips lang" id="langs" role="group" aria-label="Language">
+        <button class="chip" type="button" data-v="en" aria-pressed="true">English</button>
+        <button class="chip" type="button" data-v="ja" aria-pressed="false">日本語</button>
+      </div></div>
+    <div class="mark"><span class="rule"></span><h1 data-i="title"></h1><span class="rule"></span></div>
+    <p class="kana" data-i="kana"></p>
+    <p class="lead" data-i="lead"></p>
+  </header>
+
+  <section class="birth" data-a="pickAria">
+    <div class="birth-card">
+      <span class="lbl" data-i="birthday"></span>
+      <div class="bigdate">
+        <button class="step" id="prevDay" type="button" data-a="prevDay">‹</button>
+        <div class="bd-main"><span class="bd-day" id="bdDay"></span><span class="bd-month" id="bdMonth"></span></div>
+        <button class="step" id="nextDay" type="button" data-a="nextDay">›</button>
+      </div>
+      <span class="dayno" id="dayno"></span>
+      <span class="today-tag" id="todayTag" data-i="todayTag"></span>
+      <button class="chip today-btn" id="goToday" type="button" data-i="goToday" hidden></button>
+      <div class="bd-stone"><span class="dot" id="bdDot"></span><span id="bdStone"></span></div>
+    </div>
+    <div class="birth-pick">
+      <div class="field"><span class="lbl" data-i="monthLbl"></span><div class="months" id="months" role="group" data-a="monthLbl"></div></div>
+      <div class="field"><span class="lbl" data-i="dayLbl"></span><div class="days" id="days" role="group" data-a="dayLbl"></div></div>
+      <div class="field" id="stoneField"><span class="lbl" data-i="stonesLbl"></span><div class="chips" id="stones" role="group" data-a="stonesLbl"></div></div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="col" data-a="gemAria">
+      <div class="head">
+        <div><div class="stone-name" id="sname"></div><div class="stone-en" id="sen"></div></div>
+      </div>
+      <div class="tray" id="tray" tabindex="0" data-a="trayAria"><canvas id="gem"></canvas><span class="angle" id="angle"></span><span class="hint" data-i="drag"></span><span class="scale-mark" id="cutname"></span></div>
+      <div class="angle-row">
+        <div class="chips" id="links" role="group" data-a="linkLbl">
+          <button class="chip" type="button" data-v="on" aria-pressed="true" data-i="linkOn"></button>
+          <button class="chip" type="button" data-v="off" aria-pressed="false" data-i="linkOff"></button>
+        </div>
+        <button class="chip" type="button" id="resetAng" data-i="resetAng"></button>
+      </div>
+      <dl class="specs" id="specs"></dl>
+      <p class="mapnote" id="mapnote"></p>
+    </section>
+
+    <section class="col" data-a="patAria">
+      <div class="head"><h2 data-i="pattern"></h2><span class="dayno" id="tileinfo"></span></div>
+      <div class="stage"><canvas id="preview" width="800" height="640" data-a="previewAria"></canvas></div>
+      <div class="controls">
+        <div class="field"><span class="lbl" data-i="modeLbl"></span>
+          <div class="chips" id="modes" role="group" data-a="modeLbl">
+            <button class="chip" type="button" data-v="light" aria-pressed="true" data-i="modeLight"></button>
+            <button class="chip" type="button" data-v="facet" aria-pressed="false" data-i="modeFacet"></button>
+          </div></div>
+        <div class="field"><span class="lbl" data-i="groundLbl"></span>
+          <div class="chips" id="grounds" role="group" data-a="groundLbl">
+            <button class="chip" type="button" data-v="sumi" aria-pressed="true"><span class="dot" style="background:#14161c"></span><span data-i="sumi"></span></button>
+            <button class="chip" type="button" data-v="paper" aria-pressed="false"><span class="dot" style="background:#f2f1ec"></span><span data-i="paper"></span></button>
+          </div></div>
+        <div class="field"><span class="lbl" data-i="strengthLbl"></span>
+          <div class="range"><input id="strength" type="range" min="0.4" max="2.6" step="0.05" value="1.7" data-a="strengthLbl"><output id="strengthOut">1.70</output></div></div>
+        <div class="field"><span class="lbl" data-i="repsLbl"></span>
+          <div class="range"><input id="reps" type="range" min="1" max="8" step="1" value="5" data-a="repsLbl"><output id="repsOut">5</output></div></div>
+        <label class="check"><input type="checkbox" id="seams"> <span data-i="seams"></span></label>
+      </div>
+      <div class="tile">
+        <img id="tileimg" data-alt="tileAlt">
+        <div>
+          <p><strong data-i="tileHead"></strong></p>
+          <p id="tiletext"></p>
+          <div class="export">
+            <span class="lbl" data-i="expLbl"></span>
+            <div class="chips" id="exports" role="group" data-a="expLbl">
+              <button class="chip" type="button" data-v="tile" aria-pressed="true" data-i="expTile"></button>
+              <button class="chip" type="button" data-v="square" aria-pressed="false" data-i="expSquare"></button>
+              <button class="chip" type="button" data-v="phone" aria-pressed="false" data-i="expPhone"></button>
+              <button class="chip" type="button" data-v="desktop" aria-pressed="false" data-i="expDesktop"></button>
+            </div>
+            <p id="expSize" class="expsize"></p>
+            <div class="wpopts" id="wpOpts" hidden>
+              <span class="lbl" data-i="wpTextLbl"></span>
+              <div class="chips" id="wptext" role="group" data-a="wpTextLbl">
+                <button class="chip" type="button" data-v="none" aria-pressed="false" data-i="wpNone"></button>
+                <button class="chip" type="button" data-v="words" aria-pressed="false" data-i="wpWords"></button>
+                <button class="chip" type="button" data-v="full" aria-pressed="true" data-i="wpFull"></button>
+              </div>
+              <span class="lbl" data-i="wpPosLbl"></span>
+              <div class="chips" id="wppos" role="group" data-a="wpPosLbl">
+                <button class="chip" type="button" data-v="bottom" aria-pressed="true" data-i="wpBottom"></button>
+                <button class="chip" type="button" data-v="center" aria-pressed="false" data-i="wpCenter"></button>
+              </div>
+            </div>
+            <button class="savebtn" type="button" id="saveBtn" data-i="saveBtn" hidden></button>
+          </div>
+          <p data-i="save" id="saveHint"></p>
+          <p class="status" id="status" role="status"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="lore" aria-labelledby="loreTitle">
+    <div class="lore-words">
+      <span class="lbl" data-i="wordsLbl"></span>
+      <h2 id="loreTitle" class="lore-stone"></h2>
+      <p class="words" id="words"></p>
+    </div>
+    <dl class="lore-text">
+      <div><dt data-i="originLbl"></dt><dd id="lOrigin"></dd></div>
+      <div><dt data-i="natureLbl"></dt><dd id="lNature"></dd></div>
+      <div><dt data-i="legendLbl"></dt><dd id="lLegend"></dd></div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="howTitle" style="display:flex;flex-direction:column;gap:14px">
+    <h2 id="howTitle" data-i="how"></h2>
+    <ol class="how">
+      <li><h3 data-i="h1t"></h3><p data-i="h1p"></p></li>
+      <li><h3 data-i="h2t"></h3><p data-i="h2p"></p></li>
+      <li><h3 data-i="h3t"></h3><p data-i="h3p"></p></li>
+      <li><h3 data-i="h4t"></h3><p data-i="h4p"></p></li>
+    </ol>
+  </section>
+
+  <footer data-i="foot"></footer>
+</div>
+
+<script>
+(()=>{
+const TAU=Math.PI*2, SQ3=Math.sqrt(3);
+const STONES={
+ garnet:{ja:'ガーネット',en:'Garnet',sys:'cubic',ri:1.79,disp:.024,body:[150,18,38],mat:'clear',cut:'facet'},
+ amethyst:{ja:'アメシスト',en:'Amethyst',sys:'trigonal',ri:1.544,disp:.013,body:[140,80,190],mat:'clear',cut:'facet'},
+ aquamarine:{ja:'アクアマリン',en:'Aquamarine',sys:'hexagonal',ri:1.577,disp:.014,body:[140,205,225],mat:'clear',cut:'facet'},
+ diamond:{ja:'ダイヤモンド',en:'Diamond',sys:'cubic',ri:2.417,disp:.044,body:[236,240,246],mat:'clear',cut:'facet'},
+ emerald:{ja:'エメラルド',en:'Emerald',sys:'hexagonal',ri:1.577,disp:.014,body:[22,150,92],mat:'clear',cut:'facet'},
+ jade:{ja:'翡翠',en:'Jadeite',sys:'monoclinic',ri:1.66,disp:0,body:[78,152,98],mat:'jade',cut:'cab'},
+ moonstone:{ja:'ムーンストーン',en:'Moonstone',sys:'monoclinic',ri:1.52,disp:.012,body:[212,216,224],mat:'moon',cut:'cab'},
+ pearl:{ja:'真珠',en:'Pearl',sys:'orthorhombic',ri:1.53,disp:0,body:[238,226,220],mat:'pearl',cut:'sphere'},
+ ruby:{ja:'ルビー',en:'Ruby',sys:'trigonal',ri:1.762,disp:.018,body:[196,16,52],mat:'clear',cut:'facet'},
+ peridot:{ja:'ペリドット',en:'Peridot',sys:'orthorhombic',ri:1.654,disp:.020,body:[156,192,44],mat:'clear',cut:'facet'},
+ spinel:{ja:'スピネル',en:'Spinel',sys:'cubic',ri:1.718,disp:.020,body:[210,44,96],mat:'clear',cut:'facet'},
+ sapphire:{ja:'サファイア',en:'Sapphire',sys:'trigonal',ri:1.762,disp:.018,body:[28,62,172],mat:'clear',cut:'facet'},
+ opal:{ja:'オパール',en:'Opal',sys:'amorphous',ri:1.45,disp:0,body:[226,228,232],mat:'opal',cut:'cab'},
+ tourmaline:{ja:'トルマリン',en:'Tourmaline',sys:'trigonal',ri:1.624,disp:.017,body:[222,92,142],mat:'clear',cut:'facet'},
+ topaz:{ja:'トパーズ',en:'Topaz',sys:'orthorhombic',ri:1.619,disp:.014,body:[226,150,52],mat:'clear',cut:'facet'},
+ citrine:{ja:'シトリン',en:'Citrine',sys:'trigonal',ri:1.544,disp:.013,body:[232,172,44],mat:'clear',cut:'facet'},
+ turquoise:{ja:'ターコイズ',en:'Turquoise',sys:'triclinic',ri:1.62,disp:0,body:[62,178,172],mat:'turq',cut:'cab'},
+ tanzanite:{ja:'タンザナイト',en:'Tanzanite',sys:'orthorhombic',ri:1.694,disp:.030,body:[78,64,196],mat:'clear',cut:'facet'}
+};
+const MONTHS=[['garnet'],['amethyst'],['aquamarine'],['diamond'],['emerald','jade'],['moonstone','pearl'],['ruby'],['peridot','spinel'],['sapphire'],['opal','tourmaline'],['topaz','citrine'],['turquoise','tanzanite']];
+const DAYS=[31,29,31,30,31,30,31,31,30,31,30,31];
+const SYS={
+ cubic:{en:'Cubic',latEn:'square lattice',ja:'立方晶系',lat:'sq',group:'p4m',latJa:'正方格子',n:8},
+ hexagonal:{en:'Hexagonal',latEn:'hexagonal lattice',ja:'六方晶系',lat:'hex',group:'p6m',latJa:'六方格子',n:12},
+ trigonal:{en:'Trigonal',latEn:'hexagonal lattice',ja:'三方晶系',lat:'hex',group:'p3m1',latJa:'六方格子',n:6},
+ orthorhombic:{en:'Orthorhombic',latEn:'rectangular lattice',ja:'直方晶系',lat:'rect',group:'pmm',latJa:'長方格子',n:8,ar:1.25,sx:1.28},
+ monoclinic:{en:'Monoclinic',latEn:'skewed rectangular lattice',ja:'単斜晶系',lat:'rect',group:'p2',latJa:'斜めの長方格子',n:8,ar:1.2,sx:1.2,shear:.14},
+ triclinic:{en:'Triclinic',latEn:'general lattice',ja:'三斜晶系',lat:'rect',group:'p1',latJa:'一般の格子',n:8,ar:1.15,sx:1.22,shear:.2},
+ amorphous:{en:'Amorphous',latEn:'hexagonal lattice',ja:'非晶質',lat:'hex',group:'p6m',latJa:'六方格子',n:12}
+};
+const NOTE={
+ opal:{ja:'オパールは結晶ではありませんが、遊色は小さなシリカ球が最密に並ぶことで生まれます。その並びに合わせて六方格子にしています。',
+       en:'Opal is not a crystal, but its play of color comes from tiny silica spheres in close packing. The pattern follows that packing with a hexagonal lattice.'},
+ pearl:{ja:'真珠層はアラゴナイトの板状結晶が積み重なったものなので、直方晶系として扱っています。',
+        en:'Nacre is built from stacked aragonite platelets, so pearl is treated as orthorhombic.'}
+};
+const LORE={"garnet": {"ja": {"words": ["真実", "友愛", "忠実"], "origin": "ラテン語の granatum（ザクロ）に由来します。粒の結晶が密に集まる姿がザクロの実に似ていることからの名で、和名も柘榴石（ざくろいし）です。", "nature": "ガーネットは一つの鉱物ではなく、よく似た結晶構造をもつケイ酸塩鉱物のグループです。モース硬度は7から7.5で、青を除くほとんどの色が知られています。", "legend": "旧約の伝承では、ノアが暗い夜に箱舟を照らすために赤い石を吊るしたと語られ、それがガーネットだったとされています。旅の守り石としても大切にされてきました。"}, "en": {"words": ["Truth", "Friendship", "Constancy"], "origin": "From the Latin granatum, pomegranate. Clusters of small crystals resemble the fruit's seeds, and the Japanese name zakuro-ishi means the same.", "nature": "Garnet is not one mineral but a group of silicates sharing a similar crystal structure. Its Mohs hardness is 7 to 7.5, and it occurs in nearly every color except blue.", "legend": "An old tradition says Noah hung a glowing red stone to light the ark through dark nights, and that stone is said to have been a garnet. It has long been carried as a traveler's talisman."}}, "amethyst": {"ja": {"words": ["誠実", "心の平和"], "origin": "ギリシア語の amethystos（酔わない）に由来します。古代ギリシアの人々は、この石を身につけたり杯にしたりすると酒に酔わないと信じていました。和名は紫水晶です。", "nature": "石英の仲間で、紫色は結晶中の微量の鉄と、天然の放射線の作用によるものです。加熱すると黄色に変わり、市場に出るシトリンの多くはこうして生まれます。", "legend": "ルネサンス期フランスの詩人ベローの詩では、酒神バッカスに追われた乙女アメシストが月の女神に白い石に変えられ、悔いたバッカスが注いだ葡萄酒で紫に染まったと歌われています。"}, "en": {"words": ["Sincerity", "Peace of mind"], "origin": "From the Greek amethystos, not drunk. Ancient Greeks believed that wearing the stone, or drinking from a cup carved of it, kept one sober.", "nature": "A variety of quartz. Its purple comes from trace iron acted on by natural radiation. Heated, it turns yellow, which is how most citrine on the market is made.", "legend": "In a poem by the Renaissance French poet Rémy Belleau, the maiden Amethyst, pursued by Bacchus, is turned to white stone by Diana; the remorseful god pours wine over her and stains her purple."}}, "aquamarine": {"ja": {"words": ["沈着", "勇敢", "聡明"], "origin": "ラテン語の aqua marina（海の水）に由来します。澄んだ海の色そのものが名前になりました。", "nature": "エメラルドと同じベリルの仲間で、青色は微量の鉄によるものです。モース硬度は7.5から8。大きく透明な結晶に育ちやすく、内包物の少ない石が多いのが特徴です。", "legend": "船乗りたちは航海の無事を願ってこの石を身につけ、人魚の宝が浜に流れ着いたものだとも語られました。荒れた海を鎮める力があると信じられていました。"}, "en": {"words": ["Composure", "Courage", "Clarity of mind"], "origin": "From the Latin aqua marina, water of the sea. The name is simply the color of clear seawater.", "nature": "A beryl, like emerald, colored blue by trace iron. Mohs hardness 7.5 to 8. It grows readily into large transparent crystals, often with very few inclusions.", "legend": "Sailors wore it for safe passage, and some said it was mermaid treasure washed ashore. It was believed to calm rough seas."}}, "diamond": {"ja": {"words": ["永遠の絆", "純潔", "不屈"], "origin": "ギリシア語の adamas（征服されないもの）に由来します。何ものにも傷つけられない硬さを表した言葉で、和名は金剛石です。", "nature": "炭素だけでできた結晶で、天然の物質の中で最も硬いモース硬度10。屈折率と分散が大きいため、ブリリアンカットで光を虹色にきらめかせます。", "legend": "古代ギリシアでは神々の涙、あるいは星のかけらだと考えられていました。1477年、オーストリア大公マクシミリアンがブルゴーニュのマリーに贈った指輪が、ダイヤモンドの婚約指輪の始まりとして知られています。"}, "en": {"words": ["Eternal bond", "Purity", "Invincibility"], "origin": "From the Greek adamas, the unconquerable, a word for a hardness nothing could scratch.", "nature": "A crystal of pure carbon and the hardest natural substance, Mohs 10. Its high refractive index and dispersion let a brilliant cut break light into rainbow fire.", "legend": "Ancient Greeks thought diamonds were tears of the gods or splinters of fallen stars. The ring Archduke Maximilian gave Mary of Burgundy in 1477 is often cited as the first diamond engagement ring."}}, "emerald": {"ja": {"words": ["幸運", "幸福", "夫婦愛"], "origin": "ギリシア語の smaragdos（緑の石）がラテン語、古フランス語を経て変化した名です。和名は翠玉（すいぎょく）。", "nature": "ベリルの仲間で、深い緑はクロムやバナジウムによるものです。ほとんどの石に内包物があり、その様子はフランス語で jardin（庭）と呼ばれ、天然の証として愛されています。", "legend": "古代エジプトのクレオパトラはエメラルドをこよなく愛し、紅海近くの鉱山は後に「クレオパトラの鉱山」と呼ばれました。"}, "en": {"words": ["Fortune", "Happiness", "Wedded love"], "origin": "From the Greek smaragdos, green stone, reshaped through Latin and Old French.", "nature": "A beryl colored deep green by chromium or vanadium. Nearly every stone has inclusions, called its jardin, French for garden, and prized as a mark of natural origin.", "legend": "Cleopatra loved emeralds, and the ancient mines near the Red Sea later came to be called Cleopatra's Mines."}}, "jade": {"ja": {"words": ["長寿", "繁栄", "徳"], "origin": "英語の jade はスペイン語の piedra de ijada（脇腹の石）から。腰の痛みに効くと信じられたためです。漢字の翡翠は、もとは鳥のカワセミを指す言葉でした。", "nature": "翡翠（ヒスイ輝石）は細かな結晶が絡み合っていて、硬さ以上に割れにくい強靱な石です。新潟県糸魚川一帯の翡翠は縄文時代から加工され、2016年には日本の国石に選ばれました。", "legend": "古代中国では玉は君子の徳にたとえられ、孔子はその温かな光沢を仁に、澄んだ音を楽にたとえたと伝えられます。日本では勾玉として神宝にも用いられました。"}, "en": {"words": ["Longevity", "Prosperity", "Virtue"], "origin": "From the Spanish piedra de ijada, stone of the flank, believed to ease pains of the side. The Chinese characters for it once named the kingfisher.", "nature": "Jadeite is a mat of interlocking tiny crystals, making it far tougher than its hardness suggests. Jade from Itoigawa in Niigata was worked in Japan since the Jomon period and was named Japan's national stone in 2016.", "legend": "In ancient China jade stood for the virtues of the noble person; Confucius is said to have likened its warm luster to benevolence. In Japan it was shaped into magatama and kept as sacred treasure."}}, "moonstone": {"ja": {"words": ["恋の予感", "純粋な愛", "幸運"], "origin": "表面を青白い光が月明かりのように漂うことから名づけられました。和名は月長石です。", "nature": "長石の仲間で、性質の異なる薄い層が交互に重なっています。その層が光を散乱させ、アデュラレッセンスと呼ばれる浮かぶような光が生まれます。", "legend": "インドでは月の光が固まってできた聖なる石とされ、満月の夜にこの石を口に含むと恋人たちは未来を見ることができると語られました。"}, "en": {"words": ["Hint of love", "Pure love", "Good fortune"], "origin": "Named for the pale blue light that drifts over its surface like moonlight.", "nature": "A feldspar built of alternating thin layers of two slightly different minerals. The layers scatter light into the floating glow called adularescence.", "legend": "In India it was held sacred, formed from solidified moonbeams, and lovers were said to glimpse their future by holding it in their mouths under a full moon."}}, "pearl": {"ja": {"words": ["健康", "長寿", "富", "純潔"], "origin": "英語の pearl は古フランス語の perle を経た言葉で、その先の語源には諸説あります。日本では古く「白玉（しらたま）」と呼ばれ、万葉集にも詠まれています。", "nature": "貝が異物を真珠層で包んでできる有機質の宝石です。真珠層はアラゴナイトの薄板とタンパク質が交互に重なったもので、この重なりが干渉色の照りを生みます。1893年には御木本幸吉が半円真珠の養殖に成功しました。", "legend": "ローマのプリニウスによれば、クレオパトラはアントニウスとの賭けに勝つため、大粒の真珠を酢に溶かして飲み干したといいます。"}, "en": {"words": ["Health", "Longevity", "Wealth", "Purity"], "origin": "From the Old French perle; its earlier origin is debated. In old Japan it was called shiratama, white jewel, and appears in the Man'yoshu poems.", "nature": "An organic gem formed as a mollusk coats an irritant in nacre: thin aragonite platelets layered with protein. The layering creates its interference luster. In 1893 Kokichi Mikimoto first succeeded in culturing pearls.", "legend": "Pliny tells that Cleopatra, to win a wager with Mark Antony, dissolved a great pearl in vinegar and drank it."}}, "ruby": {"ja": {"words": ["情熱", "仁愛", "威厳"], "origin": "ラテン語の ruber（赤）に由来します。和名は紅玉。サンスクリットでは ratnaraj、宝石の王と呼ばれました。", "nature": "サファイアと同じコランダムで、赤はクロムによるものです。クロムは紫外線で赤く蛍光するため、日の光の下で内側から燃えるように見えます。モース硬度9。", "legend": "ビルマの戦士たちは、ルビーを身につけるだけでなく皮膚の下に埋め込むと、戦場で傷を負わなくなると信じていたと伝えられます。"}, "en": {"words": ["Passion", "Benevolence", "Dignity"], "origin": "From the Latin ruber, red. In Sanskrit it was ratnaraj, king of gems.", "nature": "Corundum, like sapphire, colored red by chromium. Chromium also fluoresces red under ultraviolet, so in daylight the stone seems to burn from within. Mohs 9.", "legend": "Burmese warriors were said to set rubies beneath their skin, believing it made them invulnerable in battle."}}, "peridot": {"ja": {"words": ["夫婦の幸福", "和合"], "origin": "フランス語の péridot に由来しますが、その先は諸説あり、アラビア語の faridat（宝石）とする説があります。和名は橄欖石（かんらんせき）で、オリーブの色にちなみます。", "nature": "かんらん石の宝石名で、地球の深いマントルでできた結晶が火山活動で運ばれてきます。パラサイトと呼ばれる隕石の中にも見つかる、宇宙から来ることもある宝石です。", "legend": "古代エジプトでは「太陽の宝石」と呼ばれ、紅海のザバルガド島で採られました。クレオパトラのエメラルドの一部は、実はペリドットだったという説もあります。"}, "en": {"words": ["Marital happiness", "Harmony"], "origin": "From the French péridot; beyond that its origin is debated, and one theory traces it to the Arabic faridat, gem.", "nature": "The gem form of olivine, crystallized deep in the mantle and carried up by volcanoes. It is also found inside pallasite meteorites, so some peridot comes from space.", "legend": "Ancient Egyptians called it the gem of the sun and mined it on Zabargad Island in the Red Sea. Some of Cleopatra's emeralds may in fact have been peridot."}}, "spinel": {"ja": {"words": ["努力", "向上"], "origin": "ラテン語の spina（とげ）に由来するとされます。先のとがった八面体の結晶の姿からの名で、和名も尖晶石（せんしょうせき）です。", "nature": "マグネシウムとアルミニウムの酸化物で、立方晶系の美しい八面体に育ちます。ルビーとよく似た赤を示すため、長くルビーと取り違えられてきました。", "legend": "英国王冠の「黒太子のルビー」は、実は大粒のスピネルです。アジャンクールの戦いでヘンリー5世が兜に着けていたと伝えられます。"}, "en": {"words": ["Effort", "Growth"], "origin": "Thought to come from the Latin spina, thorn, for its sharply pointed octahedral crystals.", "nature": "An oxide of magnesium and aluminium that grows into crisp cubic octahedra. Its red so closely matches ruby that the two were confused for centuries.", "legend": "The Black Prince's Ruby in the British Imperial State Crown is in fact a large spinel, said to have been worn on Henry V's helmet at Agincourt."}}, "sapphire": {"ja": {"words": ["慈愛", "誠実", "徳望"], "origin": "ギリシア語の sappheiros、ラテン語の sapphirus（青）に由来します。和名は青玉です。", "nature": "ルビーと同じコランダムで、赤以外の色のものはすべてサファイアと呼ばれます。青は鉄とチタンの働きによるもの。モース硬度9で、ダイヤモンドに次ぐ硬さです。", "legend": "古代ペルシアでは、大地は巨大なサファイアの上に載っていて、その青い反射が空の色をつくっていると信じられていました。"}, "en": {"words": ["Compassion", "Sincerity", "Virtue"], "origin": "From the Greek sappheiros and Latin sapphirus, blue.", "nature": "Corundum, like ruby; every color but red is called sapphire. Blue comes from iron and titanium together. Mohs 9, second only to diamond.", "legend": "Ancient Persians believed the earth rested on a giant sapphire whose reflection gave the sky its blue."}}, "opal": {"ja": {"words": ["希望", "幸運", "忍耐"], "origin": "サンスクリットの upala（貴石）が、ラテン語の opalus を経て名になったとされます。和名は蛋白石です。", "nature": "結晶をもたない含水シリカで、数パーセントの水を含みます。遊色は直径数百ナノメートルのシリカ球が規則正しく並び、光を回折させることで生まれます。", "legend": "プリニウスによれば、ローマの元老院議員ノニウスはアントニウスに自分のオパールを差し出すより追放を選びました。オーストラリアには、創造主が虹に乗って降り立った足跡がオパールになったという話が伝わります。"}, "en": {"words": ["Hope", "Good fortune", "Patience"], "origin": "Thought to come from the Sanskrit upala, precious stone, by way of the Latin opalus.", "nature": "Non-crystalline hydrated silica holding a few percent water. Its play of color comes from silica spheres a few hundred nanometers across, stacked in order so that they diffract light.", "legend": "Pliny tells of the Roman senator Nonius, who chose exile over surrendering his opal to Mark Antony. An Australian story says opal formed where the creator stepped down to earth on a rainbow."}}, "tourmaline": {"ja": {"words": ["希望", "潔白"], "origin": "シンハラ語の turmali（混ざった石）に由来します。スリランカで色とりどりの石と一緒に採れたことからの名です。", "nature": "温めたり圧力をかけたりすると電気を帯びる性質があり、和名を電気石といいます。宝石の中でも色の幅がとりわけ広く、一つの結晶に二色が現れることもあります。", "legend": "古代エジプトでは、トルマリンは地球の中心から虹を通って地上に昇ってきたため、虹のすべての色を宿したのだと語られました。"}, "en": {"words": ["Hope", "Innocence"], "origin": "From the Sinhalese turmali, mixed stones, as it was found among gems of many colors in Sri Lanka.", "nature": "It becomes electrically charged when heated or pressed, so its Japanese name means electric stone. Few gems show a wider range of color, and a single crystal can hold two.", "legend": "An Egyptian tale says tourmaline climbed from the earth's center along a rainbow and gathered every one of its colors on the way."}}, "topaz": {"ja": {"words": ["誠実", "友情", "希望"], "origin": "紅海の島 Topazios の名に由来すると伝えられます。ただし、この島で採れていた石は実はペリドットだったと考えられています。和名は黄玉です。", "nature": "フッ素を含むアルミニウムのケイ酸塩で、モース硬度8。一方向にきれいに割れる劈開があります。赤みを帯びたオレンジ色のものはインペリアル・トパーズと呼ばれます。", "legend": "古代ギリシアでは力を授け、危機の際には身につけた人の姿を消してくれると信じられました。エジプトでは太陽神ラーの輝きを宿す石とされていました。"}, "en": {"words": ["Sincerity", "Friendship", "Hope"], "origin": "Said to come from Topazios, an island in the Red Sea, though the stone mined there was probably peridot.", "nature": "A fluorine-bearing aluminium silicate, Mohs 8, with one perfect cleavage. Reddish orange stones are called imperial topaz.", "legend": "Ancient Greeks believed it lent strength and could make its wearer invisible in danger. Egyptians linked its glow to the sun god Ra."}}, "citrine": {"ja": {"words": ["繁栄", "幸運"], "origin": "フランス語の citron（レモン）に由来します。和名は黄水晶です。", "nature": "鉄を含む黄色の石英です。天然のものは少なく、市場の多くはアメシストやスモーキークォーツを加熱して色を変えたものです。", "legend": "商いに富をもたらすと信じられ、「商人の石」と呼ばれてきました。レジや財布にしのばせる習わしも伝わります。"}, "en": {"words": ["Prosperity", "Good fortune"], "origin": "From the French citron, lemon.", "nature": "Yellow quartz colored by iron. Natural citrine is scarce; most on the market is amethyst or smoky quartz turned yellow by heat.", "legend": "Long called the merchant's stone, believed to bring wealth to trade, and tucked into tills and purses for luck."}}, "turquoise": {"ja": {"words": ["成功", "繁栄"], "origin": "フランス語で「トルコの石」の意味です。ペルシア産の石がトルコを経てヨーロッパに運ばれたことからの名で、和名もトルコ石です。", "nature": "銅とアルミニウムを含む含水リン酸塩で、不透明です。母岩が網目状に入ったものはマトリックスと呼ばれ、その模様も一つずつ異なります。", "legend": "ナバホやプエブロの人々は空のかけらとしてこの石を尊び、ペルシアやトルコでは馬から落ちるのを防ぐ騎手のお守りとされました。"}, "en": {"words": ["Success", "Prosperity"], "origin": "French for Turkish stone, since Persian stones reached Europe by way of Turkey.", "nature": "An opaque hydrated phosphate of copper and aluminium. Stones laced with host rock, called matrix, each carry their own web of veins.", "legend": "Navajo and Pueblo peoples honored it as a piece of the sky, and in Persia and Turkey it was a rider's charm against falling from the horse."}}, "tanzanite": {"ja": {"words": ["誇り高き人", "冷静"], "origin": "1967年にタンザニアで見つかり、翌年ティファニーが産地の国名にちなんで命名しました。", "nature": "ゾイサイトの青い変種で、見る方向によって青、紫、赤紫の三色が現れる三色性をもちます。採れるのはキリマンジャロ山麓のメレラニ丘陵だけです。", "legend": "発見の物語として、山火事の後に茶色の結晶が鮮やかな青に変わっているのを牧夫が見つけたと語られます。実際に多くの石は加熱で青を引き出しています。"}, "en": {"words": ["Dignity", "Calm"], "origin": "Found in Tanzania in 1967 and named by Tiffany the following year after the country.", "nature": "A blue variety of zoisite and strongly trichroic: blue, violet or burgundy depending on the viewing angle. It comes only from the Merelani Hills near Kilimanjaro.", "legend": "Its discovery story tells of a herder who found brown crystals turned vivid blue after a grass fire. Most stones today are indeed heated to bring out the blue."}}};
+const IT_M=['GENNAIO','FEBBRAIO','MARZO','APRILE','MAGGIO','GIUGNO','LUGLIO','AGOSTO','SETTEMBRE','OTTOBRE','NOVEMBRE','DICEMBRE'];
+const EN_M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const I18N={
+ ja:{doc:'Lapis Natalis',title:'Lapis <i>Natalis</i>',kana:'誕生日から生まれる、あなただけの石の模様',todayTag:'今日',goToday:'今日の石に戻る',
+  lead:'一年366日それぞれに、その日だけの暦石（こよみいし）があります。誕生日から誕生石を選び、その石の結晶系、屈折率、分散から立体のカットと光の模様を計算します。模様は上下左右に継ぎ目なくつながる1枚のタイルで、366日すべてで別の形になります。',
+  monthLbl:'月',dayLbl:'日',prevDay:'前の日',nextDay:'次の日',bdMonth:m=>`${m}月 · ${IT_M[m-1]}`,wpDate:(m,d)=>`${m}月${d}日`,wpJoin:'　',wpTextLbl:'壁紙に入れる文字',wpNone:'なし',wpWords:'石言葉',wpFull:'石言葉と石名と日付',wpPosLbl:'文字の位置',wpBottom:'下',wpCenter:'中央',expLbl:'書き出す形',expTile:'タイル1枚',expSquare:'正方形',expPhone:'スマホ壁紙',expDesktop:'デスクトップ壁紙',saveBtn:'PNGで保存',saving:'書き出し用に高解像度で計算しています',saved:'保存しました',declined:'保存を取り消しました',saveFail:'保存できませんでした。画像を長押し、または右クリックで保存してください。',expTileNote:'継ぎ目なく並ぶ1枚のタイル',expWallNote:'並べる数の設定で敷き詰めた壁紙',wordsLbl:'石言葉',originLbl:'名の由来',natureLbl:'性質',legendLbl:'伝説と言い伝え',pickAria:'誕生日と誕生石',birthday:'誕生日',month:'月',day:'日',stonesLbl:'この月の誕生石',gemAria:'石の立体',patAria:'光の模様',
+  drag:'ドラッグか矢印キーで回転',trayAria:'石の立体。矢印キーで回転すると模様も変わります',linkLbl:'石の角度と模様',linkOn:'角度で模様を変える',linkOff:'模様を固定',resetAng:'正面に戻す',angle:(a,b,p)=>`方位 ${a}° · 傾き ${b}° · 周期 ${p}°`,angleOff:'模様は固定中',pattern:'光の模様',previewAria:'タイルを並べた模様',modeLbl:'描き方',modeLight:'光の網',modeFacet:'ファセット図を重ねる',
+  groundLbl:'下地',sumi:'墨',paper:'白',strengthLbl:'光の強さ',repsLbl:'並べる数（横）',seams:'タイルの継ぎ目を表示',
+  tileAlt:'1枚分のタイル画像',tileHead:'1枚分のタイル',save:'左の画像を長押し、または右クリックしても保存できます。',
+  how:'しくみ',
+  h1t:'誕生日から石',h1p:'月で誕生石を決め、月と日と石の名前から366通りの種をつくります。同じ日付なら何度でも同じ模様になります。',
+  h2t:'物性から立体',h2p:'屈折率から臨界角を求め、光が底面で全反射しやすいクラウン角とパビリオン角を決めます。不透明な石や遊色の石はカボションや球にします。',
+  h3t:'結晶系から対称性',h3p:'立方晶系は正方格子 p4m、六方晶系は p6m、三方晶系は p3m1、直方晶系は pmm、単斜晶系は p2、三斜晶系は p1 の壁紙群に対応させます。',
+  h4t:'屈折から模様',h4p:'対称な波を重ねた石の表面を通った光が、底に集まる位置を計算します。分散の大きい石ほど赤と青の光がずれ、縁に虹が出ます。周期は整数の波数だけで組むため、タイルの端は必ずつながります。石を回すと、その向きに応じて波の重みと光の深さが変わり、対称性を保ったまま模様が移ろいます。ファセット1つ分回ると元の模様に戻ります。',
+  foot:'Lapis Natalis（ラピス・ナターリス）は、ラテン語で「誕生の石」を意味します。366日それぞれの暦石を、その光と物語とともに収めました。試作版です。誕生石は日本の誕生石表から月ごとに主な石を選んでいます。色は特定の色見本ではなく、石の吸収色、厚み、光の分散から計算しています。物性値は代表的な値です。',
+  mOpt:m=>m+'月',dOpt:d=>d+'日',dayno:n=>`${n} / 366 日目`,
+  sys:'結晶系',ri:'屈折率',disp:'分散',noDisp:'測らない',crit:'臨界角',crown:'クラウン角',pav:'パビリオン角',table:'テーブル径',grp:'壁紙群',waves:'重ねた波',seed:'日付の種',
+  wavesV:(r,t)=>`${r} 組 ${t} 本`,
+  cut:(n,oval)=>`${n}面ラウンド${oval?'（オーバル）':''}`,sphere:'球',cab:'カボション',
+  mapnote:(s,g)=>`${s}の対称性を、模様では ${g} の壁紙群として使っています。`,
+  tiletext:(w,h)=>`${w}×${h} px。この1枚を縦横に並べると、上の模様になります。`,
+  computing:'計算しています',done:ms=>`計算 ${ms} ms`},
+ en:{doc:'Lapis Natalis',title:'Lapis <i>Natalis</i>',kana:'Your birthday, cut into a pattern',todayTag:'Today',goToday:'Back to today',
+  lead:'Every day of the year has its own koyomi-ishi, a calendar stone. Pick a birthday to find its birthstone. The stone\'s crystal system, refractive index and dispersion shape a faceted cut and a pattern of focused light. The pattern is one seamless tile that repeats in every direction, and each of the 366 days gets its own.',
+  monthLbl:'Month',dayLbl:'Day',prevDay:'Previous day',nextDay:'Next day',bdMonth:m=>`${EN_M[m-1]} · ${IT_M[m-1]}`,wpDate:(m,d)=>`${EN_M[m-1]} ${d}`,wpJoin:'  ·  ',wpTextLbl:'Text on wallpaper',wpNone:'None',wpWords:'Words of the stone',wpFull:'Words, stone and date',wpPosLbl:'Text position',wpBottom:'Lower',wpCenter:'Center',expLbl:'Export as',expTile:'Single tile',expSquare:'Square',expPhone:'Phone wallpaper',expDesktop:'Desktop wallpaper',saveBtn:'Save PNG',saving:'Rendering at high resolution',saved:'Saved',declined:'Save cancelled',saveFail:'Could not save. Long press or right click the image instead.',expTileNote:'One seamless tile',expWallNote:'Filled using the tiles across setting',wordsLbl:'Words of the stone',originLbl:'Name',natureLbl:'Nature',legendLbl:'Legend',pickAria:'Birthday and birthstone',birthday:'Birthday',month:'Month',day:'Day',stonesLbl:'Birthstones of the month',gemAria:'The stone in 3D',patAria:'Light pattern',
+  drag:'Drag or use arrow keys',trayAria:'The stone in 3D. Rotate with arrow keys to change the pattern',linkLbl:'Stone angle and pattern',linkOn:'Angle shapes pattern',linkOff:'Hold pattern',resetAng:'Reset view',angle:(a,b,p)=>`Turn ${a}° · Tilt ${b}° · Repeats ${p}°`,angleOff:'Pattern held',pattern:'Light pattern',previewAria:'Tiled pattern',modeLbl:'Drawing',modeLight:'Caustic web',modeFacet:'Overlay facet plan',
+  groundLbl:'Ground',sumi:'Ink',paper:'Paper',strengthLbl:'Light strength',repsLbl:'Tiles across',seams:'Show tile seams',
+  tileAlt:'A single tile',tileHead:'A single tile',save:'You can also long press or right click the image to save it.',
+  how:'How it works',
+  h1t:'Birthday to stone',h1p:'The month picks the birthstone. Month, day and stone name form a seed with 366 outcomes, so the same date always gives the same pattern.',
+  h2t:'Properties to form',h2p:'The refractive index gives the critical angle, which sets crown and pavilion angles that favor total internal reflection. Opaque stones and opal become cabochons; pearl becomes a sphere.',
+  h3t:'Crystal system to symmetry',h3p:'Cubic maps to the square lattice group p4m, hexagonal to p6m, trigonal to p3m1, orthorhombic to pmm, monoclinic to p2 and triclinic to p1.',
+  h4t:'Refraction to pattern',h4p:'Light passes through a surface built from symmetric waves and lands on the floor below. Stones with higher dispersion split red from blue and leave rainbow edges. Only whole-number wave counts are used, so the tile edges always meet. Turning the stone reweights the waves and changes the depth of focus, so the pattern shifts while keeping its symmetry. One facet of rotation brings it back to where it began.',
+  foot:'Lapis Natalis is Latin for stone of birth. Each of the 366 days has its own calendar stone, with its light and its story. Prototype. Birthstones follow the main stones of the Japanese birthstone list. Colors are not taken from any color chart; they are computed from each stone\'s absorption color, thickness and dispersion. Physical values are typical figures.',
+  mOpt:m=>['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1],dOpt:d=>String(d),dayno:n=>`Day ${n} of 366`,
+  sys:'Crystal system',ri:'Refractive index',disp:'Dispersion',noDisp:'not measured',crit:'Critical angle',crown:'Crown angle',pav:'Pavilion angle',table:'Table',grp:'Wallpaper group',waves:'Waves',seed:'Date seed',
+  wavesV:(r,t)=>`${r} sets, ${t} waves`,
+  cut:(n,oval)=>`${n} main facets${oval?', oval':''}`,sphere:'sphere',cab:'cabochon',
+  mapnote:(s,g)=>`The ${s.toLowerCase()} symmetry becomes wallpaper group ${g} in the pattern.`,
+  tiletext:(w,h)=>`${w}×${h} px. Repeat this tile across and down to get the pattern above.`,
+  computing:'Computing',done:ms=>`Computed in ${ms} ms`}
+};
+let LANG='en';try{const v=localStorage.getItem('lapis-natalis-lang');if(v==='ja'||v==='en')LANG=v;}catch(e){}
+const t=k=>I18N[LANG][k];
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function hashStr(s){let h=2166136261>>>0;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+function hsv(h,s,v){h=((h%1)+1)%1;const i=Math.floor(h*6),f=h*6-i,p=v*(1-s),q=v*(1-f*s),t=v*(1-(1-f)*s);return [[v,t,p],[q,v,p],[p,v,t],[p,q,v],[t,p,v],[v,p,q]][i%6];}
+function norm(v){const l=Math.hypot(v[0],v[1],v[2])||1;return [v[0]/l,v[1]/l,v[2]/l];}
+
+/* ---------- wave orbits for each wallpaper symmetry ---------- */
+const r60=v=>[(v[0]-v[1])/2,(3*v[0]+v[1])/2];
+function orbitList(kind,ar){
+  const ops= kind==='sq'?[v=>[-v[1],v[0]],v=>[v[0],-v[1]]]
+    : kind==='hex'?[r60,v=>[v[0],-v[1]]]
+    : kind==='tri'?[v=>r60(r60(v)),v=>[v[0],-v[1]]]
+    : [v=>[-v[0],v[1]],v=>[v[0],-v[1]]];
+  const isHex=kind==='hex'||kind==='tri';
+  const len=v=>isHex?Math.hypot(v[0],v[1]/SQ3):kind==='sq'?Math.hypot(v[0],v[1]):Math.hypot(v[0],v[1]/ar);
+  const seen=new Set(),out=[];
+  for(let m=-8;m<=8;m++)for(let n=-14;n<=14;n++){
+    if(!m&&!n)continue; if(isHex&&((m-n)%2))continue;
+    const k=m+','+n; if(seen.has(k))continue;
+    const orb=[[m,n]],ks=new Set([k]);
+    for(let q=0;q<orb.length;q++)for(const op of ops){const w=op(orb[q]),wk=w[0]+','+w[1];if(!ks.has(wk)){ks.add(wk);orb.push(w);}}
+    ks.forEach(x=>seen.add(x));
+    const L=len([m,n]); if(L<=7.6)out.push({vecs:orb,len:L,hasNeg:orb.some(w=>w[0]===-m&&w[1]===-n)});
+  }
+  return out.sort((a,b)=>a.len-b.len);
+}
+function halfSet(vecs){const s=new Set(),o=[];for(const v of vecs){if(s.has((-v[0])+','+(-v[1])))continue;s.add(v[0]+','+v[1]);o.push(v);}return o;}
+function pick(list,rng,count){
+  const low=list.filter(o=>o.len<=2.7),chosen=[low[Math.floor(rng()*low.length)]];
+  const pool=list.filter(o=>o.len>1&&!chosen.includes(o));
+  while(chosen.length<count&&pool.length){
+    let tot=0;const w=pool.map(o=>{const x=Math.pow(o.len,-.4);tot+=x;return x;});
+    let r=rng()*tot,i=0;while(r>w[i]){r-=w[i];i++;}
+    chosen.push(pool.splice(Math.min(i,pool.length-1),1)[0]);
+  }
+  return chosen;
+}
+const amp=(rng,len)=>(rng()<.5?-1:1)*(.6+.8*rng())*Math.pow(len,-1.35);
+
+function buildTerms(sysInfo,rng){
+  const terms=[];let rings=0,RG=0;
+  const lat=sysInfo.lat,g=sysInfo.group;
+  if(lat==='sq'||lat==='hex'){
+    const L=orbitList(lat==='sq'?'sq':'hex');
+    const ch=pick(L,rng,3+Math.floor(rng()*3)); rings+=ch.length;
+    for(const o of ch){const A=amp(rng,o.len);for(const v of halfSet(o.vecs))terms.push({m:v[0],n:v[1],A,phi:0,ring:RG});RG++;}
+    if(g==='p3m1'){
+      const T=orbitList('tri').filter(o=>!o.hasNeg&&o.len>1.5);
+      const ch2=pick(T,rng,1+Math.floor(rng()*2)); rings+=ch2.length;
+      for(const o of ch2){const A=amp(rng,o.len)*1.4;for(const v of o.vecs)terms.push({m:v[0],n:v[1],A,phi:-Math.PI/2,ring:RG});RG++;}
+    }
+  }else if(g==='pmm'){
+    const L=orbitList('rect',sysInfo.ar);
+    const ch=pick(L,rng,4+Math.floor(rng()*2)); rings+=ch.length;
+    for(const o of ch){const A=amp(rng,o.len);for(const v of halfSet(o.vecs))terms.push({m:v[0],n:v[1],A,phi:0,ring:RG});RG++;}
+  }else{
+    const cnt=5+Math.floor(rng()*3);
+    const used=new Set();
+    for(let i=0;i<cnt;i++){
+      let m,n,k;do{m=Math.floor(rng()*6)+(i===0?1:0);n=Math.floor(rng()*11)-5;k=m+','+n;}while((!m&&!n)||used.has(k)||(m===0&&n<0));
+      used.add(k);
+      const len=Math.hypot(m,n/sysInfo.ar);
+      terms.push({m,n,A:amp(rng,len)*(i===0?1.6:1),phi:g==='p1'?rng()*TAU:0,ring:RG++});
+    }
+    rings=cnt;
+  }
+  return {terms,rings,nR:RG};
+}
+
+/* height field and its gradient, separable trig tables */
+function field(terms,Rw,Rh,Nw,Nh){
+  const T=terms.length,N=Nw*Nh,h=new Float32Array(N),gx=new Float32Array(N),gy=new Float32Array(N);
+  const cx=new Float32Array(T*Nw),sx=new Float32Array(T*Nw),cy=new Float32Array(T*Nh),sy=new Float32Array(T*Nh),KX=new Float32Array(T),KY=new Float32Array(T),A=new Float32Array(T);
+  for(let t=0;t<T;t++){
+    const tm=terms[t],kx=TAU*tm.m/Rw,ky=TAU*tm.n/Rh;KX[t]=kx;KY[t]=ky;A[t]=tm.A;
+    for(let i=0;i<Nw;i++){const a=kx*(i+.5)*Rw/Nw+tm.phi;cx[t*Nw+i]=Math.cos(a);sx[t*Nw+i]=Math.sin(a);}
+    for(let j=0;j<Nh;j++){const b=ky*(j+.5)*Rh/Nh;cy[t*Nh+j]=Math.cos(b);sy[t*Nh+j]=Math.sin(b);}
+  }
+  for(let j=0;j<Nh;j++){
+    const row=j*Nw;
+    for(let t=0;t<T;t++){
+      const c=cy[t*Nh+j],s=sy[t*Nh+j],a=A[t],ax=-a*KX[t],ay=-a*KY[t],o=t*Nw;
+      for(let i=0;i<Nw;i++){
+        const C=cx[o+i],S=sx[o+i],cs=C*c-S*s,sn=S*c+C*s,p=row+i;
+        h[p]+=a*cs;gx[p]+=ax*sn;gy[p]+=ay*sn;
+      }
+    }
+  }
+  let r=0;for(let p=0;p<N;p++)r+=gx[p]*gx[p]+gy[p]*gy[p];
+  return {h,gx,gy,Nw,Nh,rms:Math.sqrt(r/N)};
+}
+
+/* light through the surface lands on a periodic floor */
+function caustic(F,Rw,Rh,K,factors){
+  const {gx,gy,Nw,Nh}=F,w=Rw*Rh/(Nw*Nh),bufs=factors.map(()=>new Float32Array(Rw*Rh));
+  const fx0=Rw/Nw,fy0=Rh/Nh;
+  for(let j=0;j<Nh;j++){const y=(j+.5)*fy0;
+    for(let i=0;i<Nw;i++){const x=(i+.5)*fx0,p=j*Nw+i,dx=-K*gx[p],dy=-K*gy[p];
+      for(let c=0;c<factors.length;c++){
+        let tx=x+dx*factors[c]-.5,ty=y+dy*factors[c]-.5;
+        tx%=Rw;if(tx<0)tx+=Rw;ty%=Rh;if(ty<0)ty+=Rh;
+        const x0=tx|0,y0=ty|0,fx=tx-x0,fy=ty-y0,x1=x0+1===Rw?0:x0+1,y1=y0+1===Rh?0:y0+1,b=bufs[c];
+        b[y0*Rw+x0]+=w*(1-fx)*(1-fy);b[y0*Rw+x1]+=w*fx*(1-fy);b[y1*Rw+x0]+=w*(1-fx)*fy;b[y1*Rw+x1]+=w*fx*fy;
+      }
+    }
+  }
+  return bufs;
+}
+
+/* ---------- gem mesh ---------- */
+function buildMesh(st,si,rng){
+  const V=[],F=[],top=[];
+  const critD=Math.asin(1/st.ri)*180/Math.PI;
+  const info={critD};
+  if(st.cut==='facet'){
+    const n=si.n,pav=(40.75+(critD-24.4)*.14),crown=(34.5+(critD-24.4)*.35);
+    info.pav=pav;info.crown=crown;
+    const rt=.53+rng()*.07,hc=(1-rt)*Math.tan(crown*Math.PI/180),hp=Math.tan(pav*Math.PI/180),g=.03;
+    info.table=rt;
+    for(let i=0;i<n;i++){const a=TAU*i/n,r=rt*(st.sys==='trigonal'?(i%2?.9:1.08):1);V.push([r*Math.cos(a),hc,r*Math.sin(a)]);}
+    for(let j=0;j<2*n;j++){const a=Math.PI*j/n;V.push([Math.cos(a),0,Math.sin(a)]);}
+    for(let j=0;j<2*n;j++){const a=Math.PI*j/n;V.push([Math.cos(a),-g,Math.sin(a)]);}
+    for(let i=0;i<n;i++){const a=TAU*i/n,r=.44;V.push([r*Math.cos(a),-g-hp*(1-r)*.9,r*Math.sin(a)]);}
+    V.push([0,-g-hp,0]);
+    const T=i=>((i%n)+n)%n,G=j=>n+((j%(2*n))+2*n)%(2*n),B=j=>3*n+((j%(2*n))+2*n)%(2*n),L=i=>5*n+T(i),C=6*n;
+    F.push([...Array(n).keys()]);
+    for(let i=0;i<n;i++){
+      F.push([T(i),T(i+1),G(2*i+1)],[T(i),G(2*i-1),G(2*i)],[T(i),G(2*i),G(2*i+1)]);
+      F.push([B(2*i-1),B(2*i),L(i)],[B(2*i),B(2*i+1),L(i)],[L(i),B(2*i+1),L(i+1)],[L(i),L(i+1),C]);
+    }
+    for(let j=0;j<2*n;j++)F.push([G(j),G(j+1),B(j+1),B(j)]);
+  }else{
+    const sphere=st.cut==='sphere',M=36,K=sphere?18:10,hd=st.mat==='moon'?.62:st.mat==='turq'?.46:.52;
+    if(sphere){
+      for(let k=1;k<K;k++){const p=-Math.PI/2+Math.PI*k/K;for(let i=0;i<M;i++){const a=TAU*i/M;V.push([Math.cos(p)*Math.cos(a),Math.sin(p),Math.cos(p)*Math.sin(a)]);}}
+      V.push([0,-1,0],[0,1,0]);const S=V.length-2,N=V.length-1,R=(k,i)=>k*M+((i%M)+M)%M;
+      for(let k=0;k<K-2;k++)for(let i=0;i<M;i++)F.push([R(k,i),R(k,i+1),R(k+1,i+1),R(k+1,i)]);
+      for(let i=0;i<M;i++){F.push([S,R(0,i+1),R(0,i)]);F.push([N,R(K-2,i),R(K-2,i+1)]);}
+    }else{
+      for(let k=0;k<K;k++){const p=Math.PI/2*k/K;for(let i=0;i<M;i++){const a=TAU*i/M;V.push([Math.cos(p)*Math.cos(a),Math.sin(p)*hd,Math.cos(p)*Math.sin(a)]);}}
+      V.push([0,hd,0]);const A=V.length-1,R=(k,i)=>k*M+((i%M)+M)%M;
+      for(let k=0;k<K-1;k++)for(let i=0;i<M;i++)F.push([R(k,i),R(k,i+1),R(k+1,i+1),R(k+1,i)]);
+      for(let i=0;i<M;i++)F.push([R(K-1,i),R(K-1,i+1),A]);
+      F.push([...Array(M).keys()].reverse());
+    }
+  }
+  for(const v of V)top.push(st.cut==='sphere'?v[1]>=-1e-6:v[1]>=-1e-6);
+  if(si.sx){for(const v of V){v[0]*=si.sx;if(si.shear)v[0]+=si.shear*v[2];}}
+  let ymin=1e9,ymax=-1e9;for(const v of V){ymin=Math.min(ymin,v[1]);ymax=Math.max(ymax,v[1]);}
+  const yc=(ymin+ymax)/2;
+  const cen=[0,0,0];for(const v of V){cen[0]+=v[0];cen[1]+=v[1];cen[2]+=v[2];}cen.forEach((c,i)=>cen[i]=c/V.length);
+  const normals=[];
+  for(let f=0;f<F.length;f++){
+    const fc=F[f],a=V[fc[0]],b=V[fc[1]],c=V[fc[2]];
+    let n=norm([(b[1]-a[1])*(c[2]-a[2])-(b[2]-a[2])*(c[1]-a[1]),(b[2]-a[2])*(c[0]-a[0])-(b[0]-a[0])*(c[2]-a[2]),(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])]);
+    const m=[0,0,0];for(const k of fc){m[0]+=V[k][0];m[1]+=V[k][1];m[2]+=V[k][2];}
+    if((m[0]/fc.length-cen[0])*n[0]+(m[1]/fc.length-cen[1])*n[1]+(m[2]/fc.length-cen[2])*n[2]<0){fc.reverse();n=n.map(x=>-x);}
+    normals.push(n);
+  }
+  // facet plan, seen from above
+  const Lp=norm([-.4,.85,-.45]);let rmax=0;
+  for(const v of V)rmax=Math.max(rmax,Math.hypot(v[0],v[2]));
+  const plan=[];
+  F.forEach((fc,f)=>{const n=normals[f];if(n[1]<.05||!fc.every(k=>top[k]))return;
+    plan.push({pts:fc.map(k=>[V[k][0]/rmax,V[k][2]/rmax]),shade:.3+.7*Math.max(0,n[0]*Lp[0]+n[1]*Lp[1]+n[2]*Lp[2]),idx:f});});
+  for(const v of V)v[1]-=yc;
+  let ext=0;for(const v of V)ext=Math.max(ext,Math.hypot(v[0],v[1],v[2]));
+  return {V,F,plan,ext,info};
+}
+
+/* ---------- state ---------- */
+const $=id=>document.getElementById(id);
+const today=new Date(),TODAY_M=today.getMonth()+1,TODAY_D=today.getDate();
+let S={m:today.getMonth()+1,d:today.getDate(),key:null,mode:'light',ground:'sumi',strength:1.7,reps:5,seams:false,exp:'tile',wptext:'full',wppos:'bottom',link:true};
+let C={};
+const RES=560;
+
+let builtLang=null,builtMonth=null;
+function renderBirth(){
+  const mb=$('months'),db=$('days');
+  if(builtLang!==LANG){
+    mb.innerHTML='';
+    for(let m=1;m<=12;m++){const st=STONES[MONTHS[m-1][0]],b=document.createElement('button');b.type='button';b.className='mbtn';b.dataset.m=m;
+      b.setAttribute('aria-label',`${t('bdMonth')(m)} ${LANG==='ja'?st.ja:st.en}`);
+      b.innerHTML=`<span class="mn">${m}</span><span class="ms"><span class="dot" style="background:rgb(${st.body.join(',')})"></span>${LANG==='ja'?st.ja:st.en}</span>`;
+      b.onclick=()=>{if(S.m===m)return;S.m=m;S.d=Math.min(S.d,DAYS[m-1]);birthChanged();};mb.appendChild(b);}
+    builtLang=LANG;builtMonth=null;
+  }
+  if(builtMonth!==S.m){
+    db.innerHTML='';
+    for(let d=1;d<=DAYS[S.m-1];d++){const b=document.createElement('button');b.type='button';b.className='dbtn';b.dataset.d=d;b.textContent=d;
+      b.onclick=()=>{if(S.d===d)return;S.d=d;birthChanged();};db.appendChild(b);}
+    builtMonth=S.m;
+  }
+  mb.querySelectorAll('.mbtn').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.m===S.m)));
+  db.querySelectorAll('.dbtn').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.d===S.d)));
+  const isToday=S.m===TODAY_M&&S.d===TODAY_D;$('todayTag').hidden=!isToday;$('goToday').hidden=isToday;
+  $('bdDay').textContent=S.d;$('bdMonth').textContent=t('bdMonth')(S.m);
+  const st=STONES[S.key];if(st){$('bdStone').textContent=LANG==='ja'?st.ja:st.en;$('bdDot').style.background=`rgb(${st.body.join(',')})`;}
+  $('stoneField').hidden=MONTHS[S.m-1].length<2;
+}
+function birthChanged(){stoneChips();renderBirth();setup();}
+function shiftDay(k){
+  let idx=(dayIndex(S.m,S.d)-1+k+366)%366,m=1;
+  while(idx>=DAYS[m-1]){idx-=DAYS[m-1];m++;}
+  S.m=m;S.d=idx+1;birthChanged();
+}
+
+function dayIndex(m,d){let s=0;for(let i=0;i<m-1;i++)s+=DAYS[i];return s+d;}
+function stoneChips(){
+  const box=$('stones');box.innerHTML='';
+  const list=MONTHS[S.m-1];if(!list.includes(S.key))S.key=list[0];
+  for(const k of list){const st=STONES[k],b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed',String(k===S.key));
+    b.innerHTML=`<span class="dot" style="background:rgb(${st.body.join(',')})"></span>${LANG==='ja'?st.ja:st.en}`;
+    b.onclick=()=>{S.key=k;stoneChips();renderBirth();setup();};box.appendChild(b);}
+}
+function bindChips(id,prop,cb){const box=$(id);box.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{S[prop]=b.dataset.v;box.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));cb();});}
+
+function setup(){
+  const st=STONES[S.key],si=SYS[st.sys];
+  const seed=hashStr(`${S.m}/${S.d}/${S.key}`),rng=mulberry32(seed);
+  const {terms,rings,nR}=buildTerms(si,rng);
+  const mesh=buildMesh(st,si,rng);
+  const Rw=RES,Rh=si.lat==='hex'?Math.round(RES*SQ3):si.lat==='rect'?Math.round(RES*si.ar):RES;
+  const wr=mulberry32(seed^0x9e3779b9),wp=[];
+  for(let r=0;r<nR;r++)wp.push({f:1+Math.floor(wr()*2),b:wr()*TAU,c:wr()*TAU,g:.6+.8*wr(),s:wr()<.5?-1:1});
+  const nSym=st.cut==='facet'?si.n:si.lat==='hex'?6:si.lat==='sq'?4:2;
+  C={st,si,seed,terms,rings,nR,wp,nSym,mesh,Rw,Rh,phase:rng(),dirty:true,w:null,depth:1,phShift:0,rot:0};
+  document.documentElement.style.setProperty('--gem',`rgb(${st.body.map(v=>Math.round(v*.85)).join(',')})`);
+  $('sname').textContent=LANG==='ja'?st.ja:st.en;$('sen').textContent=LANG==='ja'?st.en:st.ja;
+  $('dayno').textContent=t('dayno')(dayIndex(S.m,S.d));
+  const sysName=LANG==='ja'?si.ja:si.en,latName=LANG==='ja'?si.latJa:si.latEn;
+  const inf=mesh.info,sp=[
+    [t('sys'),sysName],[t('ri'),st.ri.toFixed(3)],[t('disp'),st.disp?st.disp.toFixed(3):t('noDisp')],[t('crit'),inf.critD.toFixed(1)+'°']];
+  if(st.cut==='facet')sp.push([t('crown'),inf.crown.toFixed(1)+'°'],[t('pav'),inf.pav.toFixed(1)+'°'],[t('table'),Math.round(inf.table*100)+'%']);
+  sp.push([t('grp'),LANG==='ja'?`${si.group}（${latName}）`:`${si.group} (${latName})`],[t('waves'),t('wavesV')(rings,terms.length)],[t('seed'),seed.toString(16).padStart(8,'0')]);
+  $('specs').innerHTML=sp.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('');
+  $('cutname').textContent=st.cut==='facet'?t('cut')(si.n,!!si.sx):st.cut==='sphere'?t('sphere'):t('cab');
+  $('mapnote').textContent=NOTE[S.key]?NOTE[S.key][LANG]:t('mapnote')(sysName,si.group);
+  $('tileinfo').textContent=`${si.group} · ${Rw}×${Rh} px`;
+  $('tiletext').textContent=t('tiletext')(Rw,Rh);
+  updateAngle();
+  const lo=LORE[S.key][LANG];
+  $('loreTitle').textContent=LANG==='ja'?st.ja:st.en;
+  $('words').innerHTML=lo.words.map(w=>`<span>${w}</span>`).join('');
+  $('lOrigin').textContent=lo.origin;$('lNature').textContent=lo.nature;$('lLegend').textContent=lo.legend;
+  renderTile(true);
+}
+
+const tileCv=document.createElement('canvas'),liveCv=document.createElement('canvas');
+const YAW0=.5,PITCH0=-.62;
+function angleWeights(y,p){
+  const dy=y-YAW0,dp=p-PITCH0;
+  return C.wp.map((q,r)=>{
+    const a=Math.sin(C.nSym*dy*q.f+q.b)-Math.sin(q.b),b=Math.sin(dp*q.g*2.2+q.c)-Math.sin(q.c);
+    return 1+(r===0?.3:1)*q.s*(.85*a+.65*b+.45*a*b);
+  });
+}
+function applyAngle(){
+  const y=S.link?yaw:YAW0,p=S.link?pitch:PITCH0;
+  C.w=angleWeights(y,p);
+  C.depth=1+.4*(Math.abs(Math.sin(p))-Math.abs(Math.sin(PITCH0)));
+  C.phShift=(y-YAW0)*C.nSym/TAU;C.rot=y-YAW0;
+}
+const wTerms=()=>C.terms.map(tm=>({...tm,A:tm.A*C.w[tm.ring]}));
+function combine(list,w){
+  const f0=list[0],N=f0.h.length,h=new Float32Array(N),gx=new Float32Array(N),gy=new Float32Array(N);
+  for(let r=0;r<list.length;r++){const f=list[r],a=w[r];if(!a)continue;const H=f.h,X=f.gx,Y=f.gy;for(let p=0;p<N;p++){h[p]+=a*H[p];gx[p]+=a*X[p];gy[p]+=a*Y[p];}}
+  let q=0;for(let p=0;p<N;p++)q+=gx[p]*gx[p]+gy[p]*gy[p];
+  return {h,gx,gy,Nw:f0.Nw,Nh:f0.Nh,rms:Math.sqrt(q/N)||1e-6};
+}
+function ensureLive(){
+  if(C.live)return C.live;
+  const lw=240,lh=Math.round(lw*C.Rh/C.Rw),src=[],tgt=[];
+  for(let r=0;r<C.nR;r++){const T=C.terms.filter(tm=>tm.ring===r);
+    src.push(field(T,lw,lh,Math.round(lw*1.25),Math.round(lh*1.25)));tgt.push(field(T,lw,lh,lw,lh));}
+  return C.live={lw,lh,src,tgt};
+}
+function makeTile(cv,Rw,Rh,src,tgt){
+  const st=C.st,D=S.strength*(.035+.03*(st.ri-1.4)),K=D*(C.depth||1)*Rw/src.rms;
+  const sep=st.disp*8,factors=st.disp?[1-sep,1,1+sep]:[1];
+  const bufs=caustic(src,Rw,Rh,K,factors);
+  cv.width=Rw;cv.height=Rh;const tc=cv.getContext('2d');
+  tc.putImageData(compose(st,tgt,bufs[0],bufs[1]||bufs[0],bufs[2]||bufs[0],Rw,Rh),0,0);
+  if(S.mode==='facet')overlay(tc,Rw,Rh);
+  return cv;
+}
+function renderLive(){
+  if(!C.Rw)return;applyAngle();const L=ensureLive();
+  makeTile(liveCv,L.lw,L.lh,combine(L.src,C.w),combine(L.tgt,C.w));
+  C.cur=liveCv;drawPreview();
+}
+function renderTile(full){
+  $('status').textContent=t('computing');
+  setTimeout(()=>{
+    const t0=performance.now(),{Rw,Rh}=C;
+    if(full||!C.src){
+      applyAngle();const T=wTerms();
+      C.src=field(T,Rw,Rh,Math.round(Rw*1.5),Math.round(Rh*1.5));
+      C.tgt=field(T,Rw,Rh,Rw,Rh);
+    }
+    makeTile(tileCv,Rw,Rh,C.src,C.tgt);
+    C.cur=null;drawPreview();
+    updateWallPreview();
+    updateExpSize();
+    $('status').textContent=t('done')(Math.round(performance.now()-t0));
+  },20);
+}
+let liveQ=false,fullT=0;
+function angleDeg(){
+  const n=v=>{let d=Math.round(v*180/Math.PI);d=((d+180)%360+360)%360-180;return (d>0?'+':d<0?'−':'')+Math.abs(d);};
+  return [n(yaw-YAW0),n(pitch-PITCH0)];
+}
+function updateAngle(){
+  if(!C.Rw)return;const [a,b]=angleDeg();
+  $('angle').textContent=S.link?t('angle')(a,b,Math.round(360/C.nSym*10)/10):t('angleOff');
+}
+function angleChanged(fromDrag){
+  updateAngle();
+  if(!S.link||!C.Rw)return;
+  if(!liveQ){liveQ=true;requestAnimationFrame(()=>{liveQ=false;renderLive();});}
+  clearTimeout(fullT);
+  if(!fromDrag)fullT=setTimeout(()=>renderTile(true),420);
+}
+
+/* ---------- export ---------- */
+const EXP={square:[2048,2048],phone:[1179,2556],desktop:[2560,1440]};
+function expDims(){
+  if(S.exp==='tile')return [C.Rw*2,C.Rh*2];
+  return EXP[S.exp];
+}
+function wpText(){
+  const st=STONES[S.key],lo=LORE[S.key][LANG];
+  return {date:t('wpDate')(S.m,S.d),name:LANG==='ja'?st.ja:st.en.toUpperCase(),words:lo.words.join(t('wpJoin'))};
+}
+async function loadWpFonts(){
+  if(!document.fonts||!document.fonts.load)return;
+  const tx=wpText(),all=tx.date+tx.name+tx.words+'Lapis Natalis';
+  try{await Promise.all([
+    document.fonts.load('400 40px "Pinyon Script"',all),document.fonts.load('500 40px "Shippori Mincho"',all),
+    document.fonts.load('italic 400 40px "Bodoni Moda"',all),document.fonts.load('400 40px "Bodoni Moda"',all),document.fonts.load('300 20px "Jost"',all)]);}catch(e){}
+}
+function spaced(ctx,text,cx,y,sp){
+  const ch=[...text],ws=ch.map(c=>ctx.measureText(c).width),tot=ws.reduce((a,b)=>a+b,0)+sp*(ch.length-1);
+  let x=cx-tot/2;ctx.textAlign='left';ch.forEach((c,i)=>{ctx.fillText(c,x,y);x+=ws[i]+sp;});return tot;
+}
+function drawWallText(ctx,W,H){
+  if(S.wptext==='none')return;
+  const u=Math.min(W,H)/100,ja=LANG==='ja',tx=wpText(),full=S.wptext==='full';
+  const gold='#D8C292',ink='#EFE8DA',dim='rgba(216,194,146,.7)';
+  const cy=S.wppos==='bottom'?H*(H>W?.76:.72):H*.5;
+  ctx.save();
+  if(S.wppos==='bottom'){const g=ctx.createLinearGradient(0,H*.4,0,H);g.addColorStop(0,'rgba(6,5,4,0)');g.addColorStop(.55,'rgba(6,5,4,.62)');g.addColorStop(1,'rgba(6,5,4,.86)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+  else{const g=ctx.createRadialGradient(W/2,cy,0,W/2,cy,Math.max(W,H)*.5);g.addColorStop(0,'rgba(6,5,4,.78)');g.addColorStop(.55,'rgba(6,5,4,.42)');g.addColorStop(1,'rgba(6,5,4,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+  ctx.textBaseline='middle';ctx.shadowColor='rgba(0,0,0,.55)';ctx.shadowBlur=u*1.4;
+  // words font, shrunk to fit
+  let wSize=ja?6.2*u:9.5*u;const wFont=s=>ja?`500 ${s}px "Shippori Mincho",serif`:`400 ${s}px "Pinyon Script",cursive`;
+  const wSp=ja?.32:0;
+  const wWidth=s=>{ctx.font=wFont(s);const ch=[...tx.words];return ch.reduce((a,c)=>a+ctx.measureText(c).width,0)+s*wSp*(ch.length-1);};
+  while(wWidth(wSize)>W*.84&&wSize>u*2)wSize*=.94;
+  const rows=[];
+  if(full){rows.push({h:2.4*u,draw:y=>{ctx.font=`300 ${2.1*u}px "Jost",sans-serif`;ctx.fillStyle=dim;spaced(ctx,tx.date.toUpperCase(),W/2,y,u*.9);}});rows.push({h:2.6*u});
+    rows.push({h:6*u,draw:y=>{ctx.font=ja?`500 ${5*u}px "Shippori Mincho",serif`:`400 ${5.2*u}px "Bodoni Moda",serif`;ctx.fillStyle=ink;spaced(ctx,tx.name,W/2,y,ja?u*1.6:u*1.3);}});rows.push({h:2.4*u});}
+  const orn=y=>{ctx.shadowBlur=0;ctx.strokeStyle=gold;ctx.lineWidth=Math.max(1,u*.12);const L=Math.min(W*.2,u*16),d=u*.9;
+    ctx.beginPath();ctx.moveTo(W/2-L,y);ctx.lineTo(W/2-d*2,y);ctx.moveTo(W/2+d*2,y);ctx.lineTo(W/2+L,y);ctx.stroke();
+    ctx.fillStyle=gold;ctx.beginPath();ctx.moveTo(W/2,y-d);ctx.lineTo(W/2+d,y);ctx.lineTo(W/2,y+d);ctx.lineTo(W/2-d,y);ctx.closePath();ctx.fill();ctx.shadowBlur=u*1.4;};
+  rows.push({h:2*u,draw:orn});rows.push({h:(ja?3.2:2.4)*u});
+  rows.push({h:wSize*(ja?1.3:1.25),draw:y=>{ctx.font=wFont(wSize);ctx.fillStyle=gold;spaced(ctx,tx.words,W/2,y+(ja?0:wSize*.06),wSize*wSp);}});
+  rows.push({h:(ja?3.2:2.6)*u});
+  if(full)rows.push({h:3*u,draw:y=>{ctx.font=`italic 400 ${2.6*u}px "Bodoni Moda",serif`;ctx.fillStyle=dim;spaced(ctx,'Lapis Natalis',W/2,y,u*.35);}});
+  else rows.push({h:2*u,draw:orn});
+  const tot=rows.reduce((a,r)=>a+r.h,0);let y=cy-tot/2;
+  for(const r of rows){if(r.draw)r.draw(y+r.h/2);y+=r.h;}
+  ctx.restore();
+}
+function wallpaperFrom(tile,tW,tH,W,H){
+  const tw=Math.max(4,Math.round(W/S.reps)),th=Math.max(4,Math.round(tw*tH/tW));
+  const small=document.createElement('canvas');small.width=tw;small.height=th;
+  const sc=small.getContext('2d');sc.imageSmoothingQuality='high';sc.drawImage(tile,0,0,tw,th);
+  const out=document.createElement('canvas');out.width=W;out.height=H;
+  const oc=out.getContext('2d');oc.fillStyle=oc.createPattern(small,'repeat');oc.fillRect(0,0,W,H);
+  drawWallText(oc,W,H);return out;
+}
+let wpTok=0;
+async function updateWallPreview(){
+  $('wpOpts').hidden=S.exp==='tile';
+  if(!C.Rw)return;
+  if(S.exp==='tile'){$('tileimg').src=tileCv.toDataURL('image/png');return;}
+  const tok=++wpTok;await loadWpFonts();if(tok!==wpTok)return;
+  const [W,H]=EXP[S.exp],k=480/Math.max(W,H);
+  $('tileimg').src=wallpaperFrom(tileCv,C.Rw,C.Rh,Math.round(W*k),Math.round(H*k)).toDataURL('image/png');
+}
+function updateExpSize(){
+  if(!C.Rw)return;const [w,h]=expDims();
+  $('expSize').textContent=`${w} × ${h} px · ${S.exp==='tile'?t('expTileNote'):t('expWallNote')}`;
+}
+let downloads=null,saving=false;
+async function savePNG(){
+  if(saving||!downloads)return;saving=true;const btn=$('saveBtn');btn.disabled=true;
+  $('status').textContent=t('saving');
+  await new Promise(r=>setTimeout(r,30));
+  try{
+    const HRw=C.Rw*2,HRh=C.Rh*2;
+    applyAngle();const WT=wTerms(),src=field(WT,HRw,HRh,Math.round(HRw*1.25),Math.round(HRh*1.25)),tgt=field(WT,HRw,HRh,HRw,HRh);
+    const big=makeTile(document.createElement('canvas'),HRw,HRh,src,tgt);
+    let out=big;
+    if(S.exp!=='tile'){await loadWpFonts();const [W,H]=EXP[S.exp];out=wallpaperFrom(big,HRw,HRh,W,H);}
+    const blob=await new Promise(r=>out.toBlob(r,'image/png'));
+    const mm=String(S.m).padStart(2,'0'),dd=String(S.d).padStart(2,'0');
+    const res=await downloads.save({filename:`lapis-natalis_${mm}${dd}_${S.key}${S.link&&(Math.abs(yaw-YAW0)>.01||Math.abs(pitch-PITCH0)>.01)?'_a'+angleDeg().join('_').replace(/\u2212/g,'m').replace(/\+/g,''):''}_${S.exp}.png`,data:blob});
+    $('status').textContent=res&&res.status==='delivered'?'':t('saved');
+  }catch(e){
+    $('status').textContent=e&&e.code==='declined'?t('declined'):t('saveFail');
+  }finally{saving=false;btn.disabled=false;}
+}
+
+function compose(st,F,Lr,Lg,Lb,Rw,Rh){
+  const img=new ImageData(Rw,Rh),d=img.data,{h,gx,gy,rms}=F,N=Rw*Rh;
+  let hmin=1e9,hmax=-1e9;for(let p=0;p<N;p++){if(h[p]<hmin)hmin=h[p];if(h[p]>hmax)hmax=h[p];}
+  const hr=1/(hmax-hmin||1),dark=S.ground==='sumi',G=dark?[20,22,28]:[242,241,236];
+  const body=st.body.map(v=>v/255),tone=L=>(1-Math.exp(-1.1*L))/(1-Math.exp(-1.1));
+  const Ld=norm([-.45,-.5,.74]),Hh=norm([Ld[0],Ld[1],Ld[2]+1]),q=.7/rms,ph=C.phase+(C.phShift||0);
+  for(let p=0;p<N;p++){
+    const t=(h[p]-hmin)*hr,L=[Lr[p],Lg[p],Lb[p]],Lm=(L[0]+L[1]+L[2])/3,o=p*4;
+    let r,g,b;
+    if(st.mat==='clear'){
+      const a=.8+1.4*t,out=[0,0,0];
+      for(let c=0;c<3;c++){const tr=Math.pow(Math.max(body[c],.02),a),s=tone(L[c]),hi=Math.max(0,L[c]-1.4);
+        out[c]=dark?255*(tr*(.05+.62*s)+.16*hi*(.4+.6*tr)):G[c]*(tr*.7+.3)*(.42+.58*s)+40*hi*tr;}
+      [r,g,b]=out;
+    }else{
+      const nx=-gx[p]*q,ny=-gy[p]*q,nl=Math.hypot(nx,ny,1),n=[nx/nl,ny/nl,1/nl];
+      const diff=Math.max(0,n[0]*Ld[0]+n[1]*Ld[1]+n[2]*Ld[2]),spec=Math.pow(Math.max(0,n[0]*Hh[0]+n[1]*Hh[1]+n[2]*Hh[2]),24),s=tone(Lm);
+      const ang=Math.atan2(gy[p],gx[p])/TAU;
+      if(st.mat==='opal'){
+        const base=dark?[16,20,34]:[224,226,230],play=smooth(.85,2.1,Lm)*.88,sp=hsv(ang*2+t*1.3+ph,.85,1);
+        [r,g,b]=base.map((v,c)=>v*(.8+.25*s)*(1-play)+255*sp[c]*play+60*spec);
+      }else if(st.mat==='moon'){
+        const glow=smooth(.9,2.3,Lm)*.6;
+        [r,g,b]=body.map((v,c)=>255*v*(.5+.3*s+.15*diff)+[70,120,255][c]*glow+50*spec);
+      }else if(st.mat==='pearl'){
+        const ir=hsv(t*2.5+ang*.5,.35,1);
+        [r,g,b]=body.map((v,c)=>255*v*(.6+.4*diff)+255*ir[c]*.12*s+90*spec);
+      }else if(st.mat==='turq'){
+        const f=Math.abs(((t*4.2+.12*(Lm-1))%1+1)%1-.5),k=f<.04?1-f/.04:0;
+        [r,g,b]=body.map((v,c)=>{const base=255*v*(.55+.45*diff)+40*spec;return base*(1-k*.85)+[92,70,50][c]*k*.85;});
+      }else{
+        [r,g,b]=body.map(v=>255*v*(.5+.3*s+.25*diff)+50*spec);
+      }
+    }
+    d[o]=clamp(r,0,255);d[o+1]=clamp(g,0,255);d[o+2]=clamp(b,0,255);d[o+3]=255;
+  }
+  return img;
+}
+
+function overlay(tc,Rw,Rh){
+  const {si,mesh,st}=C,lw=Rw/RES,dark=S.ground==='sumi'||st.mat!=='clear'&&st.mat!=='opal';
+  const pts=si.lat==='hex'?[[0,0],[Rw/2,Rh/2]]:[[0,0]];
+  const r=(si.lat==='rect'?Math.min(Rw,Rh):Rw)*.3;
+  tc.lineJoin='round';const cr=Math.cos(C.rot||0),sr=Math.sin(C.rot||0);
+  for(const [px,py] of pts)for(let i=-1;i<=1;i++)for(let j=-1;j<=1;j++){
+    const ox=px+i*Rw,oy=py+j*Rh;if(ox<-r||ox>Rw+r||oy<-r||oy>Rh+r)continue;
+    for(const f of mesh.plan){
+      tc.beginPath();f.pts.forEach((p,k)=>{const x=ox+(p[0]*cr-p[1]*sr)*r,y=oy+(p[0]*sr+p[1]*cr)*r;k?tc.lineTo(x,y):tc.moveTo(x,y);});tc.closePath();
+      let col;
+      if(st.mat==='opal'){const c=hsv(f.idx*.618+C.phase+(C.phShift||0),.75,1);col=c.map(v=>v*255*(.5+.5*f.shade));}
+      else col=st.body.map(v=>v*(.45+.75*f.shade));
+      tc.fillStyle=`rgba(${col.map(v=>Math.round(clamp(v,0,255))).join(',')},.42)`;tc.fill();
+      tc.strokeStyle=dark?'rgba(255,255,255,.55)':'rgba(20,24,32,.5)';tc.lineWidth=lw;tc.stroke();
+    }
+  }
+}
+
+/* ---------- preview ---------- */
+const pv=$('preview'),pc=pv.getContext('2d');
+function drawPreview(){
+  if(!C.Rw)return;
+  const W=pv.clientWidth||800,dpr=Math.min(2,window.devicePixelRatio||1);
+  const sc=W/(S.reps*C.Rw),H=Math.round(Math.min(C.Rh*sc*Math.max(1,S.reps*.75),W*1.0));
+  pv.width=Math.round(W*dpr);pv.height=Math.round(H*dpr);pv.style.height=H+'px';
+  const cv=C.cur||tileCv,kk=sc*C.Rw/cv.width;
+  pc.setTransform(dpr*kk,0,0,dpr*kk,0,0);
+  pc.fillStyle=pc.createPattern(cv,'repeat');pc.fillRect(0,0,W/kk+1,H/kk+1);
+  if(S.seams){
+    pc.setTransform(dpr,0,0,dpr,0,0);pc.setLineDash([5,5]);pc.lineWidth=1;
+    pc.strokeStyle=S.ground==='sumi'?'rgba(255,255,255,.7)':'rgba(20,24,32,.7)';
+    pc.beginPath();for(let x=C.Rw*sc;x<W;x+=C.Rw*sc){pc.moveTo(x,0);pc.lineTo(x,H);}for(let y=C.Rh*sc;y<H;y+=C.Rh*sc){pc.moveTo(0,y);pc.lineTo(W,y);}pc.stroke();pc.setLineDash([]);
+  }
+}
+
+/* ---------- 3D gem ---------- */
+const gc=$('gem'),g=gc.getContext('2d'),tray=$('tray');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let yaw=.5,pitch=-.62,drag=null,last=performance.now();
+tray.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,yaw,pitch};tray.setPointerCapture(e.pointerId);});
+tray.addEventListener('pointermove',e=>{if(!drag)return;yaw=drag.yaw+(e.clientX-drag.x)*.01;pitch=clamp(drag.pitch+(e.clientY-drag.y)*.01,-1.5,1.5);angleChanged(true);});
+const endDrag=()=>{if(!drag)return;drag=null;if(S.link){clearTimeout(fullT);fullT=setTimeout(()=>renderTile(true),120);}};
+tray.addEventListener('pointerup',endDrag);tray.addEventListener('pointercancel',endDrag);
+tray.addEventListener('keydown',e=>{const k={ArrowLeft:[-.06,0],ArrowRight:[.06,0],ArrowUp:[0,-.05],ArrowDown:[0,.05]}[e.key];if(!k)return;e.preventDefault();yaw+=k[0];pitch=clamp(pitch+k[1],-1.5,1.5);angleChanged(false);});
+function sizeGem(){const r=tray.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);gc.width=Math.round(r.width*dpr);gc.height=Math.round(r.height*dpr);}
+function drawGem(now){
+  const dt=Math.min(50,now-last);last=now;if(!drag&&!reduce&&!S.link)yaw+=dt*.00035;
+  if(C.mesh){
+    const {V,F,ext}=C.mesh,st=C.st,W=gc.width,H=gc.height,Sc=Math.min(W,H)*.4/ext;
+    g.clearRect(0,0,W,H);
+    const cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);
+    const P=V.map(v=>{const x1=v[0]*cy+v[2]*sy,z1=-v[0]*sy+v[2]*cy,y2=v[1]*cp-z1*sp,z2=v[1]*sp+z1*cp;return [x1,y2,z2];});
+    const L=norm([-.45,.65,.62]),Hv=norm([L[0],L[1],L[2]+1]),body=st.body,clear=st.mat==='clear',dark=S.ground==='sumi';
+    const list=F.map((f,i)=>{const a=P[f[0]],b=P[f[1]],c=P[f[2]];
+      const n=norm([(b[1]-a[1])*(c[2]-a[2])-(b[2]-a[2])*(c[1]-a[1]),(b[2]-a[2])*(c[0]-a[0])-(b[0]-a[0])*(c[2]-a[2]),(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])]);
+      let z=0;for(const k of f)z+=P[k][2];return {f,n,z:z/f.length,i};}).sort((p,q)=>p.z-q.z);
+    const scr=v=>{const k=1/(1-v[2]*.1);return [W/2+v[0]*Sc*k,H/2-v[1]*Sc*k];};
+    for(const o of list){
+      const n=o.n,front=n[2]>0;if(!clear&&!front)continue;
+      g.beginPath();o.f.forEach((k,j)=>{const s=scr(P[k]);j?g.lineTo(s[0],s[1]):g.moveTo(s[0],s[1]);});g.closePath();
+      const diff=Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]),spec=Math.pow(Math.max(0,n[0]*Hv[0]+n[1]*Hv[1]+n[2]*Hv[2]),clear?60:28);
+      if(clear){
+        if(!front){
+          const e=.5+.5*Math.sin(n[0]*6+n[1]*4+n[2]*5),br=.16+.84*Math.pow(e,3),fire=Math.min(1,st.disp*16)*Math.pow(e,6),sc=hsv(n[0]*1.3+n[1]*.7+n[2]*.9,.9,1);
+          const col=body.map((v,c)=>v*br*1.1*(1-fire*.7)+255*sc[c]*fire*.7);
+          g.fillStyle=`rgb(${col.map(v=>Math.round(clamp(v,0,255))).join(',')})`;g.fill();
+        }else{
+          g.fillStyle=`rgba(${body.join(',')},.2)`;g.fill();
+          const rim=Math.pow(1-n[2],3)*.3+spec*.85;if(rim>.01){g.fillStyle=`rgba(255,255,255,${rim.toFixed(3)})`;g.fill();}
+          g.strokeStyle='rgba(255,255,255,.38)';g.lineWidth=Math.max(1,W/700);g.stroke();
+        }
+      }else{
+        let col;
+        if(st.mat==='opal'){const base=dark?[18,22,36]:[224,226,230],pl=Math.pow(.5+.5*Math.sin(o.i*12.99+n[2]*3+n[0]*2),3)*.85,sc=hsv(o.i*.618+n[0]*.8+n[1]*.5+C.phase,.85,1);
+          col=base.map((v,c)=>v*(.45+.55*diff)*(1-pl)+255*sc[c]*pl*(.5+.5*diff)+220*spec*.6);}
+        else if(st.mat==='moon'){const ad=Math.pow(Math.max(0,n[2]),4)*.55;col=body.map((v,c)=>v*(.35+.6*diff)+[70,120,255][c]*ad+200*spec*.5);}
+        else if(st.mat==='pearl'){const ir=hsv(n[0]*.6+n[1]*.4,.3,1);col=body.map((v,c)=>v*(.42+.58*diff)+255*ir[c]*.08+255*spec*.75);}
+        else col=body.map(v=>v*(.32+.68*diff)+255*spec*.35);
+        const cs=`rgb(${col.map(v=>Math.round(clamp(v,0,255))).join(',')})`;g.fillStyle=cs;g.fill();g.strokeStyle=cs;g.lineWidth=1;g.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawGem);
+}
+
+/* ---------- wiring ---------- */
+bindChips('links','link',()=>{});
+$('links').querySelectorAll('.chip').forEach(b=>{const o=b.onclick;b.onclick=()=>{o();S.link=b.dataset.v==='on';updateAngle();renderTile(true);};});
+$('resetAng').onclick=()=>{yaw=YAW0;pitch=PITCH0;updateAngle();if(S.link)renderTile(true);};
+$('goToday').onclick=()=>{S.m=TODAY_M;S.d=TODAY_D;birthChanged();};
+$('prevDay').onclick=()=>shiftDay(-1);$('nextDay').onclick=()=>shiftDay(1);
+bindChips('modes','mode',()=>renderTile(false));
+bindChips('grounds','ground',()=>renderTile(false));
+let st0;
+$('strength').oninput=e=>{S.strength=+e.target.value;$('strengthOut').textContent=S.strength.toFixed(2);clearTimeout(st0);st0=setTimeout(()=>renderTile(false),120);};
+let rp0;$('reps').oninput=e=>{S.reps=+e.target.value;$('repsOut').textContent=S.reps;drawPreview();clearTimeout(rp0);rp0=setTimeout(updateWallPreview,150);};
+bindChips('exports','exp',()=>{updateExpSize();updateWallPreview();});
+bindChips('wptext','wptext',updateWallPreview);bindChips('wppos','wppos',updateWallPreview);
+$('saveBtn').onclick=savePNG;
+(async()=>{
+  if(window.claude&&window.claude.use){try{downloads=await window.claude.use('downloads');}catch(e){downloads=null;}}
+  else downloads={save:async({filename,data})=>{const u=URL.createObjectURL(data),a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);return {status:'saved'};}};
+  if(downloads)$('saveBtn').hidden=false;
+})();
+$('seams').onchange=e=>{S.seams=e.target.checked;drawPreview();};
+window.addEventListener('resize',()=>{sizeGem();drawPreview();});
+function applyLang(){
+  document.documentElement.lang=LANG;document.title=t('doc');
+  document.querySelectorAll('[data-i]').forEach(el=>{const v=t(el.dataset.i);if(el.dataset.i==='title')el.innerHTML=v;else el.textContent=v;});
+  document.querySelectorAll('[data-a]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.a)));
+  document.querySelectorAll('[data-alt]').forEach(el=>el.alt=t(el.dataset.alt));
+  $('langs').querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===LANG)));
+  stoneChips();renderBirth();updateExpSize();
+}
+$('langs').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{LANG=b.dataset.v;try{localStorage.setItem('lapis-natalis-lang',LANG);}catch(e){}applyLang();setup();});
+sizeGem();applyLang();setup();requestAnimationFrame(drawGem);
+})();
+</script>
+
+</body>
+</html>

@@ -5,23 +5,32 @@ Each app lives in its own folder under `apps/` and runs directly in the browser,
 
 ## Apps
 
+### Image tools
+
+Apps that edit, transform or protect your own images.
+
 | App | Description | Demo |
 | --- | --- | --- |
 | [**Soma — Skin Overlay Studio**](apps/soma-skin-overlay-studio/) | A local-first studio for previewing tattoos and procedural scars on your own photograph, wrapped to the curves of the body | [Open](https://actofangel.github.io/web-apps/apps/soma-skin-overlay-studio/) |
 | [**Chromatic Structure Lab**](apps/chromatic-structure-lab/) | Keeps the value structure of an image while moving its hues into a chosen chromatic climate, with OKLab color math on the GPU and PNG / `.cube` LUT export | [Open](https://actofangel.github.io/web-apps/apps/chromatic-structure-lab/) |
 | [**Velagrafia**](apps/velagrafia/) | A precision watermark workspace with tiled, stamp and seal layouts, logo overlays, rights metadata and batch export | [Open](https://actofangel.github.io/web-apps/apps/velagrafia/) |
 
-### Soma — Skin Overlay Studio
+### Generators
 
-[![Soma — Skin Overlay Studio](apps/soma-skin-overlay-studio/screenshot.png)](apps/soma-skin-overlay-studio/)
+Apps that create new material, such as patterns, tiles and wallpapers.
 
-### Chromatic Structure Lab
+| App | Description | Demo |
+| --- | --- | --- |
+| [**Lapis Natalis**](apps/lapis-natalis/) | Turns a birthday into its birthstone, a faceted cut and a seamless caustic pattern, unique to each of the 366 days | [Open](https://actofangel.github.io/web-apps/apps/lapis-natalis/) |
 
-[![Chromatic Structure Lab](apps/chromatic-structure-lab/screenshot.png)](apps/chromatic-structure-lab/)
+## Screenshots
 
-### Velagrafia
-
-[![Velagrafia](apps/velagrafia/screenshot.png)](apps/velagrafia/)
+| | |
+| --- | --- |
+| [![Soma — Skin Overlay Studio](apps/soma-skin-overlay-studio/screenshot.png)](apps/soma-skin-overlay-studio/) | [![Chromatic Structure Lab](apps/chromatic-structure-lab/screenshot.png)](apps/chromatic-structure-lab/) |
+| Soma — Skin Overlay Studio | Chromatic Structure Lab |
+| [![Velagrafia](apps/velagrafia/screenshot.png)](apps/velagrafia/) | [![Lapis Natalis](apps/lapis-natalis/screenshot.png)](apps/lapis-natalis/) |
+| Velagrafia | Lapis Natalis |
 
 ## Structure
 
@@ -34,7 +43,7 @@ web-apps/
         └── README.md    … app-specific notes
 ```
 
-To add a new app, create `apps/<app-name>/` and add a row to the table above.
+To add a new app, create `apps/<app-name>/` and add a row to the matching table above.
 
 ## License
 
