@@ -14,6 +14,7 @@ Apps that edit, transform or protect your own images.
 | [**Soma — Skin Overlay Studio**](apps/soma-skin-overlay-studio/) | A local-first studio for previewing tattoos and procedural scars on your own photograph, wrapped to the curves of the body | [Open](https://actofangel.github.io/web-apps/apps/soma-skin-overlay-studio/) |
 | [**Chromatic Structure Lab**](apps/chromatic-structure-lab/) | Keeps the value structure of an image while moving its hues into a chosen chromatic climate, with OKLab color math on the GPU and PNG / `.cube` LUT export | [Open](https://actofangel.github.io/web-apps/apps/chromatic-structure-lab/) |
 | [**Velagrafia**](apps/velagrafia/) | A precision watermark workspace with tiled, stamp and seal layouts, logo overlays, rights metadata and batch export | [Open](https://actofangel.github.io/web-apps/apps/velagrafia/) |
+| [**Amefurashi**](apps/amefurashi/) | Turns a photograph into a rainy scene with rain in depth, mist, wet reflections, splashes and rain on glass, exported as PNG stills or WebM video | [Open](https://actofangel.github.io/web-apps/apps/amefurashi/) |
 
 ### Generators
 
@@ -32,8 +33,8 @@ Apps that create new material, such as patterns, tiles and wallpapers.
 | Soma — Skin Overlay Studio | Chromatic Structure Lab |
 | [![Velagrafia](apps/velagrafia/screenshot.png)](apps/velagrafia/) | [![Lapis Natalis](apps/lapis-natalis/screenshot.png)](apps/lapis-natalis/) |
 | Velagrafia | Lapis Natalis |
-| [![Koyomigami](apps/koyomigami/screenshot.png)](apps/koyomigami/) | |
-| Koyomigami | |
+| [![Koyomigami](apps/koyomigami/screenshot.png)](apps/koyomigami/) | [![Amefurashi](apps/amefurashi/screenshot.png)](apps/amefurashi/) |
+| Koyomigami | Amefurashi |
 
 ## Structure
 
@@ -52,4 +53,4 @@ To add a new app, create `apps/<app-name>/` and add a row to the matching table 
 
 [MIT License](LICENSE) © 2026 actofangel
 
-The sample images in Chromatic Structure Lab and Velagrafia are © 2026 actofangel, all rights reserved, and are not covered by the MIT License. See [LICENSE](LICENSE).
+The sample and demo images in Chromatic Structure Lab, Velagrafia and Amefurashi are © 2026 actofangel, all rights reserved, and are not covered by the MIT License. See [LICENSE](LICENSE).
