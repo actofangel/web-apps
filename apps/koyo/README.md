@@ -45,7 +45,7 @@ A single self-contained HTML file. [Three.js](https://threejs.org/) 0.185.0 (bun
 
 ## Data and sources
 
-Leaf shapes are generated from hand-tuned morphology recipes, checked against the [Natural History Museum plant-traits dataset](https://github.com/NaturalHistoryMuseum/plant-traits) (CC BY 4.0). Outlines, veins and peak autumn colors for each species are traced from reference leaf images. See [`DATA_SOURCES.md`](DATA_SOURCES.md) for the data survey, the processing steps, the known limitations and the full list of sources.
+Leaf shapes are generated from hand-tuned morphology recipes, checked against the [Natural History Museum plant-traits dataset](https://github.com/NaturalHistoryMuseum/plant-traits), with outlines, veins and peak autumn colors traced from reference leaf images. They are rendering models, not measured 3D specimens.
 
 ## Credits
 
