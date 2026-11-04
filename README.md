@@ -24,6 +24,7 @@ Apps that create new material, such as patterns, tiles and wallpapers.
 | --- | --- | --- |
 | [**Lapis Natalis**](apps/lapis-natalis/) | Turns a birthday into its birthstone, a faceted cut and a seamless caustic pattern, unique to each of the 366 days | [Open](https://actofangel.github.io/web-apps/apps/lapis-natalis/) |
 | [**Koyomigami**](apps/koyomigami/) | Forms a sheet of washi for each day of the year from the Japanese month names, 24 solar terms and 72 seasons, using a physical papermaking model | [Open](https://actofangel.github.io/web-apps/apps/koyomigami/) |
+| [**KOYO**](apps/koyo/) | A studio of 14 procedural 3D autumn leaves: follow their seasonal color, arrange compositions, and let leaves or petals fall over your own photo | [Open](https://actofangel.github.io/web-apps/apps/koyo/) |
 
 ## Screenshots
 
@@ -35,6 +36,8 @@ Apps that create new material, such as patterns, tiles and wallpapers.
 | Velagrafia | Lapis Natalis |
 | [![Koyomigami](apps/koyomigami/screenshot.png)](apps/koyomigami/) | [![Amefurashi](apps/amefurashi/screenshot.png)](apps/amefurashi/) |
 | Koyomigami | Amefurashi |
+| [![KOYO](apps/koyo/screenshot.png)](apps/koyo/) | |
+| KOYO | |
 
 ## Structure
 
@@ -53,4 +56,4 @@ To add a new app, create `apps/<app-name>/` and add a row to the matching table 
 
 [MIT License](LICENSE) © 2026 actofangel
 
-The sample and demo images in Chromatic Structure Lab, Velagrafia and Amefurashi are © 2026 actofangel, all rights reserved, and are not covered by the MIT License. See [LICENSE](LICENSE).
+The sample, demo and wallpaper images in Chromatic Structure Lab, Velagrafia, Amefurashi and KOYO are © 2026 actofangel, all rights reserved, and are not covered by the MIT License. See [LICENSE](LICENSE).

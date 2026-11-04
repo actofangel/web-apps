@@ -31,3 +31,5 @@ under the MIT License above.
 - The sample image in apps/velagrafia/index.html
 - The demo image in apps/amefurashi/index.html and
   apps/amefurashi/source/src/assets/demo.jpg
+- The default wallpapers apps/koyo/default-wallpaper.jpg and
+  apps/koyo/default-wallpaper-2.jpg, also embedded in apps/koyo/index.html
